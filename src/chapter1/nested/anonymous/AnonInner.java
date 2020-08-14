@@ -1,8 +1,9 @@
-package chapter1.nested;
+package chapter1.nested.anonymous;
 
 public class AnonInner {
-     class SaleTodayOnly {
-         int dollarsOff() {return 0;}
+
+    abstract class SaleTodayOnly {
+        abstract int dollarsOff();
     }
 
     public int admission(int basePrice) {

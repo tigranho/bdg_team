@@ -1,7 +1,7 @@
 package chapter1.accessmodifiers.mouse;
 
 
-import main.java.com.chapter1.accessmodifiers.cat.BigCat;
+import chapter1.accessmodifiers.cat.BigCat;
 
 public class Mouse {
     public static void main(String[] args) {

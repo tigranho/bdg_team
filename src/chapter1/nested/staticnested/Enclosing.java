@@ -1,4 +1,4 @@
-package chapter1.nested;
+package chapter1.nested.staticnested;
 
 public class Enclosing {
 

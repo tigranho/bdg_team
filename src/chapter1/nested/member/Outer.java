@@ -1,4 +1,4 @@
-package chapter1.nested;
+package chapter1.nested.member;
 
 // Can be declared public, private, or protected or use default access
 // Can extend any class and implement interfaces
@@ -27,8 +27,11 @@ public class Outer {
     }
 
     public static void main(String[] args) {
-
         Outer outer = new Outer();
         outer.callInner();
+
+        Inner inner = outer.new Inner();
+        inner.go();
+
     }
 }
