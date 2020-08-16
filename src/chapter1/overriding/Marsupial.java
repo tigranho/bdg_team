@@ -1,5 +1,7 @@
 package chapter1.overriding;
 
+import java.io.IOException;
+
 /**
  * @author Tigran
  */
@@ -16,7 +18,7 @@ public class Marsupial {
         return  false;
     }
 
-    public Number foo() throws Exception {
+    public Number foo() throws IOException {
         return  1;
     }
 
@@ -24,5 +26,9 @@ public class Marsupial {
     public void getMarsupialDescription() {
         System.out.println("Static Marsupial  " + isBiped());
         System.out.println("Marsupial  " + isBiped());
+    }
+
+    public Number jumpingCount() {
+        return (int) Math.sqrt(lenght) * 3 - 1;
     }
 }

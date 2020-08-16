@@ -17,6 +17,9 @@ public class Kangaroo extends Marsupial {
         return  true;
     }
 
+    public void print(double d) {
+
+    }
 
     public Integer foo() throws IOException {
         return  1;
@@ -28,9 +31,15 @@ public class Kangaroo extends Marsupial {
         System.out.println("Kangaroo  " + isBiped());
     }
 
+    @Override
+    public Long jumpingCount() {
+        return (Long) super.jumpingCount();
+    }
+
     public static void main(String[] args) {
         Kangaroo kangaroo = new Kangaroo();
         kangaroo.getMarsupialDescription();
         kangaroo.getKangarooDescription();
+        kangaroo.print(1);
     }
 }

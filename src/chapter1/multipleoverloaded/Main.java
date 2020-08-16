@@ -1,9 +1,16 @@
 package chapter1.multipleoverloaded;
 
+import javax.swing.*;
+import java.util.ArrayDeque;
+
 public class Main  {
 
     public static void main(String[] args) {
-       foo(7);
+        new ArrayDeque<>();
+        JFrame jFrame = new JFrame();
+        jFrame.dispose();
+       foo(Integer.parseInt(args[0]));
+       Bain bain = new Bain();
     }
 
     private static void foo(int i) {
@@ -25,4 +32,8 @@ public class Main  {
     private static void foo(int... i) {
         System.out.print("Varargs");
     }
+
+}
+class Bain {
+
 }
