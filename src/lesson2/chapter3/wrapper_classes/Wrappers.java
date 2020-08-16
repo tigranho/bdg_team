@@ -3,6 +3,10 @@ package lesson2.chapter3.wrapper_classes;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Hrach
+ */
+
 public class Wrappers {
     public static void main(String[] args) {
         List<Integer> nums = new ArrayList<>();
