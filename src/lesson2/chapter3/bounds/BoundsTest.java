@@ -6,6 +6,10 @@ import java.util.Arrays;
 import java.util.List;
 import static java.lang.System.out;
 
+/**
+ * @author Hrach
+ */
+
 public class BoundsTest {
     public static void main(String[] args) {
         List<?> list1 = new ArrayList<A>();

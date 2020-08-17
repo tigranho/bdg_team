@@ -1,20 +1,26 @@
 package lesson2.chapter3.bounds;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+/**
+ * @author Hrach
+ */
 
 public class UpperBoundedWildcard {
     public static long total(List<? extends Number> list) {
         long count = 0;
-        for(Number num: list) {
+        for (Number num : list) {
             count += num.longValue();
         }
         return count;
     }
 
-    static class Bird {}
-    static class Sparrow extends Bird {}
+    static class Bird {
+    }
+
+    static class Sparrow extends Bird {
+    }
 
 
     public static void main(String[] args) {
