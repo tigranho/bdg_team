@@ -6,6 +6,10 @@ import java.util.Set;
 
 import static lesson2.chapter3.collections.set.Account.Gender.MALE;
 
+/**
+ * @author Hrach
+ */
+
 public class HashSetDemo {
     public static void main(String[] args) {
         Account john = new Account.AccountBuilder(LocalDate.now())

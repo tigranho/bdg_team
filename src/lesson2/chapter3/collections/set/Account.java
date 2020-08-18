@@ -4,6 +4,10 @@ import java.time.LocalDate;
 import java.util.Objects;
 import java.util.StringJoiner;
 
+/**
+ * @author Hrach
+ */
+
 public class Account {
 
     private String firstName;

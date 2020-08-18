@@ -6,6 +6,10 @@ import java.util.TreeSet;
 
 import static java.lang.System.out;
 
+/**
+ * @author Hrach
+ */
+
 public class SetMethods {
 
     public static void main(String[] args) {

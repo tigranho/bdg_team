@@ -6,6 +6,10 @@ import java.util.stream.IntStream;
 
 import static java.lang.System.out;
 
+/**
+ * @author Hrach
+ */
+
 public class NavigableSetMethods {
     public static void main(String[] args) {
         NavigableSet<Integer> set = IntStream.range(1, 21).collect(TreeSet::new, TreeSet::add, TreeSet::addAll);
