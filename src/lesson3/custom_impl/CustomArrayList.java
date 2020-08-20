@@ -78,6 +78,7 @@ public class CustomArrayList<T> implements List<T>, RandomAccess, Cloneable, Ser
 
     @Override
     public void forEach(Consumer<? super T> action) {
+        if (action == null) throw new NullPointerException("argument cannot be null");
         for (int i = 0; i < size; i++) {
             action.accept(elements[i]);
         }
@@ -125,7 +126,7 @@ public class CustomArrayList<T> implements List<T>, RandomAccess, Cloneable, Ser
     public void replaceAll(UnaryOperator<T> operator) {
         if (operator == null) throw new NullPointerException("argument cannot be null");
         for (int i = 0; i < size; i++) {
-            operator.apply(elements[i]);
+            elements[i] = operator.apply(elements[i]);
         }
     }
 
