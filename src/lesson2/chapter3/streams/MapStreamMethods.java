@@ -1,5 +1,6 @@
 package lesson2.chapter3.streams;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.BiFunction;

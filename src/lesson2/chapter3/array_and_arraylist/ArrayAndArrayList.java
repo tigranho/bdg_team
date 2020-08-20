@@ -16,6 +16,8 @@ public class ArrayAndArrayList {
         List<String> list = new ArrayList<>();
         list.add("Fluffy");
         list.add("Webby");
+        String s = list.get(100);
+        out.println(list);
         String[] array = new String[list.size()];
         array[0] = list.get(1);
         array[1] = list.get(0);
@@ -27,7 +29,7 @@ public class ArrayAndArrayList {
         String[] array2 =  list.toArray(String[]::new);
         Arrays.stream(array2).forEach(out::print);
         out.println();
-        list.remove(1);
+//        list.remove(1);
 
         //searching and sorting
         int[] numbers = {6, 9, 1, 8};
