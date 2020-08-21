@@ -1,9 +1,6 @@
 package lesson2.chapter3.array_and_arraylist;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 import static java.lang.System.out;
 
@@ -16,7 +13,6 @@ public class ArrayAndArrayList {
         List<String> list = new ArrayList<>();
         list.add("Fluffy");
         list.add("Webby");
-        String s = list.get(100);
         out.println(list);
         String[] array = new String[list.size()];
         array[0] = list.get(1);
