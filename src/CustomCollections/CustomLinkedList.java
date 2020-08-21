@@ -281,4 +281,15 @@ public class CustomLinkedList<E> {
         }
         return -1;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder s = new StringBuilder();
+        Node<E> node = first;
+        while (node != null) {
+            s.append(node.element).append(" ");
+            node = node.next;
+        }
+        return s.toString();
+    }
 }

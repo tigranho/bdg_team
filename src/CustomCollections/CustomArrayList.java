@@ -113,16 +113,16 @@ public class CustomArrayList<T> {
      * Removes element at index and moves the rest toward the front
      */
     public T remove(int index) {
-        Object temp = null;
+        T temp = null;
         if (index >= 0 && index < this.size) {
-            temp = this.dataArray[index];
+            temp = (T) this.dataArray[index];
             for (int i = index; i < this.size - 1; i++) {
                 set(i, (T) this.dataArray[i + 1]);
             }
         }
         this.dataArray[size - 1] = null;
         size--;
-        return (T) temp;
+        return temp;
     }
 
     public void remove(T t) {
@@ -217,5 +217,14 @@ public class CustomArrayList<T> {
             }
         }
         return -1;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder s = new StringBuilder();
+        for (int i = 0; i < size; i++) {
+            s.append(dataArray[i]).append(" ");
+        }
+        return s.toString();
     }
 }
