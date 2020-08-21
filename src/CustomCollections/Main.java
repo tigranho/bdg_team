@@ -60,5 +60,35 @@ public class Main {
         System.out.println("Clear list...");
         linkedList.clear();
         System.out.println("Is list empty: " + linkedList.isEmpty());
+
+        // Test CustomHashMap
+        CustomHashMap<String, Integer> newHashMap = new CustomHashMap<>();
+        newHashMap.put("one", 1);
+        newHashMap.put("two", 2);
+        newHashMap.put("three", 3);
+        newHashMap.put("x", 5);
+        newHashMap.put("y", 6);
+        newHashMap.put("x", 15);
+        System.out.println("Size: " + newHashMap.size());
+        System.out.println("Obtaining values by keys: " + newHashMap.get("one")
+                + " " + newHashMap.get("two")
+                + " " + newHashMap.get("three")
+                + " " + newHashMap.get("x")
+                + " " + newHashMap.get("y")
+        );
+        System.out.println("Contains \"x\": " + newHashMap.containsKey("x"));
+        System.out.println("Removing key: \"two\", value: " + newHashMap.remove("two"));
+        System.out.println("Contains \"two\": " + newHashMap.containsKey("two"));
+        System.out.println("Size: " + newHashMap.size());
+        System.out.println("Obtaining values by keys: " + newHashMap.get("one")
+                + " " + newHashMap.get("two")
+                + " " + newHashMap.get("three")
+                + " " + newHashMap.get("x")
+                + " " + newHashMap.get("y")
+        );
+        System.out.println("Is empty?: " + newHashMap.isEmpty());
+        System.out.println("Clearing HashMap...");
+        newHashMap.clear();
+        System.out.println("Is empty?: " + newHashMap.isEmpty());
     }
 }

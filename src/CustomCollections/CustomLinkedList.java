@@ -6,6 +6,11 @@ package CustomCollections;
  */
 public class CustomLinkedList<E> {
 
+    /**
+     * Helper Node class
+     *
+     * @param <E>
+     */
     private class Node<E> {
         Node<E> prev;
         E element;
