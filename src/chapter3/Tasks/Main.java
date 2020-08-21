@@ -1,13 +1,14 @@
 package chapter3.Tasks;
 
 import chapter3.Tasks.CustomLists.ArrayLists.CustomArrayList;
-import chapter3.Tasks.CustomLists.CustomstList;
 import chapter3.Tasks.CustomLists.LinkedLists.CustomLinkedList;
+
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
 
-        CustomstList<Integer> arrayList = new CustomArrayList<>();
+        List<Integer> arrayList = new CustomArrayList<>();
 
         arrayList.add(10);
         arrayList.add(20);
@@ -22,8 +23,11 @@ public class Main {
 
         Integer remove = arrayList.remove(2);
         System.out.println(arrayList);
+        arrayList.set(1, 60);
+        System.out.println(arrayList);
 
-        CustomstList<String> linkedList = new CustomLinkedList<>();
+        System.out.println("CustomLinkedList");
+        List<String> linkedList = new CustomLinkedList<>();
 
         linkedList.add("1");
         linkedList.add("2");
@@ -34,5 +38,11 @@ public class Main {
 
         String s = linkedList.get(3);
         System.out.println(s);
+
+        linkedList.set(2, "10");
+        System.out.println(linkedList);
+
+        linkedList.remove(0);
+        System.out.println(linkedList);
     }
 }

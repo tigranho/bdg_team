@@ -1,14 +1,12 @@
 package chapter3.Tasks.CustomLists.ArrayLists;
 
-import chapter3.Tasks.CustomLists.CustomstList;
-
 import java.util.*;
 import java.util.function.Consumer;
 import java.util.function.IntFunction;
 import java.util.function.Predicate;
 import java.util.function.UnaryOperator;
 
-public class CustomArrayList<E> extends ArrayList<E> implements CustomstList<E>, RandomAccess, Cloneable, java.io.Serializable {
+public class CustomArrayList<E> extends ArrayList<E> implements List<E>, RandomAccess, Cloneable, java.io.Serializable {
     private static final long serialVersionUID = 8683452581122892189L;
 
     private static final int DEFAULT_CAPACITY = 10;

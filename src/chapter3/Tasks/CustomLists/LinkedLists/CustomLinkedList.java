@@ -1,12 +1,10 @@
 package chapter3.Tasks.CustomLists.LinkedLists;
 
-import chapter3.Tasks.CustomLists.CustomstList;
-
 import java.io.Serializable;
 import java.util.*;
 import java.util.function.*;
 
-public class CustomLinkedList<T> extends LinkedList<T> implements CustomstList<T>, Deque<T>, Cloneable, Serializable {
+public class CustomLinkedList<T> extends LinkedList<T> implements List<T>, Deque<T>, Cloneable, Serializable {
 
     transient int size = 0;
 
