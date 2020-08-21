@@ -22,7 +22,7 @@ public interface CustomstList<T> extends List<T> {
     Object[] toArray();
 
     @Override
-    <T1> T1[] toArray(T1[] a);
+    <T> T[] toArray(T[] a);
 
     @Override
     boolean add(T t);
@@ -124,6 +124,4 @@ public interface CustomstList<T> extends List<T> {
         }
         return removed;
     }
-
-
 }

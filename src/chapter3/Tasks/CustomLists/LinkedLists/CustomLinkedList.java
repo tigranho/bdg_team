@@ -21,7 +21,7 @@ public class CustomLinkedList<T> extends LinkedList<T> implements CustomstList<T
     }
 
     @Override
-    public <T1> T1[] toArray(IntFunction<T1[]> generator) {
+    public <T> T[] toArray(IntFunction<T[]> generator) {
         return null;
     }
 

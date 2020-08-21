@@ -20,6 +20,9 @@ public class Main {
         Integer integer = arrayList.get(3);
         System.out.println(integer);
 
+        Integer remove = arrayList.remove(2);
+        System.out.println(arrayList);
+
         CustomstList<String> linkedList = new CustomLinkedList<>();
 
         linkedList.add("1");
