@@ -6,10 +6,11 @@ import java.util.Collection;
 /**
  * @param <T>
  * @author VaheAvetikyan
+ * sggested changes by Astghik comments with " // "
  */
 public class CustomArrayList<T> {
-    
-    //Create custom generic List interface and implement it for your customArrayList class
+
+// Create custom generic List interface and implement it for your customArrayList class
     /**
      * Shared empty array instance used for empty instances.
      */
@@ -25,13 +26,13 @@ public class CustomArrayList<T> {
      */
     private int size;
 
-    //Add field for default capacity and use it in no arguments constructor for initializing array field
-    
+// Add field for default capacity and use it in no arguments constructor for initializing array field
+
     /**
      * Constructs an empty list.
      */
-    
-    //No arguments constructor should initialize non empty array with non zero capacity
+
+// No arguments constructor should initialize non empty array with non zero capacity
     public CustomArrayList() {
         this.dataArray = EMPTY_ARRAY;
         this.size = 0;
@@ -40,7 +41,7 @@ public class CustomArrayList<T> {
     /**
      * Constructs a list with the elements of specified collection.
      */
-    //Pass as a parameter your custom interface type object not Java Collection interface type object
+// Pass as a parameter your custom interface type object not Java Collection interface type object
     public CustomArrayList(Collection<? extends T> initialArray) {
         this.dataArray = initialArray.toArray();
         this.size = dataArray.length;
@@ -77,7 +78,7 @@ public class CustomArrayList<T> {
      * @return new Object array
      */
 
-    //Write your custom methods and not use methods of Java Collection interface and Arrays's classes methods
+// Write your custom methods and not use methods of Java Collection interface and Arrays's classes methods
     private Object[] grow(int numberOfElements) {
         if (this.size + numberOfElements > this.dataArray.length) {
             return this.dataArray = Arrays.copyOf(this.dataArray, Math.max(this.size * 2, this.size + numberOfElements));
@@ -85,7 +86,7 @@ public class CustomArrayList<T> {
         return this.dataArray;
     }
 
-    //ArrayList size by default grow by its behalf 
+    // ArrayList size by default grow by its behalf
     private Object[] grow() {
         return grow(1);
     }
@@ -109,12 +110,14 @@ public class CustomArrayList<T> {
     /**
      * Adds element at index and moves the rest toward the end
      */
-    //method work wrong
+// method works wrong
+// CORRECTED
     public void add(int index, T t) {
         this.dataArray = grow(1);
+        this.size++;
         if (index >= 0 && index < this.size) {
             T temp = set(index, t);
-            for (int i = index; i < this.size; i++) {
+            for (int i = index + 1; i < this.size; i++) {
                 temp = set(i, temp);
             }
         }
@@ -123,7 +126,8 @@ public class CustomArrayList<T> {
     /**
      * Removes element at index and moves the rest toward the front
      */
-    //There is no check for ArrayIndexOutOfItsBound exception in remove method by index
+// There is no check for ArrayIndexOutOfItsBound exception in remove method by index
+// CORRECTED
     public T remove(int index) {
         T temp = null;
         if (index >= 0 && index < this.size) {
@@ -131,6 +135,8 @@ public class CustomArrayList<T> {
             for (int i = index; i < this.size - 1; i++) {
                 set(i, (T) this.dataArray[i + 1]);
             }
+        } else {
+            throw new ArrayIndexOutOfBoundsException();
         }
         this.dataArray[size - 1] = null;
         size--;
@@ -144,13 +150,13 @@ public class CustomArrayList<T> {
     /**
      * Discards all elements of the list
      */
-//    public void clear() {
-//        Object[] tempArray = this.dataArray;
-//        while (size > 0) {
-//            size--;
-//            tempArray[size] = null;
-//        }
-//    }
+    //    public void clear() {
+    //        Object[] tempArray = this.dataArray;
+    //        while (size > 0) {
+    //            size--;
+    //            tempArray[size] = null;
+    //        }
+    //    }
     public void clear() {
         this.dataArray = EMPTY_ARRAY;
         this.size = this.dataArray.length;
@@ -181,9 +187,6 @@ public class CustomArrayList<T> {
         return (T) temp;
     }
 
-    /**
-     * Returns first matching index or -1 if not found
-     */
     public int indexOf(Object o) {
         return indexOfRange(o, 0, this.size);
     }
@@ -191,7 +194,8 @@ public class CustomArrayList<T> {
     /**
      * Returns last matching index or -1 if not found
      */
-    //method work wrong
+// method work wrong
+// CORRECTED
     public int lastIndexOf(Object o) {
         return lastIndexOfRange(o, 0, this.size);
     }
@@ -217,13 +221,13 @@ public class CustomArrayList<T> {
     private int lastIndexOfRange(Object o, int start, int end) {
         Object[] newRef = this.dataArray;
         if (o == null) {
-            for (int i = end - 1; i < start; i--) {
+            for (int i = end - 1; i > start; i--) {
                 if (newRef[i] == null) {
                     return i;
                 }
             }
         } else {
-            for (int i = end - 1; i < start; i--) {
+            for (int i = end - 1; i > start; i--) {
                 if (o.equals(newRef[i])) {
                     return i;
                 }

@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="33acda61-3316-460b-a86d-123efb829174" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/CustomCollections/CustomArrayList.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/CustomCollections/CustomHashMap.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/CustomCollections/CustomLinkedList.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/CustomCollections/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bdg_team/chapter1/abstractclass/Animal.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bdg_team/chapter1/abstractclass/BigCat.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bdg_team/chapter1/abstractclass/Lion.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bdg_team/chapter1/abstractclass/README.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bdg_team/chapter1/accessmodifiers/cat/BigCat.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bdg_team/chapter1/accessmodifiers/cat/CatAdmirer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bdg_team/chapter1/accessmodifiers/cat/species/Lynx.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bdg_team/chapter1/accessmodifiers/mouse/Mouse.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bdg_team/chapter1/enums/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bdg_team/chapter1/enums/OnlyOne.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bdg_team/chapter1/enums/Season.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bdg_team/chapter1/enums/Season2$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bdg_team/chapter1/enums/Season2$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bdg_team/chapter1/enums/Season2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bdg_team/chapter1/hashCode/Card.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bdg_team/chapter1/hashCode/Lion.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bdg_team/chapter1/instance_of/Elephant.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bdg_team/chapter1/instance_of/HeavyAnimal.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bdg_team/chapter1/instance_of/Hippo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bdg_team/chapter1/instance_of/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bdg_team/chapter1/instance_of/Mother.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bdg_team/chapter1/instance_of/MotherHippo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bdg_team/chapter1/multipleoverloaded/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bdg_team/chapter1/multipleoverloaded/README.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bdg_team/chapter1/nested/anonymous/AnonInner$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bdg_team/chapter1/nested/anonymous/AnonInner$SaleTodayOnly.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bdg_team/chapter1/nested/anonymous/AnonInner.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bdg_team/chapter1/nested/local/Outer$1Inner.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bdg_team/chapter1/nested/local/Outer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bdg_team/chapter1/nested/member/A$B$C.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bdg_team/chapter1/nested/member/A$B.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bdg_team/chapter1/nested/member/A.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bdg_team/chapter1/nested/member/Outer$Inner.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bdg_team/chapter1/nested/member/Outer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bdg_team/chapter1/nested/staticnested/Enclosing$Nested.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bdg_team/chapter1/nested/staticnested/Enclosing.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bdg_team/chapter1/overriding/Kangaroo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bdg_team/chapter1/overriding/Marsupial.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bdg_team/chapter1/overriding/README.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bdg_team/chapter3/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bdg_team/chapter3/Tasks/CustomLists/ArrayLists/CustomArrayList.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bdg_team/chapter3/Tasks/CustomLists/CustomstList.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bdg_team/chapter3/Tasks/CustomLists/LinkedLists/CustomLinkedList.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bdg_team/chapter3/Tasks/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bdg_team/chapter3/comparable/Animal.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bdg_team/chapter3/comparable/Duck.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bdg_team/chapter3/comparable/LegacyDuck.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bdg_team/chapter3/comparator/Duck.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bdg_team/chapter3/comparator/Main$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bdg_team/chapter3/comparator/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bdg_team/chapter3/generics/Crate.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bdg_team/chapter3/generics/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bdg_team/chapter3/generics/Shippable.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bdg_team/chapter3/generics/ShippableCrate.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bdg_team/chapter3/generics/SizeLimitedCrate.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bdg_team/chapter3/generics/bounds/lower_bounded/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bdg_team/chapter3/generics/bounds/unbounded/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bdg_team/chapter3/generics/bounds/upper_bounded/Flyer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bdg_team/chapter3/generics/bounds/upper_bounded/Goose.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bdg_team/chapter3/generics/bounds/upper_bounded/HangGlider.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bdg_team/chapter3/generics/bounds/upper_bounded/Main$Bird.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bdg_team/chapter3/generics/bounds/upper_bounded/Main$Sparrow.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bdg_team/chapter3/generics/bounds/upper_bounded/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bdg_team/chapter3/generics/legacy/Dragon.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bdg_team/chapter3/generics/legacy/LegacyAutoboxing.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bdg_team/chapter3/generics/legacy/LegacyDragons.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bdg_team/chapter3/generics/legacy/LegacyUnicorns.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bdg_team/chapter3/generics/legacy/Unicorn.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bdg_team/chapter3/method_references/DuckHelper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bdg_team/chapter3/searching_sorting/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bdg_team/chapter3/searching_sorting/SortRabbits$Rabbit.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bdg_team/chapter3/searching_sorting/SortRabbits.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bdg_team/chapter3/searching_sorting/UseTreeSet$Rabbit.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bdg_team/chapter3/searching_sorting/UseTreeSet.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chapter1/abstractclass/Animal.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chapter1/abstractclass/BigCat.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chapter1/abstractclass/Lion.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chapter1/abstractclass/README.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chapter1/accessmodifiers/cat/BigCat.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chapter1/accessmodifiers/cat/CatAdmirer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chapter1/accessmodifiers/cat/species/Lynx.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chapter1/accessmodifiers/mouse/Mouse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chapter1/enums/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chapter1/enums/OnlyOne.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chapter1/enums/Season.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chapter1/enums/Season2.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chapter1/hashCode/Card.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chapter1/hashCode/Lion.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chapter1/instance_of/Elephant.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chapter1/instance_of/HeavyAnimal.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chapter1/instance_of/Hippo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chapter1/instance_of/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chapter1/instance_of/Mother.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chapter1/instance_of/MotherHippo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chapter1/multipleoverloaded/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chapter1/multipleoverloaded/README.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chapter1/nested/anonymous/AnonInner.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chapter1/nested/local/Outer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chapter1/nested/member/A.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chapter1/nested/member/Outer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chapter1/nested/staticnested/Enclosing.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chapter1/overriding/Kangaroo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chapter1/overriding/Marsupial.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chapter1/overriding/README.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chapter3/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chapter3/Tasks/CustomLists/ArrayLists/CustomArrayList.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chapter3/Tasks/CustomLists/LinkedLists/CustomLinkedList.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chapter3/Tasks/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chapter3/comparable/Animal.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chapter3/comparable/Duck.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chapter3/comparable/LegacyDuck.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chapter3/comparator/Duck.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chapter3/comparator/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chapter3/generics/Crate.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chapter3/generics/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chapter3/generics/Shippable.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chapter3/generics/ShippableCrate.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chapter3/generics/SizeLimitedCrate.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chapter3/generics/bounds/lower_bounded/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chapter3/generics/bounds/unbounded/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chapter3/generics/bounds/upper_bounded/Flyer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chapter3/generics/bounds/upper_bounded/Goose.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chapter3/generics/bounds/upper_bounded/HangGlider.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chapter3/generics/bounds/upper_bounded/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chapter3/generics/legacy/Dragon.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chapter3/generics/legacy/LegacyAutoboxing.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chapter3/generics/legacy/LegacyDragons.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chapter3/generics/legacy/LegacyUnicorns.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chapter3/generics/legacy/Unicorn.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chapter3/method_references/DuckHelper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chapter3/searching_sorting/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chapter3/searching_sorting/SortRabbits.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chapter3/searching_sorting/UseTreeSet.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chapter4/Gorilla.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chapter4/GorillaFamily.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chapter4/functional_interfaces/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chapter4/optional/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chapter4/simple_lambda/Animal.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chapter4/simple_lambda/CheckTrait.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chapter4/simple_lambda/FindMatchingAnimals.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chapter4/streams/Main.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1gQTa6ZrT8RYO3qjKVWPLe7i6yv" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
+  </component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="CustomCollections.Main" />
+      <module name="bdg_team" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="CustomCollections.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="33acda61-3316-460b-a86d-123efb829174" name="Default Changelist" comment="" />
+      <created>1598045876402</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1598045876402</updated>
+      <workItem from="1598045878711" duration="1488000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state width="1874" height="275" key="GridCell.Tab.0.bottom" timestamp="1598047121946">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state width="1874" height="275" key="GridCell.Tab.0.bottom/0.27.1920.1053/1920.0.1440.900@0.27.1920.1053" timestamp="1598047121946" />
+    <state width="1874" height="275" key="GridCell.Tab.0.center" timestamp="1598047121945">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state width="1874" height="275" key="GridCell.Tab.0.center/0.27.1920.1053/1920.0.1440.900@0.27.1920.1053" timestamp="1598047121945" />
+    <state width="1874" height="275" key="GridCell.Tab.0.left" timestamp="1598047121945">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state width="1874" height="275" key="GridCell.Tab.0.left/0.27.1920.1053/1920.0.1440.900@0.27.1920.1053" timestamp="1598047121945" />
+    <state width="1874" height="275" key="GridCell.Tab.0.right" timestamp="1598047121946">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state width="1874" height="275" key="GridCell.Tab.0.right/0.27.1920.1053/1920.0.1440.900@0.27.1920.1053" timestamp="1598047121946" />
+  </component>
+</project>

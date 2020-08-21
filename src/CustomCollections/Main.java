@@ -14,8 +14,13 @@ public class Main {
         System.out.println("List size: " + list.size());
         System.out.println("List elements: " + list);
         list.add(29);
+        System.out.println("Last Index of 14: " + list.lastIndexOf(14));
+        System.out.println("Index of 14: " + list.indexOf(14));
         System.out.println("List size: " + list.size());
         System.out.println("Element at index 5: " + list.get(5));
+        System.out.println("List elements: " + list);
+        System.out.println("Adding 46 at index 3");
+        list.add(3, 46);
         System.out.println("List elements: " + list);
         System.out.println("Removing element at position 2: " + list.remove(2));
         System.out.println("List size: " + list.size());
