@@ -6,12 +6,10 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.TreeMap;
 
 public class Main<T> {
-
     public static void main(String[] args) {
-
-
 
         List<String> strings = new ArrayList<String>();
         strings.add("tweet");
@@ -19,20 +17,13 @@ public class Main<T> {
         addSound(strings);
         addSound(objects);
 
-
-        /////////////////////////////////////////////////
-
-         List<? super IOException> exceptions = new ArrayList<Exception>();
+         List<? super IOException> exceptions = new ArrayList<Throwable>();
          //exceptions.add(new Exception()); // DOES NOT COMPILE
          exceptions.add(new IOException());
          exceptions.add(new FileNotFoundException());
-
-
-
     }
 
     public static void addSound(List<? super String> list) { // lower bound
         list.add("quack");
     }
-
 }

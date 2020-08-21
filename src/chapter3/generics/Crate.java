@@ -1,7 +1,6 @@
 package chapter3.generics;
 
 import chapter1.instance_of.Elephant;
-import com.sun.glass.ui.Robot;
 
 /**
  * @author Tigran
@@ -31,7 +30,4 @@ public class Crate<T> {
         System.out.println("Preparing " + t);
         return new Crate<T>();
     }
-
-
-
 }
