@@ -1,8 +1,5 @@
 package task1;
 
-import java.sql.SQLOutput;
-import java.util.ArrayList;
-
 public class Tester {
     public static void main(String[] args) {
 
@@ -27,5 +24,18 @@ public class Tester {
         System.out.println(pinkItems.size());
 
         pinkItems.clear();
+
+        CustomLinkedList n = new CustomLinkedList();
+        n.insert(1);
+        n.insert(2);
+        n.insert(1);
+        n.insert(2);
+        n.insertFirst(3);
+        n.removeFirst();
+        n.removeAt(0);
+
+        n.printList();
+
+
     }
 }
