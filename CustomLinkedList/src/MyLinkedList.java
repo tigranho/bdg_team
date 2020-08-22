@@ -1,7 +1,5 @@
 import java.util.LinkedList;
 
-
-
 public class MyLinkedList {
     MyNode head;
     MyNode current;
@@ -9,14 +7,15 @@ public class MyLinkedList {
 
 
     static  public class MyNode {
+
         int data;
         MyNode next; 
 
         MyNode(int d) { data = d; }
     }
 
-    public  void PushAt(MyLinkedList linkedList,int index,int data) {
-        MyNode current = linkedList.head;
+    public  void PushAt(int index,int data) {
+        MyNode current = this.head;
         if(index > size || index<-1)
             return;
         for (int i = 1; i < index - 1; ++i) {
@@ -27,7 +26,7 @@ public class MyLinkedList {
                 MyNode item = current;
                 item = new MyNode(data);
                 current.next = item;
-                ++linkedList.size;
+                ++this.size;
             } else {
                 PushAfter(current, data);
             }
@@ -50,17 +49,17 @@ public class MyLinkedList {
             ++size;
         }
 
-    public static MyLinkedList pushBack(MyLinkedList linkedList, int data)
+    public  MyLinkedList pushBack( int data)
     {
         MyNode nodeToAdd= new MyNode(data);
         nodeToAdd.next = null;
 
-        if (linkedList.head == null) {
-            linkedList.head = nodeToAdd;
+        if (this.head == null) {
+            this.head = nodeToAdd;
         }
         else {
 
-            MyNode last = linkedList.head;
+            MyNode last = this.head;
             //find the end
             while (last.next != null) {
                 last = last.next;
@@ -69,7 +68,7 @@ public class MyLinkedList {
             // Insertion
             last.next = nodeToAdd;
         }
-        return linkedList;
+        return this;
     }
 
     public MyNode find(MyNode node)
@@ -85,9 +84,9 @@ public class MyLinkedList {
     }
 
 
-    public static void printList(MyLinkedList list)
+    public  void printList()
     {
-        MyNode current = list.head;
+        MyNode current = this.head;
 
         System.out.print("LinkedList contains : ");
 
@@ -99,15 +98,15 @@ public class MyLinkedList {
         }
     }
 
-    public static MyLinkedList deleteTheIndex(MyLinkedList linkedList, int index)
+    public  MyLinkedList deleteTheIndex( int index)
     {
-        MyNode current = linkedList.head,
+        MyNode current = this.head,
                 previos = null;
 
         if (index == 0 && current!= null) {
-            linkedList.head = current.next;
+            this.head = current.next;
 
-            return linkedList;
+            return this;
         }
         int counter = 0;
         while (current!= null) {
@@ -126,19 +125,19 @@ public class MyLinkedList {
             System.out.println(index + "No such index");
         }
 
-        return linkedList;
+        return this;
     }
 
-    public static MyLinkedList deleteByData(MyLinkedList list, int key)
+    public  MyLinkedList deleteByData(int key)
     {
 
-        MyNode current = list.head,
+        MyNode current = this.head,
                 previous = null;
 
 
         if (current!= null && current.data == key) {
-            list.head = current.next;
-            return list;
+            this.head = current.next;
+            return this;
         }
 
         while (current!= null && current.data != key) {
@@ -158,6 +157,6 @@ public class MyLinkedList {
             System.out.println("no such key in list");
         }
 
-        return list;
+        return this;
     }
 }
