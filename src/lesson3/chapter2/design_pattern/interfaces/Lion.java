@@ -1,5 +1,9 @@
 package lesson3.chapter2.design_pattern.interfaces;
 
+/**
+ * @author Hrach
+ */
+
 public class Lion implements Run {
     @Override
     public boolean canHuntWhileRunning() {
