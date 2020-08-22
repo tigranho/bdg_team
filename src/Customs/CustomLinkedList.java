@@ -20,7 +20,7 @@ public class CustomLinkedList<E> implements List<E>, Deque<E> {
     public String toString() {
         StringBuilder str = new StringBuilder("[ ");
         for(Node<E> x = first; x != null; x = x.next) {
-            str.append(x.item + " ");
+            str.append(x.item).append(" ");
         }
         str.append("]");
         return str.toString();
@@ -99,8 +99,8 @@ public class CustomLinkedList<E> implements List<E>, Deque<E> {
         if(first == null) {
             throw new NoSuchElementException("The list is empty.");
         }
-        final E element = first.item;
-        return element;
+        final Node<E> f = first;
+        return f.item;
     }
 
     @Override
@@ -108,20 +108,20 @@ public class CustomLinkedList<E> implements List<E>, Deque<E> {
         if(last == null) {
             throw new NoSuchElementException("The list is empty.");
         }
-        final E element = last.item;
-        return element;
+        final Node<E> l = last;
+        return l.item;
     }
 
     @Override
     public E peekFirst() {
-        final E element = first.item;
-        return (first == null) ? null : element;
+        final Node<E> f = first;
+        return (f == null) ? null : f.item;
     }
 
     @Override
     public E peekLast() {
-        final E element = last.item;
-        return (last == null) ? null : element;
+        final Node<E> l = last;
+        return (l == null) ? null : l.item;
     }
 
     @Override
@@ -166,17 +166,12 @@ public class CustomLinkedList<E> implements List<E>, Deque<E> {
 
     @Override
     public E element() {
-        if (first == null) {
-            throw new NoSuchElementException();
-        }
-        final E element = first.item;
-        return element;
+        return getFirst();
     }
 
     @Override
     public E peek() {
-        final E element = first.item;
-        return (first == null) ? null : element;
+        return peekFirst();
     }
 
     @Override
@@ -192,7 +187,7 @@ public class CustomLinkedList<E> implements List<E>, Deque<E> {
     //To do
     @Override
     public Iterator<E> descendingIterator() {
-        return null;
+        return iterator();
     }
 
     @Override
@@ -213,7 +208,17 @@ public class CustomLinkedList<E> implements List<E>, Deque<E> {
     //To do
     @Override
     public Iterator<E> iterator() {
-        return null;
+       return new Iterator<E>() {
+            @Override
+            public boolean hasNext() {
+                return false;
+            }
+
+            @Override
+            public E next() {
+                return null;
+            }
+        };
     }
 
     @Override
@@ -228,8 +233,9 @@ public class CustomLinkedList<E> implements List<E>, Deque<E> {
 
     //To do
     @Override
+    @SuppressWarnings("unchecked")
     public <T> T[] toArray(T[] a) {
-        return null;
+        return (T[]) new Object[5];
     }
 
     @Override
@@ -376,7 +382,7 @@ public class CustomLinkedList<E> implements List<E>, Deque<E> {
             addLast(element);
         }
         else {
-            Node<E> newNode = new Node<E>(current.prev, element, current);
+            Node<E> newNode = new Node<>(current.prev, element, current);
             current.prev = newNode;
             current.prev.next = newNode;
         }
@@ -442,19 +448,19 @@ public class CustomLinkedList<E> implements List<E>, Deque<E> {
     //To do
     @Override
     public ListIterator<E> listIterator() {
-        return null;
+        return (ListIterator<E>) iterator();
     }
 
     //To do
     @Override
     public ListIterator<E> listIterator(int index) {
-        return null;
+        return (ListIterator<E>) iterator();
     }
 
     //To do
     @Override
     public List<E> subList(int fromIndex, int toIndex) {
-        return null;
+        return new ArrayList<>();
     }
     private void checkIndex(int index) {
         if(index < 0 || index >= size) {

@@ -12,12 +12,9 @@ public class CustomArrayList<E> implements List<E> {
 
     private int size;
 
-    private int currentCapacity;
-
     public CustomArrayList() {
         data = new Object[DEFAULT_CAPACITY];
         size = 0;
-        currentCapacity = DEFAULT_CAPACITY;
     }
 
     public CustomArrayList(int capacity) {
@@ -25,7 +22,6 @@ public class CustomArrayList<E> implements List<E> {
             throw new IllegalArgumentException("Illegal capacity" + capacity);
         }
         size = 0;
-        currentCapacity = capacity;
         if(capacity > 0) {
             data = new Object[capacity];
         }
@@ -35,16 +31,20 @@ public class CustomArrayList<E> implements List<E> {
     }
 
     public CustomArrayList(Collection<? extends E> c) {
-        data = c.toArray();
-        size = data.length;
-        if (data.getClass() != Object[].class) {
-            data = Arrays.copyOf(data, size, Object[].class);
+        Object[] a = c.toArray();
+        if ((size = a.length) != 0) {
+            if (c.getClass() == ArrayList.class) {
+                data = a;
+            } else {
+                data = Arrays.copyOf(a, size, Object[].class);
+            }
+        } else {
+            data = EMPTY_DATA;
         }
     }
 
     public void trimToSize() {
         if(size < data.length) {
-            currentCapacity = size;
             data = (size == 0) ? EMPTY_DATA : Arrays.copyOf(data, size);
         }
     }
@@ -59,7 +59,7 @@ public class CustomArrayList<E> implements List<E> {
     public String toString() {
         StringBuilder str = new StringBuilder("[ ");
         for(int i = 0; i < size; ++i) {
-            str.append(data[i] + " ");
+            str.append(data[i]).append(" ");
         }
         str.append("]");
         return str.toString();
@@ -83,7 +83,17 @@ public class CustomArrayList<E> implements List<E> {
     // To do
     @Override
     public Iterator<E> iterator() {
-        return null;
+        return new Iterator<E>() {
+            @Override
+            public boolean hasNext() {
+                return false;
+            }
+
+            @Override
+            public E next() {
+                return null;
+            }
+        };
     }
 
     @Override
@@ -92,6 +102,7 @@ public class CustomArrayList<E> implements List<E> {
     }
 
     @Override
+    @SuppressWarnings({"unchecked", "SuspiciousSystemArraycopy"})
     public <T> T[] toArray(T[] a) {
         if (a.length < size) {
             return (T[]) Arrays.copyOf(data, size, a.getClass());
@@ -104,8 +115,11 @@ public class CustomArrayList<E> implements List<E> {
 
     @Override
     public boolean add(E e) {
-        if(size == currentCapacity) {
-            ensureCapacity(currentCapacity *= 2);
+        if(size == 0) {
+            ensureCapacity(DEFAULT_CAPACITY);
+        }
+        if(size == data.length) {
+            ensureCapacity(data.length * 2);
         }
         data[size++] = e;
         return true;
@@ -212,6 +226,7 @@ public class CustomArrayList<E> implements List<E> {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public E get(int index) {
         checkIndex(index);
 
@@ -219,6 +234,7 @@ public class CustomArrayList<E> implements List<E> {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public E set(int index, E element) {
         checkIndex(index);
 
@@ -238,6 +254,7 @@ public class CustomArrayList<E> implements List<E> {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public E remove(int index) {
         checkIndex(index);
 
@@ -289,19 +306,64 @@ public class CustomArrayList<E> implements List<E> {
     //To do
     @Override
     public ListIterator<E> listIterator() {
-        return null;
+        return new ListIterator<E>() {
+            @Override
+            public boolean hasNext() {
+                return false;
+            }
+
+            @Override
+            public E next() {
+                return null;
+            }
+
+            @Override
+            public boolean hasPrevious() {
+                return false;
+            }
+
+            @Override
+            public E previous() {
+                return null;
+            }
+
+            @Override
+            public int nextIndex() {
+                return 0;
+            }
+
+            @Override
+            public int previousIndex() {
+                return 0;
+            }
+
+            @Override
+            public void remove() {
+
+            }
+
+            @Override
+            public void set(E e) {
+
+            }
+
+            @Override
+            public void add(E e) {
+
+            }
+        };
     }
 
     //To do
     @Override
     public ListIterator<E> listIterator(int index) {
-        return null;
+        return listIterator();
     }
 
     //To do
     @Override
     public List<E> subList(int fromIndex, int toIndex) {
-        return null;
+        return new ArrayList<>();
     }
 
     private void checkIndex(int index) {
