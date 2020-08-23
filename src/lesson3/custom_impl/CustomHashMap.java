@@ -60,7 +60,7 @@ public class CustomHashMap<K, V> extends AbstractMap<K, V> implements Map<K, V>,
                 node.value = value;
             }
         } else if (buckets[Math.abs(key.hashCode() % (capacity - 2)) + 1] != null) {
-            oldNode = buckets[key.hashCode() % (capacity - 2) + 1];
+            oldNode = buckets[Math.abs(key.hashCode() % (capacity - 2)) + 1];
             while (oldNode != null) {
                 if (oldNode.key.equals(key) && oldNode.hashcode == key.hashCode()) {
                     oldVal = oldNode.value;
