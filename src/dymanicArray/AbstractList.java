@@ -15,7 +15,7 @@ public abstract class AbstractList<E> implements List<E> {
     }
 
 
-    public boolean add(E element){
+    public boolean add(E element) {
         this.add(this.size, element);
         return true;
     }

@@ -1,4 +1,4 @@
-package dymanicArray;
+package customLinkedList;
 
 public interface List<E> {
     int getSize();
@@ -17,8 +17,7 @@ public interface List<E> {
 
     boolean addAll(List<? extends E> list);
 
-    boolean addAll(List<? extends E> list, int startIndex, int count);
+    boolean addAll(int position, List<? extends E> list);
 
-    boolean insertAll(List<? extends E> list, int position);
-
+    boolean remove(Object object);
 }

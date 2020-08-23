@@ -10,7 +10,7 @@ public class Test {
         list1.add(25);
         list1.add(36);
         list1.add(58);
-       // list.addAll(list1);
+        // list.addAll(list1);
         //list.addAll(list1, 1, 2);
         System.out.println(list);
         list.insertAll(list1, 1);
