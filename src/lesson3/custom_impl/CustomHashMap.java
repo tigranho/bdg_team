@@ -115,11 +115,11 @@ public class CustomHashMap<K, V> extends AbstractMap<K, V> implements Map<K, V>,
         K key = (K) k;
         V oldVal = null;
         if (key != null) {
-            final int hashIndex = key.hashCode() % (capacity - 2) + 1;
+            final int hashIndex = Math.abs(key.hashCode() % (capacity - 2)) + 1;
             Node<K, V> node = buckets[hashIndex];
             while (node != null) {
                 if (node.key.equals(key) && node.hashcode == key.hashCode()) {
-                    buckets[hashIndex] = (node.next != null && node.next.key.hashCode() % (capacity - 2) + 1 != hashIndex) ? null : node.next;
+                    buckets[hashIndex] = (node.next != null && Math.abs(node.next.key.hashCode() % (capacity - 2)) + 1 != hashIndex) ? null : node.next;
                     oldVal = node.value;
                     node = null;
                     --size;
@@ -290,7 +290,7 @@ public class CustomHashMap<K, V> extends AbstractMap<K, V> implements Map<K, V>,
 
     private Node<K, V> findNodeByKey(K key) {
         if (key != null) {
-            Node<K, V> node = buckets[key.hashCode() % (capacity - 2) + 1];
+            Node<K, V> node = buckets[Math.abs(key.hashCode() % (capacity - 2)) + 1];
             while (node != null) {
                 if (node.key.equals(key) && node.hashcode == key.hashCode()) return node;
                 node = node.next;
