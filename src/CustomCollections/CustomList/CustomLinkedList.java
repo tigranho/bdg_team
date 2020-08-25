@@ -4,7 +4,7 @@ package CustomCollections.CustomList;
  * @param <E>
  * @author VaheAvetikyan
  */
-public class CustomLinkedList<E> implements CustomList<E> {
+public class CustomLinkedList<E> extends CustomAbstractList<E> implements CustomList<E>{
 
     /**
      * Helper Node class
@@ -46,34 +46,6 @@ public class CustomLinkedList<E> implements CustomList<E> {
      */
     public CustomLinkedList(E e) {
         addTheFirstElement(e);
-    }
-
-    /**
-     * Returns the number of elements in the list
-     *
-     * @return the number of elements in the list
-     */
-    @Override
-    public int size() {
-        return this.size;
-    }
-
-    /**
-     * Returns true if list is empty, false otherwise
-     *
-     * @return true if list is empty, false otherwise
-     */
-    @Override
-    public boolean isEmpty() {
-        return this.size == 0;
-    }
-
-    /**
-     * Checks if a certain value is in the list
-     */
-    @Override
-    public boolean contains(Object o) {
-        return indexOf(o) >= 0;
     }
 
     public void addFirst(E e) {

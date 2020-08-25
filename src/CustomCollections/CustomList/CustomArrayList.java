@@ -7,7 +7,7 @@ import java.util.Collection;
  * @param <T>
  * @author VaheAvetikyan
  */
-public class CustomArrayList<T> implements CustomList<T> {
+public class CustomArrayList<T> extends CustomAbstractList<T> implements CustomList<T> {
 
     /**
      * Shared empty array instance used for empty instances.
@@ -39,34 +39,6 @@ public class CustomArrayList<T> implements CustomList<T> {
     public CustomArrayList(Collection<? extends T> initialArray) {
         this.dataArray = initialArray.toArray();
         this.size = dataArray.length;
-    }
-
-    /**
-     * Returns the number of elements in the list
-     *
-     * @return the number of elements in the list
-     */
-    @Override
-    public int size() {
-        return size;
-    }
-
-    /**
-     * Returns true if list is empty, false otherwise
-     *
-     * @return true if list is empty, false otherwise
-     */
-    @Override
-    public boolean isEmpty() {
-        return size == 0;
-    }
-
-    /**
-     * Checks if a certain value is in the list
-     */
-    @Override
-    public boolean contains(Object o) {
-        return indexOf(o) >= 0;
     }
 
     /**

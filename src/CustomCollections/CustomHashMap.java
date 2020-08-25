@@ -13,29 +13,30 @@ public class CustomHashMap<K, V> implements Map<K, V> {
 
     /**
      * Helper Node class
-     * @param <K>
-     * @param <V>
+     *
+     * @param <T>
+     * @param <U>
      */
-    private class Node<K, V> {
-        private final K key;
-        private final V value;
-        private Node<K, V> next;
+    private class Node<T, U> {
+        private final T key;
+        private final U value;
+        private Node<T, U> next;
 
-        public Node(K key, V value) {
+        public Node(T key, U value) {
             this.key = key;
             this.value = value;
             this.next = null;
         }
 
-        public K getKey() {
+        public T getKey() {
             return key;
         }
 
-        public V getValue() {
+        public U getValue() {
             return value;
         }
 
-        public Node<K, V> getNext() {
+        public Node<T, U> getNext() {
             return next;
         }
 
@@ -52,11 +53,8 @@ public class CustomHashMap<K, V> implements Map<K, V> {
             if (o == null) {
                 return false;
             }
-            Node tempObject = (Node) o;
-            if (this.key == tempObject.key) {
-                return true;
-            }
-            return false;
+            Node<T, U> tempObject = (Node) o;
+            return this.key == tempObject.key;
         }
 
         @Override
@@ -67,7 +65,7 @@ public class CustomHashMap<K, V> implements Map<K, V> {
 
     private final int DEFAULT_CAPACITY = 100;
     private int size = 0;
-    private Node<K, V>[] table = new Node[DEFAULT_CAPACITY];
+    private Node[] table = new Node[DEFAULT_CAPACITY];
 
     /**
      * The number of the elements in HashMap.
@@ -125,7 +123,7 @@ public class CustomHashMap<K, V> implements Map<K, V> {
         }
         K tempKey = (K) key;
         if (tempKey.equals(table[hashCode].getKey())) {
-            return table[hashCode].getValue();
+            return (V) table[hashCode].getValue();
         } else {
             Node<K, V> next = table[hashCode];
             while (next.getNext() != null) {
@@ -140,6 +138,7 @@ public class CustomHashMap<K, V> implements Map<K, V> {
 
     /**
      * Inserts new element to HashMap
+     *
      * @param key
      * @param value
      * @return inserted element value
@@ -168,6 +167,7 @@ public class CustomHashMap<K, V> implements Map<K, V> {
 
     /**
      * Removes element from HashMap
+     *
      * @param key
      * @return removed objects value
      */
