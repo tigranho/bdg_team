@@ -8,6 +8,7 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
 
+        System.out.println("CustomArrayList");
         List<Integer> arrayList = new CustomArrayList<>();
 
         arrayList.add(10);
@@ -18,15 +19,21 @@ public class Main {
 
         System.out.println(arrayList);
 
+        int size = arrayList.size();
+        System.out.println(size);
+
         Integer integer = arrayList.get(3);
         System.out.println(integer);
 
-        Integer remove = arrayList.remove(2);
+        arrayList.remove(2);
         System.out.println(arrayList);
+
         arrayList.set(1, 60);
         System.out.println(arrayList);
 
-        System.out.println("CustomLinkedList");
+        System.out.println(arrayList.size());
+
+        System.out.println("\nCustomLinkedList");
         List<String> linkedList = new CustomLinkedList<>();
 
         linkedList.add("1");
