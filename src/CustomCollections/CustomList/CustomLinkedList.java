@@ -1,10 +1,10 @@
-package CustomCollections;
+package CustomCollections.CustomList;
 
 /**
  * @param <E>
  * @author VaheAvetikyan
  */
-public class CustomLinkedList<E> {
+public class CustomLinkedList<E> implements CustomList<E> {
 
     /**
      * Helper Node class
@@ -53,6 +53,7 @@ public class CustomLinkedList<E> {
      *
      * @return the number of elements in the list
      */
+    @Override
     public int size() {
         return this.size;
     }
@@ -62,6 +63,7 @@ public class CustomLinkedList<E> {
      *
      * @return true if list is empty, false otherwise
      */
+    @Override
     public boolean isEmpty() {
         return this.size == 0;
     }
@@ -69,6 +71,7 @@ public class CustomLinkedList<E> {
     /**
      * Checks if a certain value is in the list
      */
+    @Override
     public boolean contains(Object o) {
         return indexOf(o) >= 0;
     }
@@ -97,11 +100,13 @@ public class CustomLinkedList<E> {
         }
     }
 
+    @Override
     public boolean add(E e) {
         addLast(e);
         return true;
     }
 
+    @Override
     public boolean add(int index, E element) {
         if (index == 0) {
             addFirst(element);
@@ -126,31 +131,31 @@ public class CustomLinkedList<E> {
         this.size++;
     }
 
-    public boolean remove(Object o) {
-        if (o == null) {
+    /**
+     * Removes element at index
+     */
+    @Override
+    public E remove(int index) {
+        Node<E> node = getElementByIndex(index);
+        unlink(node);
+        return node.element;
+    }
+
+    @Override
+    public void remove(E e) {
+        if (e == null) {
             for (Node<E> node = first; node != null; node = node.next) {
                 if (node.element == null) {
                     unlink(node);
-                    return true;
                 }
             }
         } else {
             for (Node<E> node = first; node != null; node = node.next) {
-                if (o.equals(node.element)) {
+                if (e.equals(node.element)) {
                     unlink(node);
-                    return true;
                 }
             }
         }
-        return false;
-    }
-
-    /**
-     * Removes element at index
-     */
-    public E remove(int index) {
-        Node<E> node = getElementByIndex(index);
-        return unlink(node);
     }
 
     public E removeFirst() {
@@ -197,6 +202,7 @@ public class CustomLinkedList<E> {
     /**
      * Discards all elements of the list
      */
+    @Override
     public void clear() {
         Node<E> next = this.first;
         while (next != null) {
@@ -215,6 +221,7 @@ public class CustomLinkedList<E> {
      *
      * @return element at @param index
      */
+    @Override
     public E get(int index) {
         Node<E> node = getElementByIndex(index);
         return node.element;
@@ -223,6 +230,7 @@ public class CustomLinkedList<E> {
     /**
      * Replaces element at index and returns original
      */
+    @Override
     public E set(int index, E element) {
         Node<E> node = getElementByIndex(index);
         E temp = node.element;
@@ -248,6 +256,7 @@ public class CustomLinkedList<E> {
     /**
      * Returns first matching index or -1 if not found
      */
+    @Override
     public int indexOf(Object o) {
         int index = 0;
         if (o == null) {
@@ -269,6 +278,7 @@ public class CustomLinkedList<E> {
     /**
      * Returns last matching index or -1 if not found
      */
+    @Override
     public int lastIndexOf(Object o) {
         int index = size;
         if (o == null) {

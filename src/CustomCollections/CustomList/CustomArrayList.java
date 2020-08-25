@@ -1,4 +1,4 @@
-package CustomCollections;
+package CustomCollections.CustomList;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -6,11 +6,9 @@ import java.util.Collection;
 /**
  * @param <T>
  * @author VaheAvetikyan
- * sggested changes by Astghik comments with " // "
  */
-public class CustomArrayList<T> {
+public class CustomArrayList<T> implements CustomList<T> {
 
-// Create custom generic List interface and implement it for your customArrayList class
     /**
      * Shared empty array instance used for empty instances.
      */
@@ -26,13 +24,10 @@ public class CustomArrayList<T> {
      */
     private int size;
 
-// Add field for default capacity and use it in no arguments constructor for initializing array field
-
     /**
      * Constructs an empty list.
      */
 
-// No arguments constructor should initialize non empty array with non zero capacity
     public CustomArrayList() {
         this.dataArray = EMPTY_ARRAY;
         this.size = 0;
@@ -41,7 +36,6 @@ public class CustomArrayList<T> {
     /**
      * Constructs a list with the elements of specified collection.
      */
-// Pass as a parameter your custom interface type object not Java Collection interface type object
     public CustomArrayList(Collection<? extends T> initialArray) {
         this.dataArray = initialArray.toArray();
         this.size = dataArray.length;
@@ -52,6 +46,7 @@ public class CustomArrayList<T> {
      *
      * @return the number of elements in the list
      */
+    @Override
     public int size() {
         return size;
     }
@@ -61,6 +56,7 @@ public class CustomArrayList<T> {
      *
      * @return true if list is empty, false otherwise
      */
+    @Override
     public boolean isEmpty() {
         return size == 0;
     }
@@ -68,6 +64,7 @@ public class CustomArrayList<T> {
     /**
      * Checks if a certain value is in the list
      */
+    @Override
     public boolean contains(Object o) {
         return indexOf(o) >= 0;
     }
@@ -78,7 +75,6 @@ public class CustomArrayList<T> {
      * @return new Object array
      */
 
-// Write your custom methods and not use methods of Java Collection interface and Arrays's classes methods
     private Object[] grow(int numberOfElements) {
         if (this.size + numberOfElements > this.dataArray.length) {
             return this.dataArray = Arrays.copyOf(this.dataArray, Math.max(this.size * 2, this.size + numberOfElements));
@@ -86,33 +82,34 @@ public class CustomArrayList<T> {
         return this.dataArray;
     }
 
-    // ArrayList size by default grow by its behalf
     private Object[] grow() {
         return grow(1);
     }
 
 
-    private void add(T t, Object[] data, int s) {
+    private boolean add(T t, Object[] data, int s) {
         if (s == this.dataArray.length) {
             this.dataArray = grow();
         }
         this.dataArray[s] = t;
         size++;
+        return true;
     }
 
     /**
      * Adds element to end
      */
-    public void add(T t) {
+    @Override
+    public boolean add(T t) {
         add(t, dataArray, size);
+        return true;
     }
 
     /**
      * Adds element at index and moves the rest toward the end
      */
-// method works wrong
-// CORRECTED
-    public void add(int index, T t) {
+    @Override
+    public boolean add(int index, T t) {
         this.dataArray = grow(1);
         this.size++;
         if (index >= 0 && index < this.size) {
@@ -121,13 +118,13 @@ public class CustomArrayList<T> {
                 temp = set(i, temp);
             }
         }
+        return true;
     }
 
     /**
      * Removes element at index and moves the rest toward the front
      */
-// There is no check for ArrayIndexOutOfItsBound exception in remove method by index
-// CORRECTED
+    @Override
     public T remove(int index) {
         T temp = null;
         if (index >= 0 && index < this.size) {
@@ -143,6 +140,7 @@ public class CustomArrayList<T> {
         return temp;
     }
 
+    @Override
     public void remove(T t) {
         remove(indexOf(t));
     }
@@ -150,6 +148,7 @@ public class CustomArrayList<T> {
     /**
      * Discards all elements of the list
      */
+    @Override
     //    public void clear() {
     //        Object[] tempArray = this.dataArray;
     //        while (size > 0) {
@@ -167,6 +166,7 @@ public class CustomArrayList<T> {
      *
      * @return element at @param index
      */
+    @Override
     public T get(int index) {
         if (index < size && index >= 0) {
             return (T) dataArray[index];
@@ -178,6 +178,7 @@ public class CustomArrayList<T> {
     /**
      * Replaces element at index and returns original
      */
+    @Override
     public T set(int index, T t) {
         Object temp = null;
         if (index >= 0 && index < this.size) {
@@ -187,6 +188,7 @@ public class CustomArrayList<T> {
         return (T) temp;
     }
 
+    @Override
     public int indexOf(Object o) {
         return indexOfRange(o, 0, this.size);
     }
@@ -194,8 +196,7 @@ public class CustomArrayList<T> {
     /**
      * Returns last matching index or -1 if not found
      */
-// method work wrong
-// CORRECTED
+    @Override
     public int lastIndexOf(Object o) {
         return lastIndexOfRange(o, 0, this.size);
     }

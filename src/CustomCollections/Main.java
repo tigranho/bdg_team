@@ -1,5 +1,8 @@
 package CustomCollections;
 
+import CustomCollections.CustomList.CustomArrayList;
+import CustomCollections.CustomList.CustomLinkedList;
+
 public class Main {
 
     public static void main(String[] args) {
