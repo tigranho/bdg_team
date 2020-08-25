@@ -12,7 +12,7 @@ import static java.lang.System.out;
  * @author Hrach
  */
 
-public class TerminalOp {
+public class TerminalOp<Object> {
     public static void main(String[] args) {
         //count
         Stream<String> s = Stream.of("monkey", "gorilla", "bonobo");
