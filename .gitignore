@@ -1,2 +1,9 @@
-/bdg_team.iml
-/.idea/
+##############################
+## IntelliJ
+##############################
+out/
+.idea/
+.idea_modules/
+*.iml
+*.ipr
+*.iws
