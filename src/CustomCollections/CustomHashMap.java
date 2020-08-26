@@ -1,6 +1,7 @@
 package CustomCollections;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -53,19 +54,22 @@ public class CustomHashMap<K, V> implements Map<K, V> {
             if (o == null) {
                 return false;
             }
-            Node<T, U> tempObject = (Node) o;
-            return this.key == tempObject.key;
+            if (o instanceof Node) {
+                Node<T, U> tempObject = (Node) o;
+                return this.key == tempObject.key;
+            }
+            return false;
         }
 
         @Override
         public final String toString() {
-            return key + "=" + value;
+            return key + " = " + value;
         }
     }
 
     private final int DEFAULT_CAPACITY = 100;
     private int size = 0;
-    private Node[] table = new Node[DEFAULT_CAPACITY];
+    private Node<K, V>[] table = new Node[DEFAULT_CAPACITY];
 
     /**
      * The number of the elements in HashMap.
@@ -208,7 +212,18 @@ public class CustomHashMap<K, V> implements Map<K, V> {
 
     @Override
     public Set<K> keySet() {
-        return null;
+        Set<K> setOfKeys = new HashSet<>();
+        for (int i = 0; i < DEFAULT_CAPACITY; i++) {
+            if (table[i] != null) {
+                Node<K, V> next = table[i];
+                setOfKeys.add(next.key);
+                while (next.getNext() != null) {
+                    next = next.getNext();
+                    setOfKeys.add(next.key);
+                }
+            }
+        }
+        return setOfKeys;
     }
 
     @Override

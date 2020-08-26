@@ -3,6 +3,8 @@ package CustomCollections;
 import CustomCollections.CustomList.CustomArrayList;
 import CustomCollections.CustomList.CustomLinkedList;
 
+import java.util.Map;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -95,6 +97,7 @@ public class Main {
                 + " " + newHashMap.get("y")
         );
         System.out.println("Is empty?: " + newHashMap.isEmpty());
+        System.out.println(newHashMap.keySet());
         System.out.println("Clearing HashMap...");
         newHashMap.clear();
         System.out.println("Is empty?: " + newHashMap.isEmpty());
