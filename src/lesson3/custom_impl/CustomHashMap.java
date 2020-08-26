@@ -1,7 +1,6 @@
 package lesson3.custom_impl;
 
 import java.io.Serializable;
-import java.util.AbstractMap;
 import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
@@ -47,9 +46,12 @@ public class CustomHashMap<K, V> extends AbstractDataContainer implements Map<K,
             } else {
                 oldVal = node.value;
                 node.value = value;
+                return oldVal;
             }
-        } else if (buckets[Math.abs(key.hashCode() % (capacity - 2)) + 1] != null) {
-            oldNode = buckets[Math.abs(key.hashCode() % (capacity - 2)) + 1];
+        }
+        final int hashIndex = Math.abs(key.hashCode() % (capacity - 2)) + 1;
+        if (buckets[hashIndex] != null) {
+            oldNode = buckets[hashIndex];
             while (oldNode != null) {
                 if (oldNode.key.equals(key) && oldNode.hashcode == key.hashCode()) {
                     oldVal = oldNode.value;
@@ -64,7 +66,7 @@ public class CustomHashMap<K, V> extends AbstractDataContainer implements Map<K,
             }
         } else {
             oldNode = new Node<>(key.hashCode(), key, value);
-            buckets[Math.abs(key.hashCode() % (capacity - 2)) + 1] = oldNode;
+            buckets[hashIndex] = oldNode;
 
         }
         setAndGet(size() + 1);
@@ -126,11 +128,13 @@ public class CustomHashMap<K, V> extends AbstractDataContainer implements Map<K,
 
     @Override
     public String toString() {
+        int count = 0;
         final StringBuilder sb = new StringBuilder("[");
         for (Node<K, V> node : buckets) {
             while (node != null) {
                 sb.append(node.key).append("=").append(node.value);
                 node = node.next;
+                if (++count == size()) break;
                 sb.append(", ");
             }
         }
@@ -250,27 +254,32 @@ public class CustomHashMap<K, V> extends AbstractDataContainer implements Map<K,
 
     private void grow(int newLength) {
         Node<K, V>[] newBuckets = null;
-        newLength = newLength > (capacity *= 2) ?
-                (capacity = (int) (newLength + size() + (capacity * loadFactor))) : newLength;
+        newLength = newLength > (capacity << 1) ?
+                (capacity = (int) (newLength + size() + (capacity * loadFactor))) : (capacity = newLength);
         newBuckets = new Node[newLength];
         int i = 0;
         for (Node<K, V> node : buckets) {
             if (node == null) continue;
+            Node<K, V> rootNode = node;
             if (node.key == null) {
                 newBuckets[0] = node;
                 continue;
             }
             //rehashing process
-            Node<K, V> colisionNode = null;
+            Node<K, V> collisionNode = null;
+            int hashIndex = 0;
             while (node != null) {
-                if (newBuckets[Math.abs(node.key.hashCode() % (capacity - 2)) + 1] == null) {
-                    newBuckets[Math.abs(node.key.hashCode() % (capacity - 2)) + 1] = node;
+                hashIndex = Math.abs(node.key.hashCode() % (capacity - 2)) + 1;
+                if (newBuckets[hashIndex] == null) {
+                    newBuckets[hashIndex] = node;
                 } else {
-                    colisionNode = newBuckets[Math.abs(node.key.hashCode() % (capacity - 2)) + 1];
-                    while (colisionNode.next != null) colisionNode = colisionNode.next;
-                    colisionNode.next = node;
+                    collisionNode = newBuckets[hashIndex];
+                    while (collisionNode.next != null) collisionNode = collisionNode.next;
+                    collisionNode.next = node;
                 }
-                node = node.next;
+                collisionNode = node.next;
+                node.next = null;
+                node = collisionNode;
             }
 
         }
