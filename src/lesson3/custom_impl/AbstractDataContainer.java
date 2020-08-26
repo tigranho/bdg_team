@@ -1,6 +1,6 @@
 package lesson3.custom_impl;
 
-public class AbstractDataContainer {
+public abstract class AbstractDataContainer {
 
     private int size;
 
