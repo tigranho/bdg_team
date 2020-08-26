@@ -1,4 +1,4 @@
-package customLists;
+package customLists.LinkedList;
 
 /**
  * @author Tatevik Mirzoyan

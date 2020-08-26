@@ -1,4 +1,4 @@
-package customLists;
+package customLists.ArrayList;
 
 /**
  * Resizable-array implementation of the </ArrayList> interface

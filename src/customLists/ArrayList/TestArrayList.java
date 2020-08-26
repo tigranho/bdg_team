@@ -1,4 +1,4 @@
-package customLists;
+package customLists.ArrayList;
 
 /**
  * @author Tatevik Mirzoyan
