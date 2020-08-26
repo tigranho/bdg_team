@@ -12,13 +12,12 @@ import java.util.stream.Stream;
  * @param <T> access all reference types
  * @author Hrach
  */
-public class CustomArrayList<T> implements List<T>, RandomAccess, Cloneable, Serializable {
+public class CustomArrayList<T> extends AbstractDataContainer implements List<T>, RandomAccess, Cloneable, Serializable {
 
     private static final long serialVersionUUID = 7363745724264622942L;
     private static final byte DEFAULT_CAPACITY = 10;
     private T[] elements;
     private int capacity;
-    private int size;
 
 
     @SuppressWarnings("unchecked")
@@ -38,19 +37,13 @@ public class CustomArrayList<T> implements List<T>, RandomAccess, Cloneable, Ser
     public CustomArrayList(Collection<? extends T> collection) {
         if (collection == null) throw new NullPointerException("argument cannot be null");
         elements = (T[]) collection.toArray();
-        capacity = size = elements.length;
-    }
-
-
-    @Override
-    public boolean isEmpty() {
-        return size == 0;
+        capacity = setAndGet(elements.length);
     }
 
     @Override
     public boolean add(T t) {
-        if (size == capacity) grow(1);
-        elements[size++] = t;
+        if (size() == capacity) grow(1);
+        elements[getAndSet(size() + 1)] = t;
         return true;
     }
 
@@ -61,15 +54,15 @@ public class CustomArrayList<T> implements List<T>, RandomAccess, Cloneable, Ser
     @SuppressWarnings("unchecked")
     public void clear() {
         elements = (T[]) new Object[capacity];
-        size = 0;
+        setAndGet(0);
     }
 
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("[");
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < size(); i++) {
             sb.append(elements[i]);
-            if (i == size - 1) break;
+            if (i == size() - 1) break;
             sb.append(", ");
         }
         sb.append("]");
@@ -79,7 +72,7 @@ public class CustomArrayList<T> implements List<T>, RandomAccess, Cloneable, Ser
     @Override
     public void forEach(Consumer<? super T> action) {
         if (action == null) throw new NullPointerException("argument cannot be null");
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < size(); i++) {
             action.accept(elements[i]);
         }
     }
@@ -87,12 +80,12 @@ public class CustomArrayList<T> implements List<T>, RandomAccess, Cloneable, Ser
     @Override
     public boolean removeIf(Predicate<? super T> filter) {
         if (filter == null) throw new NullPointerException();
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < size(); i++) {
             if (filter.test(elements[i])) {
-                for (int j = i; j < size - 1; j++) {
+                for (int j = i; j < size() - 1; j++) {
                     elements[j] = elements[j + 1];
                 }
-                elements[--size] = null;
+                elements[setAndGet(size() - 1)] = null;
                 return true;
             }
 
@@ -109,13 +102,13 @@ public class CustomArrayList<T> implements List<T>, RandomAccess, Cloneable, Ser
     public boolean addAll(int idx, Collection<? extends T> collection) {
         if (collection == null) throw new NullPointerException("argument cannot be null");
         if (idx < 0 || idx >= capacity) throw new IllegalArgumentException("invalid index");
-        if (capacity - size <= collection.size()) grow(collection.size());
+        if (capacity - size() <= collection.size()) grow(collection.size());
         @SuppressWarnings("unchecked")
         T[] newElements = (T[]) collection.toArray();
-        for (int i = idx, j = idx + newElements.length, z = 0; z <= size - idx; i++, j++, z++) {
+        for (int i = idx, j = idx + newElements.length, z = 0; z <= size() - idx; i++, j++, z++) {
             elements[j] = elements[i];
         }
-        size += newElements.length;
+        setAndGet(size() + newElements.length);
         for (int i = idx, j = 0; j < newElements.length; i++, j++) {
             elements[i] = newElements[j];
         }
@@ -125,7 +118,7 @@ public class CustomArrayList<T> implements List<T>, RandomAccess, Cloneable, Ser
     @Override
     public void replaceAll(UnaryOperator<T> operator) {
         if (operator == null) throw new NullPointerException("argument cannot be null");
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < size(); i++) {
             elements[i] = operator.apply(elements[i]);
         }
     }
@@ -134,10 +127,10 @@ public class CustomArrayList<T> implements List<T>, RandomAccess, Cloneable, Ser
     public void sort(Comparator<? super T> c) {
         if (c == null) throw new NullPointerException("argument cannot be null");
         @SuppressWarnings("unchecked")
-        T[] sorted = (T[]) new Object[size];
-        System.arraycopy(elements, 0, sorted, 0, size);
+        T[] sorted = (T[]) new Object[size()];
+        System.arraycopy(elements, 0, sorted, 0, size());
         Arrays.sort(sorted, c);
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < size(); i++) {
             elements[i] = sorted[i];
         }
     }
@@ -159,8 +152,8 @@ public class CustomArrayList<T> implements List<T>, RandomAccess, Cloneable, Ser
     @Override
     public void add(int idx, T t) {
         if (idx < 0 || idx >= capacity) throw new ArrayIndexOutOfBoundsException("invalid index");
-        if (size == capacity) grow(1);
-        for (int i = size++; i > idx; i--) {
+        if (size() == capacity) grow(1);
+        for (int i = getAndSet(size() + 1); i > idx; i--) {
             elements[i] = elements[i - 1];
         }
         elements[idx] = t;
@@ -169,7 +162,7 @@ public class CustomArrayList<T> implements List<T>, RandomAccess, Cloneable, Ser
     @Override
     public boolean contains(Object o) {
         T t = (T) o;
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < size(); i++) {
             if (o == null && elements[i] == null ||
                     o != null && o.equals(elements[i]))
                 return true;
@@ -198,11 +191,11 @@ public class CustomArrayList<T> implements List<T>, RandomAccess, Cloneable, Ser
     @Override
     public boolean addAll(Collection<? extends T> collection) {
         if (collection == null) throw new NullPointerException("argument cannot be null");
-        if (capacity - size <= collection.size()) grow(collection.size());
+        if (capacity - size() <= collection.size()) grow(collection.size());
         @SuppressWarnings("unchecked")
         T[] newElements = (T[]) collection.toArray();
-        size += newElements.length;
-        for (int i = size, j = 0; j < newElements.length; i++, j++) {
+        setAndGet(size() + newElements.length);
+        for (int i = size(), j = 0; j < newElements.length; i++, j++) {
             elements[i] = newElements[j];
         }
         return true;
@@ -223,23 +216,23 @@ public class CustomArrayList<T> implements List<T>, RandomAccess, Cloneable, Ser
     public T remove(int idx) {
         if (idx < 0 || idx >= capacity) throw new ArrayIndexOutOfBoundsException("invalid index");
         T oldVal = elements[idx];
-        for (int j = idx; j < size - 1; ) {
+        for (int j = idx; j < size() - 1; ) {
             elements[j] = elements[++j];
         }
-        size--;
+        setAndGet(size() - 1);
         return oldVal;
     }
 
     @Override
     public boolean remove(Object o) {
         T t = (T) o;
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < size(); i++) {
             if (o == null && elements[i] == null ||
                     o != null && o.equals(elements[i])) {
-                for (int j = i; j < size - 1; ) {
+                for (int j = i; j < size() - 1; ) {
                     elements[j] = elements[++j];
                 }
-                size--;
+                setAndGet(size() - 1);
                 return true;
             }
         }
@@ -249,7 +242,7 @@ public class CustomArrayList<T> implements List<T>, RandomAccess, Cloneable, Ser
     @Override
     public int indexOf(Object o) {
         T t = (T) o;
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < size(); i++) {
             if (o == null && elements[i] == null ||
                     o != null && o.equals(elements[i]))
                 return i;
@@ -261,7 +254,7 @@ public class CustomArrayList<T> implements List<T>, RandomAccess, Cloneable, Ser
     @Override
     public int lastIndexOf(Object o) {
         T t = (T) o;
-        for (int i = size - 1; i >= 0; i--) {
+        for (int i = size() - 1; i >= 0; i--) {
             if (o == null && elements[i] == null ||
                     o != null && o.equals(elements[i]))
                 return i;
@@ -280,11 +273,6 @@ public class CustomArrayList<T> implements List<T>, RandomAccess, Cloneable, Ser
         List<T> result = new ArrayList<>(newArray.length);
         result.addAll(Arrays.asList(newArray));
         return result;
-    }
-
-    @Override
-    public int size() {
-        return size;
     }
 
     public int getCapacity() {
@@ -324,7 +312,7 @@ public class CustomArrayList<T> implements List<T>, RandomAccess, Cloneable, Ser
         final int newLength = length > (elements.length * 2) + elements.length / 2 ? (length * 2) + length / 2 :
                 (elements.length * 2) + elements.length / 2;
         T[] newElements = (T[]) new Object[newLength];
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < size(); i++) {
             newElements[i] = elements[i];
         }
         elements = newElements;

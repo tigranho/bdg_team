@@ -57,11 +57,11 @@ public class ResultCollecting {
         out.println(map5);
 
         ohMy = Stream.of("lions", "tigers", "bears");
-        Map<Integer, Optional<Character>> map6 = ohMy.collect(
-                Collectors.groupingBy(
-                        String::length,
-                        Collectors.mapping(s -> s.charAt(0),
-                                Collectors.minBy(Comparator.naturalOrder()))));
-        out.println(map6);
+//        Map<Integer, Optional<Character>> map6 = ohMy.collect(
+//                Collectors.groupingBy(
+//                        String::length,
+//                        Collectors.mapping(s -> s.charAt(0),
+//                                Collectors.minBy(Comparator.naturalOrder()))));
+//        out.println(map6);
     }
 }

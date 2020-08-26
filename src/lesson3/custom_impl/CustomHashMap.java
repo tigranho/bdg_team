@@ -9,10 +9,9 @@ import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
-public class CustomHashMap<K, V> extends AbstractMap<K, V> implements Map<K, V>, Cloneable, Serializable {
+public class CustomHashMap<K, V> extends AbstractDataContainer implements Map<K, V>, Cloneable, Serializable {
 
     private Node<K, V>[] buckets;
-    private int size;
     private int capacity;
     private static final byte DEFAULT_CAPACITY = 16;
     private static final float DEFAULT_LOAD_FACTOR = 0.75f;
@@ -34,18 +33,8 @@ public class CustomHashMap<K, V> extends AbstractMap<K, V> implements Map<K, V>,
     }
 
     @Override
-    public int size() {
-        return size;
-    }
-
-    @Override
-    public boolean isEmpty() {
-        return size == 0;
-    }
-
-    @Override
     public V put(K key, V value) {
-        if (size >= (capacity * loadFactor)) grow(capacity * 2);
+        if (size() >= (capacity * loadFactor)) grow(capacity * 2);
         Node<K, V> oldNode = null;
         V oldVal = null;
         if (key == null) {
@@ -53,7 +42,7 @@ public class CustomHashMap<K, V> extends AbstractMap<K, V> implements Map<K, V>,
             if (node == null) {
                 node = new Node<>(0, null, value);
                 buckets[0] = node;
-                size++;
+                setAndGet(size() + 1);
                 return null;
             } else {
                 oldVal = node.value;
@@ -78,7 +67,7 @@ public class CustomHashMap<K, V> extends AbstractMap<K, V> implements Map<K, V>,
             buckets[Math.abs(key.hashCode() % (capacity - 2)) + 1] = oldNode;
 
         }
-        size++;
+        setAndGet(size() + 1);
         return oldVal;
     }
 
@@ -122,7 +111,7 @@ public class CustomHashMap<K, V> extends AbstractMap<K, V> implements Map<K, V>,
                     buckets[hashIndex] = (node.next != null && Math.abs(node.next.key.hashCode() % (capacity - 2)) + 1 != hashIndex) ? null : node.next;
                     oldVal = node.value;
                     node = null;
-                    --size;
+                    setAndGet(size() - 1);
                     return oldVal;
                 }
                 node = node.next;
@@ -130,7 +119,7 @@ public class CustomHashMap<K, V> extends AbstractMap<K, V> implements Map<K, V>,
         } else if (buckets[0] != null && buckets[0].key == null) {
             oldVal = buckets[0].value;
             buckets[0] = null;
-            --size;
+            setAndGet(size() - 1);
         }
         return oldVal;
     }
@@ -152,22 +141,22 @@ public class CustomHashMap<K, V> extends AbstractMap<K, V> implements Map<K, V>,
 
     @Override
     public void putAll(Map<? extends K, ? extends V> m) {
-        if (capacity * loadFactor - size < m.size()) grow(m.size());
+        if (capacity * loadFactor - size() < m.size()) grow(m.size());
     }
 
     @Override
     public void clear() {
-        super.clear();
+
     }
 
     @Override
     public Set<K> keySet() {
-        return super.keySet();
+        return null;
     }
 
     @Override
     public Collection<V> values() {
-        return super.values();
+        return null;
     }
 
     @Override
@@ -262,7 +251,7 @@ public class CustomHashMap<K, V> extends AbstractMap<K, V> implements Map<K, V>,
     private void grow(int newLength) {
         Node<K, V>[] newBuckets = null;
         newLength = newLength > (capacity *= 2) ?
-                (capacity = (int) (newLength + size + (capacity * loadFactor))) : newLength;
+                (capacity = (int) (newLength + size() + (capacity * loadFactor))) : newLength;
         newBuckets = new Node[newLength];
         int i = 0;
         for (Node<K, V> node : buckets) {

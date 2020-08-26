@@ -3,11 +3,10 @@ package lesson3.custom_impl;
 import java.io.Serializable;
 import java.util.*;
 
-public class CustomLinkedList<E> extends AbstractSequentialList<E> implements List<E>, Deque<E>, Cloneable, Serializable {
+public class CustomLinkedList<E> extends AbstractDataContainer implements List<E>, Deque<E>, Cloneable, Serializable {
     private static final long serialVersionUID = 2807393845689635403L;
     private Node<E> first;
     private Node<E> last;
-    private int size;
 
     public CustomLinkedList() {
     }
@@ -35,7 +34,7 @@ public class CustomLinkedList<E> extends AbstractSequentialList<E> implements Li
             last.prev = newNode;
             last.item = e;
         }
-        size++;
+        setAndGet(size() + 1);
         return true;
     }
 
@@ -50,9 +49,8 @@ public class CustomLinkedList<E> extends AbstractSequentialList<E> implements Li
             newNode.next = first.next;
             first.next.prev = newNode;
             first.next = newNode;
-
         }
-        size++;
+        setAndGet(size() + 1);
         first.item = e;
     }
 
@@ -63,9 +61,9 @@ public class CustomLinkedList<E> extends AbstractSequentialList<E> implements Li
 
     @Override
     public void add(int index, E element) {
-        if (index < 0 || index > size) throw new ArrayIndexOutOfBoundsException("invalid index");
+        if (index < 0 || index > size()) throw new ArrayIndexOutOfBoundsException("invalid index");
         if (first == null || last == null && index != 0) return;
-        Node<E> node = index >= size / 2 ? getFromLast(index, last) : getFromFirst(index, first);
+        Node<E> node = index >= size() / 2 ? getFromLast(index, last) : getFromFirst(index, first);
         if (node == null) {
             addFirst(element);
             return;
@@ -76,14 +74,14 @@ public class CustomLinkedList<E> extends AbstractSequentialList<E> implements Li
         newNode.next = node;
         node.prev = newNode;
         newNode.item = element;
-        size++;
+        setAndGet(size() + 1);
     }
 
     @Override
     public boolean addAll(int index, Collection<? extends E> c) {
-        if (index < 0 || index > size) throw new ArrayIndexOutOfBoundsException("invalid index");
+        if (index < 0 || index > size()) throw new ArrayIndexOutOfBoundsException("invalid index");
         if (first == null || last == null && index != 0) return false;
-        Node<E> to = index >= size / 2 ? getFromLast(index, last) : getFromFirst(index, first);
+        Node<E> to = index >= size() / 2 ? getFromLast(index, last) : getFromFirst(index, first);
         if (to == null) to = first;
         Node<E> from = to.prev;
         CustomLinkedList<E> subList = new CustomLinkedList<>();
@@ -96,7 +94,7 @@ public class CustomLinkedList<E> extends AbstractSequentialList<E> implements Li
         subListFirst.prev = from;
         subListLast.next = to;
         to.prev = subListLast;
-        size += c.size();
+        setAndGet(size() + c.size());
         return true;
     }
 
@@ -116,21 +114,21 @@ public class CustomLinkedList<E> extends AbstractSequentialList<E> implements Li
         E oldValue = last.item;
         last = last.prev;
         last.next = null;
-        size--;
+        setAndGet(size() - 1);
         return oldValue;
     }
 
     @Override
     public E remove(int index) {
-        if (index < 0 || index > size) throw new ArrayIndexOutOfBoundsException("invalid index");
+        if (index < 0 || index > size()) throw new ArrayIndexOutOfBoundsException("invalid index");
         if (first == null || last == null) return null;
-        Node<E> node = index >= size / 2 ? getFromLast(index, last) : getFromFirst(index, first);
+        Node<E> node = index >= size() / 2 ? getFromLast(index, last) : getFromFirst(index, first);
         if (node == null) return null;
         E oldVal = node.item;
         node.prev.next = node.next;
         node.next.prev = node.prev;
         node = null;
-        size--;
+        setAndGet(size() - 1);
         return oldVal;
     }
 
@@ -138,14 +136,14 @@ public class CustomLinkedList<E> extends AbstractSequentialList<E> implements Li
     public boolean remove(Object o) {
         E el = (E) o;
         Node<E> node = first;
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < size(); i++) {
             if (node.item.equals(el)) break;
             node = node.next;
         }
         node.prev.next = node.next;
         node.next.prev = node.prev;
         node = null;
-        size--;
+        setAndGet(size() - 1);
         return true;
     }
 
@@ -167,16 +165,16 @@ public class CustomLinkedList<E> extends AbstractSequentialList<E> implements Li
     public boolean removeFirstOccurrence(Object o) {
         E el = (E) o;
         Node<E> node = first;
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < size(); i++) {
             if (node.item.equals(el)) break;
-            if (i == size - 1 && !node.item.equals(el))
+            if (i == size() - 1 && !node.item.equals(el))
                 return false;
             node = node.next;
         }
         node.prev.next = node.next;
         node.next.prev = node.prev;
         node = null;
-        size--;
+        setAndGet(size() - 1);
         return true;
     }
 
@@ -184,7 +182,7 @@ public class CustomLinkedList<E> extends AbstractSequentialList<E> implements Li
     public boolean removeLastOccurrence(Object o) {
         E el = (E) o;
         Node<E> node = last;
-        for (int i = size - 1; i >= 0; i--) {
+        for (int i = size() - 1; i >= 0; i--) {
             if (node.item.equals(el)) break;
             if (i == 0 && !node.item.equals(el))
                 return false;
@@ -193,7 +191,7 @@ public class CustomLinkedList<E> extends AbstractSequentialList<E> implements Li
         node.prev.next = node.next;
         node.next.prev = node.prev;
         node = null;
-        size--;
+        setAndGet(size() - 1);
         return true;
     }
 
@@ -221,17 +219,17 @@ public class CustomLinkedList<E> extends AbstractSequentialList<E> implements Li
 
     @Override
     public E get(int index) {
-        if (index < 0 || index > size) throw new ArrayIndexOutOfBoundsException("invalid index");
+        if (index < 0 || index > size()) throw new ArrayIndexOutOfBoundsException("invalid index");
         if (first == null || last == null) return null;
-        Node<E> node = index > size / 2 ? getFromLast(index, last) : getFromFirst(index, first);
+        Node<E> node = index > size() / 2 ? getFromLast(index, last) : getFromFirst(index, first);
         return node == null ? null : node.item;
     }
 
     @Override
     public E set(int index, E element) {
-        if (index < 0 || index > size) throw new ArrayIndexOutOfBoundsException("invalid index");
+        if (index < 0 || index > size()) throw new ArrayIndexOutOfBoundsException("invalid index");
         if (first == null || last == null) return null;
-        Node<E> node = index >= size / 2 ? getFromLast(index, last) : getFromFirst(index, first);
+        Node<E> node = index >= size() / 2 ? getFromLast(index, last) : getFromFirst(index, first);
         E oldVal = node != null ? node.item : null;
         if (node != null) node.item = element;
         return oldVal;
@@ -240,7 +238,7 @@ public class CustomLinkedList<E> extends AbstractSequentialList<E> implements Li
     @Override
     public Iterator<E> iterator() {
         Node<E> current = first;
-        List<E> list = new ArrayList<>(size);
+        List<E> list = new ArrayList<>(size());
         while (current != null) {
             list.add(current.item);
             current = current.next;
@@ -251,7 +249,7 @@ public class CustomLinkedList<E> extends AbstractSequentialList<E> implements Li
     @Override
     public ListIterator<E> listIterator() {
         Node<E> current = first;
-        List<E> list = new ArrayList<>(size);
+        List<E> list = new ArrayList<>(size());
         while (current != null) {
             list.add(current.item);
             current = current.next;
@@ -262,7 +260,7 @@ public class CustomLinkedList<E> extends AbstractSequentialList<E> implements Li
     @Override
     public ListIterator<E> listIterator(int i) {
         Node<E> current = first;
-        List<E> list = new ArrayList<>(size);
+        List<E> list = new ArrayList<>(size());
         while (current != null) {
             list.add(current.item);
             current = current.next;
@@ -274,7 +272,7 @@ public class CustomLinkedList<E> extends AbstractSequentialList<E> implements Li
     public int indexOf(Object o) {
         E el = (E) o;
         Node<E> next = first;
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < size(); i++) {
             if (next.item.equals(el)) return i;
             next = next.next;
         }
@@ -285,7 +283,7 @@ public class CustomLinkedList<E> extends AbstractSequentialList<E> implements Li
     public int lastIndexOf(Object o) {
         E el = (E) o;
         Node<E> next = last;
-        for (int i = size - 1; i >= 0; i--) {
+        for (int i = size() - 1; i >= 0; i--) {
             if (next.item.equals(el)) return i;
             next = next.prev;
         }
@@ -296,17 +294,17 @@ public class CustomLinkedList<E> extends AbstractSequentialList<E> implements Li
     public void clear() {
         first.next = last.prev = null;
         first = last = null;
-        size = 0;
+        setAndGet(0);
     }
 
 
     @Override
     public List<E> subList(int fromIndex, int toIndex) {
         if (fromIndex >= toIndex) throw new IllegalArgumentException("from index must be less than to index");
-        if (fromIndex < 0 || fromIndex >= size || toIndex >= size) throw new ArrayIndexOutOfBoundsException();
+        if (fromIndex < 0 || fromIndex >= size() || toIndex >= size()) throw new ArrayIndexOutOfBoundsException();
         List<E> subList = new ArrayList<>(toIndex - fromIndex);
         Node<E> current = first;
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < size(); i++) {
             if (i < fromIndex) continue;
             if (i >= toIndex) break;
             subList.add(current.item);
@@ -316,29 +314,14 @@ public class CustomLinkedList<E> extends AbstractSequentialList<E> implements Li
     }
 
     @Override
-    public boolean isEmpty() {
-        return size == 0;
-    }
-
-    @Override
     public boolean contains(Object o) {
         E el = (E) o;
         Node<E> next = first;
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < size(); i++) {
             if (next.item.equals(el)) return true;
             next = next.next;
         }
         return false;
-    }
-
-    @Override
-    public int size() {
-        return size;
-    }
-
-    @Override
-    public Iterator<E> descendingIterator() {
-        return null;
     }
 
 
@@ -406,10 +389,45 @@ public class CustomLinkedList<E> extends AbstractSequentialList<E> implements Li
 
     }
 
+    @Override
+    public Iterator<E> descendingIterator() {
+        return null;
+    }
+
+    @Override
+    public boolean containsAll(Collection<?> collection) {
+        return false;
+    }
+
+    @Override
+    public boolean addAll(Collection<? extends E> collection) {
+        return false;
+    }
+
+    @Override
+    public boolean removeAll(Collection<?> collection) {
+        return false;
+    }
+
+    @Override
+    public boolean retainAll(Collection<?> collection) {
+        return false;
+    }
+
+    @Override
+    public Object[] toArray() {
+        return new Object[0];
+    }
+
+    @Override
+    public <T> T[] toArray(T[] ts) {
+        return null;
+    }
+
     private Node<E> getFromLast(int index, Node<E> last) {
         System.out.println("iteration from the end");
         Node<E> next = last;
-        for (int i = size - 1; i > index; i--) {
+        for (int i = size() - 1; i > index; i--) {
             if (next == null) return null;
             next = next.prev;
         }
