@@ -16,7 +16,7 @@ public class GorillaFamily {
         play(() -> approach);
     }
 
-    void play(Gorilla g) {
+    void play(main.java.chapter4.Gorilla g) {
         System.out.println(g.move());
     }
 
