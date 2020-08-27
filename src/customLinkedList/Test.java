@@ -5,7 +5,6 @@ public class Test {
         CustomLinkedList<Integer> customLinkedList = new CustomLinkedList<>();
         customLinkedList.add(2);
 //        System.out.println(customLinkedList.get(0));
-        //  customLinkedList.print(customLinkedList);
         customLinkedList.add(1, 5);
         // System.out.println(customLinkedList.remove(0));
         //System.out.println(customLinkedList.remove(5));
@@ -17,17 +16,8 @@ public class Test {
         list.addAll(1, customLinkedList);
         list.add(22);
         list.add(null);
-        for (int i = 0; i < customLinkedList.getSize(); i++) {
-            System.out.println(customLinkedList.get(i));
-        }
-
-        for (int i = 0; i < list.getSize(); i++) {
-            System.out.println(list.get(i));
-        }
         System.out.println(list.remove(null));
-        for (int i = 0; i < list.getSize(); i++) {
-            System.out.println(list.get(i));
-        }
+        System.out.println(list);
 
 
     }

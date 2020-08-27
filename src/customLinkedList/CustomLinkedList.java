@@ -135,6 +135,22 @@ public class CustomLinkedList<E> implements List<E> {
         return true;
     }
 
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("[");
+        CustomLinkedList.Node el = this.head;
+        while (el != null){
+            stringBuilder.append(el.item);
+            if(el != this.tail){
+                stringBuilder.append(", ");
+            }
+            el = el.next;
+        }
+        stringBuilder.append("]");
+        return stringBuilder.toString();
+    }
+
     private CustomLinkedList.Node<E> getNodeByIndex(int index) {
         checkIndexRange(index);
         CustomLinkedList.Node element;
