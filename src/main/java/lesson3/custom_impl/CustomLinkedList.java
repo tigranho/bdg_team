@@ -124,6 +124,8 @@ public class CustomLinkedList<E> extends AbstractDataContainer implements List<E
         if (first == null || last == null) return null;
         Node<E> node = index >= size() / 2 ? getFromLast(index, last) : getFromFirst(index, first);
         if (node == null) return null;
+        else if (node == first) return removeFirst();
+        else if (node == last) return removeLast();
         E oldVal = node.item;
         node.prev.next = node.next;
         node.next.prev = node.prev;
@@ -140,6 +142,9 @@ public class CustomLinkedList<E> extends AbstractDataContainer implements List<E
             if (node.item.equals(el)) break;
             node = node.next;
         }
+        if (node == null) return false;
+        else if (node == first) return removeFirst() != null;
+        else if (node == last) return removeLast() != null;
         node.prev.next = node.next;
         node.next.prev = node.prev;
         node = null;
@@ -153,6 +158,7 @@ public class CustomLinkedList<E> extends AbstractDataContainer implements List<E
         E oldValue = first.item;
         first = first.next;
         first.prev = null;
+        setAndGet(size() - 1);
         return oldValue;
     }
 
@@ -236,37 +242,20 @@ public class CustomLinkedList<E> extends AbstractDataContainer implements List<E
     }
 
     @Override
-    public Iterator<E> iterator() {
-        Node<E> current = first;
-        List<E> list = new ArrayList<>(size());
-        while (current != null) {
-            list.add(current.item);
-            current = current.next;
-        }
-        return list.iterator();
+    public CustomIterator<E> iterator() {
+//        Node<E> current = first;
+//        List<E> list = new ArrayList<>(size());
+//        while (current != null) {
+//            list.add(current.item);
+//            current = current.next;
+//        }
+        return new CustomIteratorImpl<E>(this);
     }
 
-    @Override
-    public ListIterator<E> listIterator() {
-        Node<E> current = first;
-        List<E> list = new ArrayList<>(size());
-        while (current != null) {
-            list.add(current.item);
-            current = current.next;
-        }
-        return list.listIterator();
+    public CustomIterator<E> iterator(int startIndex) {
+        return new CustomIteratorImpl<E>(this, startIndex);
     }
 
-    @Override
-    public ListIterator<E> listIterator(int i) {
-        Node<E> current = first;
-        List<E> list = new ArrayList<>(size());
-        while (current != null) {
-            list.add(current.item);
-            current = current.next;
-        }
-        return list.listIterator(i);
-    }
 
     @Override
     public int indexOf(Object o) {
@@ -302,7 +291,7 @@ public class CustomLinkedList<E> extends AbstractDataContainer implements List<E
     public List<E> subList(int fromIndex, int toIndex) {
         if (fromIndex >= toIndex) throw new IllegalArgumentException("from index must be less than to index");
         if (fromIndex < 0 || fromIndex >= size() || toIndex >= size()) throw new ArrayIndexOutOfBoundsException();
-        List<E> subList = new ArrayList<>(toIndex - fromIndex);
+        List<E> subList = new CustomArrayList<>(toIndex - fromIndex);
         Node<E> current = first;
         for (int i = 0; i < size(); i++) {
             if (i < fromIndex) continue;
@@ -425,7 +414,6 @@ public class CustomLinkedList<E> extends AbstractDataContainer implements List<E
     }
 
     private Node<E> getFromLast(int index, Node<E> last) {
-        System.out.println("iteration from the end");
         Node<E> next = last;
         for (int i = size() - 1; i > index; i--) {
             if (next == null) return null;
@@ -435,7 +423,6 @@ public class CustomLinkedList<E> extends AbstractDataContainer implements List<E
     }
 
     private Node<E> getFromFirst(int index, Node<E> first) {
-        System.out.println("iteration from the beginning");
         Node<E> next = first;
         for (int i = 0; i < index; i++) {
             if (next == null) return null;
@@ -469,4 +456,27 @@ public class CustomLinkedList<E> extends AbstractDataContainer implements List<E
         System.out.println(customLinkedList + " size = " + customLinkedList.size());
     }
 
+    @Override
+    public ListIterator<E> listIterator() {
+//        Node<E> current = first;
+//        List<E> list = new ArrayList<>(size());
+//        while (current != null) {
+//            list.add(current.item);
+//            current = current.next;
+//        }
+//        return list.listIterator();
+        return null;
+    }
+
+    @Override
+    public ListIterator<E> listIterator(int i) {
+//        Node<E> current = first;
+//        List<E> list = new ArrayList<>(size());
+//        while (current != null) {
+//            list.add(current.item);
+//            current = current.next;
+//        }
+//        return list.listIterator(i);
+        return null;
+    }
 }

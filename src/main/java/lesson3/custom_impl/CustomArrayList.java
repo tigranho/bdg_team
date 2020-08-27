@@ -218,6 +218,7 @@ public class CustomArrayList<T> extends AbstractDataContainer implements List<T>
         T oldVal = elements[idx];
         for (int j = idx; j < size() - 1; ) {
             elements[j] = elements[++j];
+            if (j == size() - 1) elements[j] = null;
         }
         setAndGet(size() - 1);
         return oldVal;
@@ -270,7 +271,7 @@ public class CustomArrayList<T> extends AbstractDataContainer implements List<T>
         @SuppressWarnings("unchecked")
         T[] newArray = (T[]) new Object[end - start];
         System.arraycopy(elements, start, newArray, 0, end - start);
-        List<T> result = new ArrayList<>(newArray.length);
+        List<T> result = new CustomArrayList<>(newArray.length);
         result.addAll(Arrays.asList(newArray));
         return result;
     }
@@ -292,20 +293,14 @@ public class CustomArrayList<T> extends AbstractDataContainer implements List<T>
     }
 
     @Override
-    public Iterator<T> iterator() {
-        return Arrays.asList(elements).iterator();
+    public CustomIterator<T> iterator() {
+        return new CustomIteratorImpl<T>(this);
     }
 
-    @Override
-    public ListIterator<T> listIterator() {
-        return Arrays.asList(elements).listIterator();
-    }
 
-    @Override
-    public ListIterator<T> listIterator(int i) {
-        return Arrays.asList(elements).listIterator(i);
+    public CustomIterator<T> iterator(int startIndex) {
+        return new CustomIteratorImpl<T>(this, startIndex);
     }
-
 
     @SuppressWarnings("unchecked")
     private void grow(int length) {
@@ -369,5 +364,17 @@ public class CustomArrayList<T> extends AbstractDataContainer implements List<T>
         System.out.println("size " + customArrayList.size());
         System.out.println("capacity " + customArrayList.getCapacity());
     }
+
+    @Override
+    public ListIterator<T> listIterator() {
+        return Arrays.asList(elements).listIterator();
+    }
+
+    @Override
+    public ListIterator<T> listIterator(int i) {
+        return Arrays.asList(elements).listIterator(i);
+    }
+
+
 }
 
