@@ -1,22 +1,26 @@
 package customLinkedList;
 
-public class CustomLinkedList<E> implements List<E> {
+import java.util.*;
+import java.util.List;
+
+public class NewCustomLinkedList<T> extends AbstractList<T> implements List<T>  {
+
     private int size;
-    private CustomLinkedList.Node<E> head;
-    private CustomLinkedList.Node<E> tail;
+    private NewCustomLinkedList.Node<T> head;
+    private NewCustomLinkedList.Node<T> tail;
     private static final long serialVersionUID = 876323262645176374L;
 
-    public CustomLinkedList() {
+    public NewCustomLinkedList() {
     }
 
-    public CustomLinkedList(List<? extends E> list) {
-        for (int i = 0; i < list.getSize(); i++) {
+    public NewCustomLinkedList(List<? extends T> list) {
+        for (int i = 0; i < list.size(); i++) {
             this.add(list.get(i));
         }
     }
 
     @Override
-    public int getSize() {
+    public int size() {
         return size;
     }
 
@@ -26,8 +30,8 @@ public class CustomLinkedList<E> implements List<E> {
     }
 
     @Override
-    public boolean add(E element) {
-        CustomLinkedList.Node newElement = new CustomLinkedList.Node(element);
+    public boolean add(T t) {
+        NewCustomLinkedList.Node newElement = new NewCustomLinkedList.Node(t);
         if (this.head == null) {
             this.head = newElement;
         } else {
@@ -40,7 +44,7 @@ public class CustomLinkedList<E> implements List<E> {
     }
 
     @Override
-    public void add(int index, E element) {
+    public void add(int index, T element) {
         if (index < 0 || index > size) {
             throw new ArrayIndexOutOfBoundsException("Given index out of array's bound");
         }
@@ -48,8 +52,8 @@ public class CustomLinkedList<E> implements List<E> {
             this.add(element);
             return;
         }
-        CustomLinkedList.Node newElement = new CustomLinkedList.Node(element);
-        CustomLinkedList.Node oldElement;
+        NewCustomLinkedList.Node newElement = new NewCustomLinkedList.Node(element);
+        NewCustomLinkedList.Node oldElement;
         oldElement = this.head;
         for (int i = 0; i <= index; i++) {
             oldElement = this.head.next;
@@ -66,23 +70,23 @@ public class CustomLinkedList<E> implements List<E> {
     }
 
     @Override
-    public E get(int index) {
+    public T get(int index) {
         checkIndexRange(index);
-        return (E) getNodeByIndex(index).item;
+        return (T) getNodeByIndex(index).item;
     }
 
     @Override
-    public E set(int index, E element) {
+    public T set(int index, T element) {
         checkIndexRange(index);
-        CustomLinkedList.Node replacingElement = getNodeByIndex(index);
+        NewCustomLinkedList.Node replacingElement = getNodeByIndex(index);
         replacingElement.item = element;
-        return (E) replacingElement.item;
+        return (T) replacingElement.item;
     }
 
     @Override
-    public E remove(int index) {
+    public T remove(int index) {
         checkIndexRange(index);
-        CustomLinkedList.Node removingElement = getNodeByIndex(index);
+        NewCustomLinkedList.Node removingElement = getNodeByIndex(index);
         if (removingElement == this.head) {
             if(size != 1){
                 this.head = removingElement.next;
@@ -98,13 +102,13 @@ public class CustomLinkedList<E> implements List<E> {
             removingElement.next.previous = removingElement.previous;
         }
         size--;
-        return (E) removingElement.item;
+        return (T) removingElement.item;
     }
 
     @Override
     public boolean remove(Object object) {
-        CustomLinkedList.Node removingElement = new CustomLinkedList.Node((E) object);
-        CustomLinkedList.Node el = this.head;
+        NewCustomLinkedList.Node removingElement = new NewCustomLinkedList.Node((T) object);
+        NewCustomLinkedList.Node el = this.head;
         int index = 0;
         while (el != null) {
             if (el.item == removingElement.item) {
@@ -118,32 +122,10 @@ public class CustomLinkedList<E> implements List<E> {
     }
 
     @Override
-    public boolean addAll(List<? extends E> list) {
-        if (list == null) {
-            throw new NullPointerException("Added list can not be null");
-        }
-        for (int i = 0; i < list.getSize(); i++) {
-            add(list.get(i));
-        }
-        return true;
-    }
-
-    @Override
-    public boolean addAll(int position, List<? extends E> list) {
-        if (position < 0 || position > size) {
-            throw new ArrayIndexOutOfBoundsException("Given index out of array's bound");
-        }
-        for (int i = 0; i < list.getSize(); i++) {
-            add(position++, list.get(i));
-        }
-        return true;
-    }
-
-    @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("[");
-        CustomLinkedList.Node el = this.head;
+        NewCustomLinkedList.Node el = this.head;
         while (el != null){
             stringBuilder.append(el.item);
             if(el != this.tail){
@@ -155,9 +137,9 @@ public class CustomLinkedList<E> implements List<E> {
         return stringBuilder.toString();
     }
 
-    private CustomLinkedList.Node<E> getNodeByIndex(int index) {
+    private NewCustomLinkedList.Node<T> getNodeByIndex(int index) {
         checkIndexRange(index);
-        CustomLinkedList.Node element;
+        NewCustomLinkedList.Node element;
         if (index == 0) {
             element = this.head;
         } else if (index == size - 1) {
@@ -182,18 +164,18 @@ public class CustomLinkedList<E> implements List<E> {
         }
     }
 
-    private static class Node<E> {
-        E item;
-        CustomLinkedList.Node<E> previous;
-        CustomLinkedList.Node<E> next;
+    private static class Node<T> {
+        T item;
+        NewCustomLinkedList.Node<T> previous;
+        NewCustomLinkedList.Node<T> next;
 
-        Node(Node<E> var1, E item, Node<E> var2) {
+        Node(NewCustomLinkedList.Node<T> var1, T item, NewCustomLinkedList.Node<T> var2) {
             this.previous = var1;
             this.item = item;
             this.next = var2;
         }
 
-        Node(E item) {
+        Node(T item) {
             this.item = item;
         }
     }
