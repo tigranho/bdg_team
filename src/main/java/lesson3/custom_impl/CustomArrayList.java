@@ -22,7 +22,7 @@ public class CustomArrayList<T> extends AbstractDataContainer implements List<T>
 
     @SuppressWarnings("unchecked")
     public CustomArrayList() {
-        this.elements = (T[]) new Object[DEFAULT_CAPACITY];
+        this.elements = (T[]) new Object[capacity = DEFAULT_CAPACITY];
     }
 
 
@@ -194,10 +194,10 @@ public class CustomArrayList<T> extends AbstractDataContainer implements List<T>
         if (capacity - size() <= collection.size()) grow(collection.size());
         @SuppressWarnings("unchecked")
         T[] newElements = (T[]) collection.toArray();
-        setAndGet(size() + newElements.length);
         for (int i = size(), j = 0; j < newElements.length; i++, j++) {
             elements[i] = newElements[j];
         }
+        setAndGet(size() + newElements.length);
         return true;
     }
 
@@ -214,7 +214,7 @@ public class CustomArrayList<T> extends AbstractDataContainer implements List<T>
 
     @Override
     public T remove(int idx) {
-        if (idx < 0 || idx >= capacity) throw new ArrayIndexOutOfBoundsException("invalid index");
+        if (idx < 0 || idx >= size()) throw new ArrayIndexOutOfBoundsException("invalid index");
         T oldVal = elements[idx];
         for (int j = idx; j < size() - 1; ) {
             elements[j] = elements[++j];
@@ -265,7 +265,7 @@ public class CustomArrayList<T> extends AbstractDataContainer implements List<T>
 
     @Override
     public List<T> subList(int start, int end) {
-        if (start < 0 || start >= capacity || end < 0 || end >= capacity)
+        if (start < 0 || start >= size() || end < 0 || end >= size())
             throw new ArrayIndexOutOfBoundsException("invalid index");
         if (start >= end) throw new IllegalArgumentException("the start index must be less than end index");
         @SuppressWarnings("unchecked")

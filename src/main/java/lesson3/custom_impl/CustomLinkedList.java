@@ -62,7 +62,13 @@ public class CustomLinkedList<E> extends AbstractDataContainer implements List<E
     @Override
     public void add(int index, E element) {
         if (index < 0 || index > size()) throw new ArrayIndexOutOfBoundsException("invalid index");
-        if (first == null || last == null && index != 0) return;
+        if (first == null) {
+            add(element);
+            return;
+        } else if (last == null || index == size()) {
+            addLast(element);
+            return;
+        }
         Node<E> node = index >= size() / 2 ? getFromLast(index, last) : getFromFirst(index, first);
         if (node == null) {
             addFirst(element);
@@ -99,6 +105,28 @@ public class CustomLinkedList<E> extends AbstractDataContainer implements List<E
     }
 
     @Override
+    public boolean addAll(Collection<? extends E> collection) {
+        CustomLinkedList<E> subList = new CustomLinkedList<>();
+        for (E el : collection) {
+            boolean add = subList.add(el);
+        }
+        if (isEmpty()) {
+            first = subList.first;
+            last = subList.last;
+        } else if (last == null) {
+            first.next = subList.first;
+            subList.first.prev = first;
+            last = subList.last;
+        } else {
+            subList.first.prev = last;
+            last.next = subList.first;
+            last = subList.last;
+        }
+        setAndGet(size() + collection.size());
+        return true;
+    }
+
+    @Override
     public boolean offer(E e) {
         return add(e);
     }
@@ -120,7 +148,7 @@ public class CustomLinkedList<E> extends AbstractDataContainer implements List<E
 
     @Override
     public E remove(int index) {
-        if (index < 0 || index > size()) throw new ArrayIndexOutOfBoundsException("invalid index");
+        if (index < 0 || index >= size()) throw new ArrayIndexOutOfBoundsException("invalid index");
         if (first == null || last == null) return null;
         Node<E> node = index >= size() / 2 ? getFromLast(index, last) : getFromFirst(index, first);
         if (node == null) return null;
@@ -281,7 +309,18 @@ public class CustomLinkedList<E> extends AbstractDataContainer implements List<E
 
     @Override
     public void clear() {
-        first.next = last.prev = null;
+        if (first == null) return;
+        if (first.next == null) {
+            first = null;
+            return;
+        }
+        if (last == null) return;
+        first.next = null;
+        if (last.prev == null) {
+            last = null;
+            return;
+        }
+        last.prev = null;
         first = last = null;
         setAndGet(0);
     }
@@ -388,10 +427,6 @@ public class CustomLinkedList<E> extends AbstractDataContainer implements List<E
         return false;
     }
 
-    @Override
-    public boolean addAll(Collection<? extends E> collection) {
-        return false;
-    }
 
     @Override
     public boolean removeAll(Collection<?> collection) {
