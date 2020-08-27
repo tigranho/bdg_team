@@ -1,11 +1,16 @@
 package customLists.ArrayList;
 
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
+
 /**
  * Resizable-array implementation of the </ArrayList> interface
  *
  * @author Tatevik Mirzoyan
  */
-public class MyCustomArrayList<T> {
+public class CustomArrayList<T> implements List<T> {
 
     /**
      * Default initial capacity.
@@ -26,7 +31,7 @@ public class MyCustomArrayList<T> {
     /**
      * Creates empty list with an initial capacity of ten
      */
-    public MyCustomArrayList() {
+    public CustomArrayList() {
         this.array = new Object[DEFAULT_CAPACITY];
     }
 
@@ -37,7 +42,7 @@ public class MyCustomArrayList<T> {
      * @param capacity the given initial capacity of the list
      * @throws IllegalArgumentException if the given initial capacity is negative
      */
-    public MyCustomArrayList(int capacity) {
+    public CustomArrayList(int capacity) {
         if (capacity >= 0) {
             this.array = new Object[capacity];
         } else throw new IllegalArgumentException("Illegal capacity" + capacity);
@@ -61,6 +66,11 @@ public class MyCustomArrayList<T> {
         return size == 0;
     }
 
+    @Override
+    public boolean contains(Object o) {
+        return false;
+    }
+
     /**
      * Removes all elements from the list
      */
@@ -71,58 +81,6 @@ public class MyCustomArrayList<T> {
         }
         size = 0;
     }
-
-    /**
-     * Adds specified element to the end of the list.
-     *
-     * @param t the specified element to be add to the list
-     * @return </true>
-     */
-    public boolean add(T t) {
-        array[size] = t;
-        size++;
-        return true;
-    }
-
-
-    /**
-     * Removes the first occurrence of the specified element from this list, if it is present.
-     * If the list doesn't contain the specified element, it remains unchanged.
-     *
-     * @param t the element to be removed from the list
-     * @return </true> if the list contains the specified element
-     */
-    public boolean remove(T t) {
-        for (int i = 0; i < size; i++) {
-            if (array[i] == t) {
-                remove(i);
-                return true;
-            }
-        }
-        return false;
-    }
-
-
-    /**
-     * Removes the element at the specified position in the list.
-     * And shifts rest elements to the left one position.
-     *
-     * @param index the index of the element to be removed from the list
-     * @return the removed element
-     * @throws IndexOutOfBoundsException .
-     */
-    @SuppressWarnings("Unchecked Exception")
-    public T remove(int index) {
-        checkIndex(index);
-        T removedElement = (T) array[index];
-        array[index] = null;
-        for (int i = index; i < size; i++) {
-            array[i] = array[i + 1];
-        }
-        size--;
-        return removedElement;
-    }
-
 
     /**
      * Returns the element at the specified position in the list.
@@ -152,6 +110,128 @@ public class MyCustomArrayList<T> {
         array[index] = element;
         return replacedElement;
     }
+
+    /**
+     * Adds specified element to the end of the list.
+     *
+     * @param t the specified element to be add to the list
+     * @return </true>
+     */
+    public boolean add(T t) {
+        array[size] = t;
+        size++;
+        return true;
+    }
+
+
+    /**
+     * Removes the first occurrence of the specified element from this list, if it is present.
+     * If the list doesn't contain the specified element, it remains unchanged.
+     *
+     * @param o the element to be removed from the list
+     * @return </true> if the list contains the specified element
+     */
+    public boolean remove(Object o) {
+        for (int i = 0; i < size; i++) {
+            if (array[i] == o) {
+                remove(i);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Removes the element at the specified position in the list.
+     * And shifts rest elements to the left one position.
+     *
+     * @param index the index of the element to be removed from the list
+     * @return the removed element
+     * @throws IndexOutOfBoundsException .
+     */
+    @SuppressWarnings("Unchecked Exception")
+    public T remove(int index) {
+        checkIndex(index);
+        T removedElement = (T) array[index];
+        array[index] = null;
+        for (int i = index; i < size; i++) {
+            array[i] = array[i + 1];
+        }
+        size--;
+        return removedElement;
+    }
+
+    @Override
+    public void add(int i, T t) {
+
+    }
+
+    @Override
+    public boolean containsAll(Collection<?> collection) {
+        return false;
+    }
+
+    @Override
+    public boolean addAll(Collection<? extends T> collection) {
+        return false;
+    }
+
+    @Override
+    public boolean addAll(int i, Collection<? extends T> collection) {
+        return false;
+    }
+
+    @Override
+    public boolean removeAll(Collection<?> collection) {
+        return false;
+    }
+
+    @Override
+    public boolean retainAll(Collection<?> collection) {
+        return false;
+    }
+
+
+    @Override
+    public int indexOf(Object o) {
+        return 0;
+    }
+
+    @Override
+    public int lastIndexOf(Object o) {
+        return 0;
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return null;
+    }
+
+    @Override
+    public ListIterator<T> listIterator() {
+        return null;
+    }
+
+    @Override
+    public ListIterator<T> listIterator(int i) {
+        return null;
+    }
+
+    @Override
+    public List<T> subList(int i, int i1) {
+        return null;
+    }
+
+    @Override
+    public Object[] toArray() {
+        return new Object[0];
+    }
+
+    @Override
+    public <T1> T1[] toArray(T1[] t1s) {
+        return null;
+    }
+
 
     /**
      * Checks if the index is out of bounds or not.

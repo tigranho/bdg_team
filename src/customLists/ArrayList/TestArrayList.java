@@ -5,7 +5,7 @@ package customLists.ArrayList;
  */
 public class TestArrayList {
     public static void main(String[] args) {
-        MyCustomArrayList<String> stringList = new MyCustomArrayList<>();
+        CustomArrayList<String> stringList = new CustomArrayList<>();
         stringList.add("Sunday");
         stringList.add("Monday");
         stringList.add("Tuesday");
@@ -26,7 +26,7 @@ public class TestArrayList {
             System.out.println(stringList.toString());
         }
 
-        MyCustomArrayList<Integer> integerList = new MyCustomArrayList<>();
+        CustomArrayList<Integer> integerList = new CustomArrayList<>();
         integerList.add(12);
         integerList.add(54);
         integerList.add(36);
