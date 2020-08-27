@@ -2,5 +2,7 @@
 out
 bdg_team.iml
 /.idea/
+.idea/
 /out/
+out/
 *.iml
