@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.ListIterator;
 
 /**
- * Resizable-array implementation of the </ArrayList> interface
+ * Custom implementation of the </ArrayList> interface
  *
  * @author Tatevik Mirzoyan
  */
@@ -42,38 +42,33 @@ public class CustomArrayList<T> implements List<T> {
      * @param capacity the given initial capacity of the list
      * @throws IllegalArgumentException if the given initial capacity is negative
      */
+
     public CustomArrayList(int capacity) {
         if (capacity >= 0) {
             this.array = new Object[capacity];
         } else throw new IllegalArgumentException("Illegal capacity" + capacity);
     }
 
-    /**
-     * Returns the number of elements in the list
-     *
-     * @return the number of elements in the  list
-     */
+    @Override
     public int size() {
         return size;
     }
 
-    /**
-     * Returns </true> if the list contains no elements
-     *
-     * @return </true> if the list contains no elements
-     */
+    @Override
     public boolean isEmpty() {
         return size == 0;
     }
 
     @Override
     public boolean contains(Object o) {
+        for (int i = 0; i < size; i++) {
+            if (array[i] == o)
+                return true;
+        }
         return false;
     }
 
-    /**
-     * Removes all elements from the list
-     */
+    @Override
     public void clear() {
         // The elements are available for GC
         for (int i = 0; i < size; i++) {
@@ -84,12 +79,8 @@ public class CustomArrayList<T> implements List<T> {
 
     /**
      * Returns the element at the specified position in the list.
-     *
-     * @param index the index of the element to be return
-     * @return the element at the specified position in the list
-     * @throws IndexOutOfBoundsException .
      */
-    @SuppressWarnings("Unchecked Exception")
+    @Override
     public T get(int index) {
         checkIndex(index);
         return (T) array[index];
@@ -97,13 +88,8 @@ public class CustomArrayList<T> implements List<T> {
 
     /**
      * Replaces the element at the specified position in the list with the specified element.
-     *
-     * @param index   the index of element to be replaced
-     * @param element the element to be stored at the specified position
-     * @return the replaced element at the specified position
-     * @throws IndexOutOfBoundsException .
      */
-    @SuppressWarnings("Unchecked Exception")
+    @Override
     public T set(int index, T element) {
         checkIndex(index);
         T replacedElement = (T) array[index];
@@ -113,10 +99,8 @@ public class CustomArrayList<T> implements List<T> {
 
     /**
      * Adds specified element to the end of the list.
-     *
-     * @param t the specified element to be add to the list
-     * @return </true>
      */
+    @Override
     public boolean add(T t) {
         array[size] = t;
         size++;
@@ -127,10 +111,8 @@ public class CustomArrayList<T> implements List<T> {
     /**
      * Removes the first occurrence of the specified element from this list, if it is present.
      * If the list doesn't contain the specified element, it remains unchanged.
-     *
-     * @param o the element to be removed from the list
-     * @return </true> if the list contains the specified element
      */
+    @Override
     public boolean remove(Object o) {
         for (int i = 0; i < size; i++) {
             if (array[i] == o) {
@@ -144,12 +126,8 @@ public class CustomArrayList<T> implements List<T> {
     /**
      * Removes the element at the specified position in the list.
      * And shifts rest elements to the left one position.
-     *
-     * @param index the index of the element to be removed from the list
-     * @return the removed element
-     * @throws IndexOutOfBoundsException .
      */
-    @SuppressWarnings("Unchecked Exception")
+    @Override
     public T remove(int index) {
         checkIndex(index);
         T removedElement = (T) array[index];
@@ -161,9 +139,22 @@ public class CustomArrayList<T> implements List<T> {
         return removedElement;
     }
 
+/////in process
     @Override
     public void add(int i, T t) {
-
+        checkIndex(i);
+        Object element;
+        for (int j = 0; j < size; j++) {
+            if (j == i) {
+                element = array[j];
+                array[j] = t;
+                array[j+1] = element;
+                for (int k = j+1; k < size; k++) {
+                    array[k + 1] = array[k];
+                }
+            }//else this.add(t);
+        }
+        size++;
     }
 
     @Override
@@ -246,11 +237,7 @@ public class CustomArrayList<T> implements List<T> {
     }
 
 
-    /**
-     * Returns a string representation of the list.
-     *
-     * @return a string representation of the list.
-     */
+
     @Override
     public String toString() {
         System.out.println("This is my list");
