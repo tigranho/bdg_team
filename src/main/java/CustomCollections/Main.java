@@ -3,7 +3,8 @@ package CustomCollections;
 import CustomCollections.CustomList.CustomArrayList;
 import CustomCollections.CustomList.CustomLinkedList;
 
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
 
@@ -19,7 +20,7 @@ public class Main {
         System.out.println("List size: " + list.size());
         System.out.println("List elements: " + list);
         list.add(29);
-        System.out.println("Last Index of 14: " + list.lastIndexOf(14));
+        System.out.println("Last Index of 23: " + list.lastIndexOf(23));
         System.out.println("Index of 14: " + list.indexOf(14));
         System.out.println("List size: " + list.size());
         System.out.println("Element at index 5: " + list.get(5));
@@ -27,6 +28,7 @@ public class Main {
         System.out.println("Adding 46 at index 3");
         list.add(3, 46);
         System.out.println("List elements: " + list);
+        System.out.println("Contains all of 1, 2, 5: " + list.containsAll(new ArrayList<Integer>(List.of(1, 2, 5))));
         System.out.println("Removing element at position 2: " + list.remove(2));
         System.out.println("List size: " + list.size());
         System.out.println("Removing element 2: ");
@@ -58,6 +60,7 @@ public class Main {
         System.out.println("Linked List contains 21: " + linkedList.contains("21"));
         linkedList.addLast("2");
         System.out.println("List elements: " + linkedList);
+        System.out.println("Contains all of 1, 2, 3: " + linkedList.containsAll(new ArrayList<String>(List.of("1", "2", "3"))));
         System.out.println("Last Index of 2: " + linkedList.lastIndexOf("2"));
         linkedList.remove("6");
         linkedList.remove(0);

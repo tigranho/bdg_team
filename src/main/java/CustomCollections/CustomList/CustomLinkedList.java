@@ -1,10 +1,12 @@
 package CustomCollections.CustomList;
 
+import java.util.*;
+
 /**
  * @param <E>
  * @author VaheAvetikyan
  */
-public class CustomLinkedList<E> extends CustomAbstractList<E> implements CustomList<E>{
+public class CustomLinkedList<E> extends CustomAbstractList<E> implements List<E> {
 
     /**
      * Helper Node class
@@ -33,7 +35,6 @@ public class CustomLinkedList<E> extends CustomAbstractList<E> implements Custom
      */
     private Node<E> last;
 
-    private int size;
 
     /**
      * Constructs an empty list.
@@ -46,6 +47,23 @@ public class CustomLinkedList<E> extends CustomAbstractList<E> implements Custom
      */
     public CustomLinkedList(E e) {
         addTheFirstElement(e);
+    }
+
+    /**
+     * Constructs a list with collection provided.
+     */
+    public CustomLinkedList(Collection<? extends E> initialArray) {
+        Iterator<E> iter = (Iterator<E>) initialArray.iterator();
+        first = new Node<E>(null, iter.next(), null);
+        size++;
+        Node<E> n = first;
+
+        while (iter.hasNext()) {
+            n.next = new Node<>(n, iter.next(), null);
+            n = n.next;
+            size++;
+        }
+        last = n;
     }
 
     public void addFirst(E e) {
@@ -72,62 +90,88 @@ public class CustomLinkedList<E> extends CustomAbstractList<E> implements Custom
         }
     }
 
-    @Override
-    public boolean add(E e) {
-        addLast(e);
-        return true;
-    }
-
-    @Override
-    public boolean add(int index, E element) {
-        if (index == 0) {
-            addFirst(element);
-            return true;
-        }
-        if (index == size) {
-            addLast(element);
-            return true;
-        }
-        Node<E> oldElementInIndex = getElementByIndex(index);
-        Node<E> previous = oldElementInIndex.prev;
-        Node<E> newNode = new Node<E>(previous, element, oldElementInIndex);
-        previous.next = newNode;
-        oldElementInIndex.prev = newNode;
-        size++;
-        return true;
-    }
-
     private void addTheFirstElement(E e) {
         this.first = new Node<E>(null, e, null);
         this.last = this.first;
         this.size++;
     }
 
+    @Override
+    public Iterator<E> iterator() {
+        return new Iterator<E>() {
+            Node<E> n = first;
+            int currentIndex = 0;
+
+            @Override
+            public boolean hasNext() {
+                if (n == null) return false;
+                return n.next != null;
+            }
+
+            @Override
+            public E next() {
+                if (currentIndex >= size) {
+                    throw new NoSuchElementException();
+                }
+                currentIndex++;
+                E tmp = n.element;
+                n = n.next;
+                return tmp;
+            }
+
+            @Override
+            public void remove() {
+                throw new UnsupportedOperationException();
+            }
+        };
+    }
+
+    @Override
+    public Object[] toArray() {
+        Object[] arr = new Object[size];
+        Node<E> next = this.first;
+        for (int i = 0; next != null; next = next.next, i++) {
+            arr[i] = next.element;
+        }
+        return arr;
+    }
+
+    @Override
+    public <T> T[] toArray(T[] a) {
+        Node<E> next = this.first;
+        for (int i = 0; next != null && i < a.length; next = next.next, i++) {
+            a[i] = (T) next.element;
+        }
+        return a;
+    }
+
+    @Override
+    public boolean add(E e) {
+        addLast(e);
+        return true;
+    }
+
     /**
      * Removes element at index
      */
     @Override
-    public E remove(int index) {
-        Node<E> node = getElementByIndex(index);
-        unlink(node);
-        return node.element;
-    }
-
-    @Override
-    public void remove(E e) {
-        if (e == null) {
+    public boolean remove(Object o) {
+        if (o == null) {
             for (Node<E> node = first; node != null; node = node.next) {
                 if (node.element == null) {
                     unlink(node);
+                    return true;
                 }
             }
         } else {
             for (Node<E> node = first; node != null; node = node.next) {
-                if (e.equals(node.element)) {
+                if (o.equals(node.element)) {
                     unlink(node);
+                    return true;
                 }
             }
         }
+        return false;
     }
 
     public E removeFirst() {
@@ -171,6 +215,29 @@ public class CustomLinkedList<E> extends CustomAbstractList<E> implements Custom
         return node.element;
     }
 
+    @Override
+    public boolean addAll(int index, Collection<? extends E> c) {
+        Node<E> n = null;
+        Iterator<E> iter = (Iterator<E>) c.iterator();
+        try {
+            n = getElementByIndex(index);
+        } catch (IndexOutOfBoundsException e) {
+            CustomLinkedList<E> list = new CustomLinkedList<E>(c);
+            this.first = list.first;
+            this.last = list.last;
+        }
+
+        Node<E> temp = n.next;
+        while (iter.hasNext()) {
+            Node<E> x = new Node<>(n, iter.next(), null);
+            n = x;
+            x = n.next;
+            size++;
+        }
+        n.next = temp;
+        return true;
+    }
+
     /**
      * Discards all elements of the list
      */
@@ -189,8 +256,6 @@ public class CustomLinkedList<E> extends CustomAbstractList<E> implements Custom
     }
 
     /**
-     * Returns element at @param index
-     *
      * @return element at @param index
      */
     @Override
@@ -225,8 +290,33 @@ public class CustomLinkedList<E> extends CustomAbstractList<E> implements Custom
         return node;
     }
 
+    @Override
+    public void add(int index, E element) {
+        if (index == 0) {
+            addFirst(element);
+            return;
+        }
+        if (index == size) {
+            addLast(element);
+            return;
+        }
+        Node<E> oldElementInIndex = getElementByIndex(index);
+        Node<E> previous = oldElementInIndex.prev;
+        Node<E> newNode = new Node<E>(previous, element, oldElementInIndex);
+        previous.next = newNode;
+        oldElementInIndex.prev = newNode;
+        size++;
+    }
+
+    @Override
+    public E remove(int index) {
+        Node<E> node = getElementByIndex(index);
+        unlink(node);
+        return node.element;
+    }
+
     /**
-     * Returns first matching index or -1 if not found
+     * @return first matching index or -1 if not found
      */
     @Override
     public int indexOf(Object o) {
@@ -248,7 +338,7 @@ public class CustomLinkedList<E> extends CustomAbstractList<E> implements Custom
     }
 
     /**
-     * Returns last matching index or -1 if not found
+     * @return last matching index or -1 if not found
      */
     @Override
     public int lastIndexOf(Object o) {

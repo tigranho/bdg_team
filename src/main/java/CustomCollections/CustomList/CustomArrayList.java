@@ -1,13 +1,12 @@
 package CustomCollections.CustomList;
 
-import java.util.Arrays;
-import java.util.Collection;
+import java.util.*;
 
 /**
  * @param <T>
  * @author VaheAvetikyan
  */
-public class CustomArrayList<T> extends CustomAbstractList<T> implements CustomList<T> {
+public class CustomArrayList<T> extends CustomAbstractList<T> implements List<T> {
 
     /**
      * Shared empty array instance used for empty instances.
@@ -20,14 +19,8 @@ public class CustomArrayList<T> extends CustomAbstractList<T> implements CustomL
     private Object[] dataArray;
 
     /**
-     * The size of the ArrayList.
-     */
-    private int size;
-
-    /**
      * Constructs an empty list.
      */
-
     public CustomArrayList() {
         this.dataArray = EMPTY_ARRAY;
         this.size = 0;
@@ -46,7 +39,6 @@ public class CustomArrayList<T> extends CustomAbstractList<T> implements CustomL
      *                         else the size is doubled.
      * @return new Object array
      */
-
     private Object[] grow(int numberOfElements) {
         if (this.size + numberOfElements > this.dataArray.length) {
             return this.dataArray = Arrays.copyOf(this.dataArray, Math.max(this.size * 2, this.size + numberOfElements));
@@ -58,12 +50,45 @@ public class CustomArrayList<T> extends CustomAbstractList<T> implements CustomL
         return grow(1);
     }
 
+    @Override
+    public Iterator<T> iterator() {
+        return new Iterator<T>() {
+            private final T[] items = (T[]) dataArray;
+            private int currentIndex = 0;
+
+            @Override
+            public boolean hasNext() {
+                return currentIndex < size && items[currentIndex] != null;
+            }
+
+            @Override
+            public T next() {
+                if (!hasNext()) throw new NoSuchElementException();
+                return items[currentIndex++];
+            }
+
+            @Override
+            public void remove() {
+                throw new UnsupportedOperationException();
+            }
+        };
+    }
+
+    @Override
+    public Object[] toArray() {
+        return new Object[0];
+    }
+
+    @Override
+    public <T1> T1[] toArray(T1[] a) {
+        return null;
+    }
 
     private boolean add(T t, Object[] data, int s) {
-        if (s == this.dataArray.length) {
-            this.dataArray = grow();
+        if (s == data.length) {
+            data = grow();
         }
-        this.dataArray[s] = t;
+        data[s] = t;
         size++;
         return true;
     }
@@ -77,20 +102,72 @@ public class CustomArrayList<T> extends CustomAbstractList<T> implements CustomL
         return true;
     }
 
+    @Override
+    public boolean remove(Object o) {
+        Object temp = remove(indexOf(o));
+        return temp != null;
+    }
+
+    @Override
+    public boolean addAll(int index, Collection<? extends T> c) {
+        return false;
+    }
+
+    /**
+     * Discards all elements of the list
+     */
+    @Override
+    //public void clear() {
+    //    Object[] tempArray = this.dataArray;
+    //    while (size > 0) {
+    //        size--;
+    //        tempArray[size] = null;
+    //    }
+    //}
+    public void clear() {
+        this.dataArray = EMPTY_ARRAY;
+        this.size = this.dataArray.length;
+    }
+
+    /**
+     * @param index - the index of array
+     * @return element at index
+     */
+    @Override
+    public T get(int index) {
+        if (index < size && index >= 0) {
+            return (T) dataArray[index];
+        } else {
+            throw new ArrayIndexOutOfBoundsException();
+        }
+    }
+
+    /**
+     * Replaces element at index and returns original
+     */
+    @Override
+    public T set(int index, T element) {
+        Object temp = null;
+        if (index >= 0 && index < this.size) {
+            temp = dataArray[index];
+            this.dataArray[index] = element;
+        }
+        return (T) temp;
+    }
+
     /**
      * Adds element at index and moves the rest toward the end
      */
     @Override
-    public boolean add(int index, T t) {
+    public void add(int index, T element) {
         this.dataArray = grow(1);
         this.size++;
         if (index >= 0 && index < this.size) {
-            T temp = set(index, t);
+            T temp = set(index, element);
             for (int i = index + 1; i < this.size; i++) {
                 temp = set(i, temp);
             }
         }
-        return true;
     }
 
     /**
@@ -110,54 +187,6 @@ public class CustomArrayList<T> extends CustomAbstractList<T> implements CustomL
         this.dataArray[size - 1] = null;
         size--;
         return temp;
-    }
-
-    @Override
-    public void remove(T t) {
-        remove(indexOf(t));
-    }
-
-    /**
-     * Discards all elements of the list
-     */
-    @Override
-    //    public void clear() {
-    //        Object[] tempArray = this.dataArray;
-    //        while (size > 0) {
-    //            size--;
-    //            tempArray[size] = null;
-    //        }
-    //    }
-    public void clear() {
-        this.dataArray = EMPTY_ARRAY;
-        this.size = this.dataArray.length;
-    }
-
-    /**
-     * Returns element at @param index
-     *
-     * @return element at @param index
-     */
-    @Override
-    public T get(int index) {
-        if (index < size && index >= 0) {
-            return (T) dataArray[index];
-        } else {
-            throw new ArrayIndexOutOfBoundsException();
-        }
-    }
-
-    /**
-     * Replaces element at index and returns original
-     */
-    @Override
-    public T set(int index, T t) {
-        Object temp = null;
-        if (index >= 0 && index < this.size) {
-            temp = dataArray[index];
-            this.dataArray[index] = t;
-        }
-        return (T) temp;
     }
 
     @Override
