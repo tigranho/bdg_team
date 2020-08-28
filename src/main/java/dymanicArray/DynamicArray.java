@@ -1,6 +1,6 @@
 package dymanicArray;
 
-public class DynamicArray<E> extends AbstractList<E> implements List<E> {
+public class DynamicArray<E> extends AbstractList<E>  {
     private Object[] array;
     private static final int DEFAULT_CAPACITY = 10;
 
@@ -15,6 +15,7 @@ public class DynamicArray<E> extends AbstractList<E> implements List<E> {
 
     @Override
     public boolean add(E element) {
+        checkAndIncrease();
         this.array[size++] = element;
         return true;
     }
@@ -27,6 +28,7 @@ public class DynamicArray<E> extends AbstractList<E> implements List<E> {
         }
         if (index == size) {
             add(element);
+            return;
         }
         for (int i = this.size; i > index; i--) {
             this.array[i] = this.array[i - 1];

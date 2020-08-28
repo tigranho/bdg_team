@@ -1,13 +1,16 @@
-package customLinkedList;
+package customCollections;
 
 import java.util.*;
 import java.util.List;
 
-public class NewCustomLinkedList<T> extends AbstractList<T> implements List<T>  {
+public class NewCustomLinkedList<T> extends AbstractSequentialList<T>  implements List<T>  {
 
     private int size;
+
     private NewCustomLinkedList.Node<T> head;
+
     private NewCustomLinkedList.Node<T> tail;
+
     private static final long serialVersionUID = 876323262645176374L;
 
     public NewCustomLinkedList() {
@@ -121,6 +124,44 @@ public class NewCustomLinkedList<T> extends AbstractList<T> implements List<T>  
         return false;
     }
 
+
+    @Override
+    public boolean addAll(int i, Collection<? extends T> collection) {
+        return super.addAll(i, collection);
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return super.iterator();
+    }
+
+    @Override
+    public ListIterator<T> listIterator(int i) {
+        return null;
+    }
+
+//    @Override
+//    public boolean addAll(customLinkedList.List<? extends E> list) {
+//        if (list == null) {
+//            throw new NullPointerException("Added list can not be null");
+//        }
+//        for (int i = 0; i < list.getSize(); i++) {
+//            add(list.get(i));
+//        }
+//        return true;
+//    }
+//
+//    @Override
+//    public boolean addAll(int position, customLinkedList.List<? extends E> list) {
+//        if (position < 0 || position > size) {
+//            throw new ArrayIndexOutOfBoundsException("Given index out of array's bound");
+//        }
+//        for (int i = 0; i < list.getSize(); i++) {
+//            add(position++, list.get(i));
+//        }
+//        return true;
+//    }
+
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
@@ -136,6 +177,7 @@ public class NewCustomLinkedList<T> extends AbstractList<T> implements List<T>  
         stringBuilder.append("]");
         return stringBuilder.toString();
     }
+
 
     private NewCustomLinkedList.Node<T> getNodeByIndex(int index) {
         checkIndexRange(index);

@@ -1,23 +1,25 @@
-package customLinkedList;
+package customCollections;
 
 public class Test {
     public static void main(String[] args) {
-//        CustomLinkedList<Integer> customLinkedList = new CustomLinkedList<>();
-//        customLinkedList.add(2);
-//        System.out.println(customLinkedList.get(0));
-      //  customLinkedList.add(1, 5);
-        // System.out.println(customLinkedList.remove(0));
-        //System.out.println(customLinkedList.remove(5));
-        //customLinkedList.set(1, 20);
-//        List<Number> list = new CustomLinkedList<>();
-//        System.out.println(list.isEmpty());
-//        System.out.println(list.getSize());
-//        list.add(25);
-//        list.addAll(1, customLinkedList);
-//        list.add(22);
-//        list.add(null);
-//        System.out.println(list.remove(null));
-//        System.out.println(list);
+
+
+        java.util.List<String> list2 = new NewDynamicArray<>();
+        System.out.println(list2.size());
+
+        System.out.println(list2.isEmpty());
+        System.out.println(list2.add("as"));
+        //     System.out.println(list2.size());
+        //   System.out.println(list2.isEmpty());
+        list2.add(1, "ad");
+        // System.out.println(list2.get(1));
+        // System.out.println(list2.remove(1));
+        System.out.println(list2.size());
+        System.out.println(list2);
+        System.out.println(list2.set(1, "fffff"));
+        System.out.println(list2);
+        System.out.println(list2.size());
+
         NewCustomLinkedList<String> newCustomLinkedList = new NewCustomLinkedList<>();
         System.out.println(newCustomLinkedList.size());
         System.out.println(newCustomLinkedList.isEmpty());
