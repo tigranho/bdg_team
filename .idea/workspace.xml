@@ -1,32 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="BranchesTreeState">
-    <expand>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-    </expand>
-    <select>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="BRANCH:origin/Astghik" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-    </select>
-  </component>
   <component name="ChangeListManager">
-    <list default="true" id="3a176ef9-be1d-4f15-a283-82fe2c3a5a38" name="Default Changelist" comment="Adding a new package with task1 name" />
+    <list default="true" id="02049015-7a73-40bc-878b-01e4dc8d50b7" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
+    </list>
+    <ignored path="$PROJECT_DIR$/target/" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/test/java/com/bdg/customimpl/ArrayListTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -39,43 +34,97 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectId" id="1gBWAW2joiXpwzQSsfEihmgir7B" />
-  <component name="ProjectViewState">
-    <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="false" />
-    <option name="showLibraryContents" value="true" />
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="localRepository" value="C:\Users\tigranho\.m2\local\repository" />
+        <option name="userSettingsFile" value="C:\Users\tigranho\.m2\local\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="MavenProjectNavigator">
+    <treeState>
+      <expand />
+      <select />
+    </treeState>
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <autoscrollFromSource ProjectPane="true" />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="bdg_team" type="b2602c69:ProjectViewProjectNode" />
+              <item name="bdg_team" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="bdg_team" type="b2602c69:ProjectViewProjectNode" />
+              <item name="bdg_team" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="bdg_team" type="b2602c69:ProjectViewProjectNode" />
+              <item name="bdg_team" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="bdg_team" type="b2602c69:ProjectViewProjectNode" />
+              <item name="bdg_team" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="bdg_team" type="b2602c69:ProjectViewProjectNode" />
+              <item name="bdg_team" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="customimpl" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="bdg_team" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Scratches and Consoles" type="1a2a3e82:ScratchProjectViewPane$MyProjectNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="PackagesPane" />
+      <pane id="CatdeaLogs" />
+      <pane id="Scope" />
+    </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="aspect.path.notification.shown" value="true" />
-    <property name="node.js.detected.package.eslint" value="true" />
-    <property name="node.js.detected.package.tslint" value="true" />
-    <property name="node.js.path.for.package.eslint" value="project" />
-    <property name="node.js.path.for.package.tslint" value="project" />
-    <property name="node.js.selected.package.eslint" value="(autodetect)" />
-    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15136719" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="MavenSettings" />
   </component>
-  <component name="RunManager">
-    <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="dymanicArray.Test" />
-      <module name="bdg_team" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="dymanicArray.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <recent_temporary>
+  <component name="RunDashboard">
+    <option name="ruleStates">
       <list>
-        <item itemvalue="Application.Test" />
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
       </list>
-    </recent_temporary>
+    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -99,119 +148,173 @@
       <option name="project" value="LOCAL" />
       <updated>1597589746874</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
-  <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="2" />
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="175000" />
   </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State>
-              <option name="FILTERS">
-                <map>
-                  <entry key="branch">
-                    <value>
-                      <list>
-                        <option value="origin/Astghik" />
-                      </list>
-                    </value>
-                  </entry>
-                </map>
-              </option>
-            </State>
-          </value>
-        </entry>
-      </map>
-    </option>
-    <option name="RECENT_FILTERS">
-      <map>
-        <entry key="Branch">
-          <value>
-            <list>
-              <RecentGroup>
-                <option name="FILTER_VALUES">
-                  <option value="master" />
-                </option>
-              </RecentGroup>
-            </list>
-          </value>
-        </entry>
-      </map>
-    </option>
-    <option name="oldMeFiltersMigrated" value="true" />
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <layout>
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17750533" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Designer" order="2" />
+      <window_info id="UI Designer" order="3" />
+      <window_info id="Favorites" order="4" side_tool="true" />
+      <window_info id="Capture Tool" order="5" />
+      <window_info id="Azure Explorer" order="6" show_stripe_button="false" />
+      <window_info id="Image Layers" order="7" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.50278085" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39933258" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32925472" />
+      <window_info anchor="bottom" id="Cosmos Serverless Spark Jobs" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Debug Remote Spark Job in Cluster" order="8" />
+      <window_info anchor="bottom" id="Remote Spark Job in Cluster" order="9" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5010661" side_tool="true" weight="0.4983315" />
+      <window_info anchor="bottom" id="Messages" order="11" weight="0.32925472" />
+      <window_info anchor="bottom" id="JProfiler" order="12" />
+      <window_info anchor="bottom" id="Database Changes" order="13" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="14" sideWeight="0.4989339" visible="true" weight="0.34593993" />
+      <window_info anchor="bottom" id="Terminal" order="15" weight="0.32925472" />
+      <window_info anchor="bottom" id="Azure Activity Log" order="16" show_stripe_button="false" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Capture Analysis" order="4" />
+      <window_info active="true" anchor="right" id="Maven Projects" order="5" visible="true" weight="0.32995737" />
+      <window_info anchor="right" id="Database" order="6" />
+      <window_info anchor="right" id="Palette&#9;" order="7" />
+      <window_info anchor="right" id="Theme Preview" order="8" />
+    </layout>
+    <layout-to-restore>
+      <window_info id="Designer" order="0" />
+      <window_info id="UI Designer" order="1" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info id="Capture Tool" order="3" />
+      <window_info id="Azure Explorer" order="4" show_stripe_button="false" />
+      <window_info id="Image Layers" order="5" />
+      <window_info active="true" content_ui="combo" id="Project" order="6" visible="true" weight="0.16044776" />
+      <window_info id="Structure" order="7" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Debug Remote Spark Job in Cluster" order="0" />
+      <window_info anchor="bottom" id="Terminal" order="1" weight="0.32925472" />
+      <window_info anchor="bottom" id="Remote Spark Job in Cluster" order="2" />
+      <window_info anchor="bottom" id="Event Log" order="3" sideWeight="0.50053304" side_tool="true" weight="0.32925472" />
+      <window_info anchor="bottom" id="Messages" order="4" weight="0.32925472" />
+      <window_info anchor="bottom" id="Cosmos Serverless Spark Jobs" order="5" show_stripe_button="false" />
+      <window_info anchor="bottom" id="JProfiler" order="6" />
+      <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" sideWeight="0.49946696" weight="0.8531702" />
+      <window_info anchor="bottom" id="Azure Activity Log" order="9" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Message" order="10" />
+      <window_info anchor="bottom" id="Find" order="11" />
+      <window_info anchor="bottom" id="Run" order="12" weight="0.32925472" />
+      <window_info anchor="bottom" id="Debug" order="13" weight="0.39933258" />
+      <window_info anchor="bottom" id="Cvs" order="14" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="15" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="16" weight="0.32925472" />
+      <window_info anchor="right" id="Palette" order="0" />
+      <window_info anchor="right" id="Capture Analysis" order="1" />
+      <window_info anchor="right" id="Maven Projects" order="2" />
+      <window_info anchor="right" id="Database" order="3" />
+      <window_info anchor="right" id="Palette&#9;" order="4" />
+      <window_info anchor="right" id="Theme Preview" order="5" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="6" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="7" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="8" weight="0.25" />
+    </layout-to-restore>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Adding a new package with task1 name" />
     <option name="LAST_COMMIT_MESSAGE" value="Adding a new package with task1 name" />
   </component>
-  <component name="WindowStateProjectService">
-    <state x="528" y="90" key="#com.intellij.ide.util.MemberChooser" timestamp="1597938397315">
-      <screen x="65" y="24" width="1301" height="744" />
-    </state>
-    <state x="528" y="90" key="#com.intellij.ide.util.MemberChooser/65.24.1301.744@65.24.1301.744" timestamp="1597938397315" />
-    <state x="754" y="185" key="#xdebugger.evaluate" timestamp="1597943720736">
-      <screen x="65" y="24" width="1301" height="744" />
-    </state>
-    <state x="754" y="185" key="#xdebugger.evaluate/65.24.1301.744@65.24.1301.744" timestamp="1597943720736" />
-    <state width="1255" height="240" key="GridCell.Tab.0.bottom" timestamp="1597945992722">
-      <screen x="65" y="24" width="1301" height="744" />
-    </state>
-    <state width="1255" height="240" key="GridCell.Tab.0.bottom/65.24.1301.744@65.24.1301.744" timestamp="1597945992722" />
-    <state width="1255" height="240" key="GridCell.Tab.0.center" timestamp="1597945992721">
-      <screen x="65" y="24" width="1301" height="744" />
-    </state>
-    <state width="1255" height="240" key="GridCell.Tab.0.center/65.24.1301.744@65.24.1301.744" timestamp="1597945992721" />
-    <state width="1255" height="240" key="GridCell.Tab.0.left" timestamp="1597945992721">
-      <screen x="65" y="24" width="1301" height="744" />
-    </state>
-    <state width="1255" height="240" key="GridCell.Tab.0.left/65.24.1301.744@65.24.1301.744" timestamp="1597945992721" />
-    <state width="1255" height="240" key="GridCell.Tab.0.right" timestamp="1597945992721">
-      <screen x="65" y="24" width="1301" height="744" />
-    </state>
-    <state width="1255" height="240" key="GridCell.Tab.0.right/65.24.1301.744@65.24.1301.744" timestamp="1597945992721" />
-    <state width="1255" height="240" key="GridCell.Tab.1.bottom" timestamp="1597945992723">
-      <screen x="65" y="24" width="1301" height="744" />
-    </state>
-    <state width="1255" height="240" key="GridCell.Tab.1.bottom/65.24.1301.744@65.24.1301.744" timestamp="1597945992723" />
-    <state width="1255" height="240" key="GridCell.Tab.1.center" timestamp="1597945992722">
-      <screen x="65" y="24" width="1301" height="744" />
-    </state>
-    <state width="1255" height="240" key="GridCell.Tab.1.center/65.24.1301.744@65.24.1301.744" timestamp="1597945992722" />
-    <state width="1255" height="240" key="GridCell.Tab.1.left" timestamp="1597945992722">
-      <screen x="65" y="24" width="1301" height="744" />
-    </state>
-    <state width="1255" height="240" key="GridCell.Tab.1.left/65.24.1301.744@65.24.1301.744" timestamp="1597945992722" />
-    <state width="1255" height="240" key="GridCell.Tab.1.right" timestamp="1597945992722">
-      <screen x="65" y="24" width="1301" height="744" />
-    </state>
-    <state width="1255" height="240" key="GridCell.Tab.1.right/65.24.1301.744@65.24.1301.744" timestamp="1597945992722" />
-    <state x="379" y="168" key="run.anything.popup" timestamp="1597938615875">
-      <screen x="65" y="24" width="1301" height="744" />
-    </state>
-    <state x="379" y="168" key="run.anything.popup/65.24.1301.744@65.24.1301.744" timestamp="1597938615875" />
-    <state x="378" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1597938417629">
-      <screen x="65" y="24" width="1301" height="744" />
-    </state>
-    <state x="378" y="89" width="672" height="678" key="search.everywhere.popup/65.24.1301.744@65.24.1301.744" timestamp="1597938417629" />
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/bdg/customimpl/ArrayListTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/dymanicArray/DynamicArray.java</url>
-          <line>100</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/dymanicArray/Test.java</url>
-          <line>15</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>No facets are configured</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>bdg_team</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.6" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>Maven: org.apiguardian:apiguardian-api:1.1.0</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
   </component>
 </project>

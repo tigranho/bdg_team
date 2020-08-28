@@ -2,6 +2,8 @@
 ## IntelliJ
 ##############################
 out/
+/target/
+/.idea/
 .idea/
 .idea_modules/
 *.iml
