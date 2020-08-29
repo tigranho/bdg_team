@@ -367,7 +367,7 @@ public class CustomArrayList<E> implements List<E> {
     }
 
     private void checkIndex(int index) {
-        if (index < 0 || index >= size) {
+        if (index < 0 || index > size) {
             throw new IndexOutOfBoundsException("Index " + index + " is out of bounds");
         }
     }
