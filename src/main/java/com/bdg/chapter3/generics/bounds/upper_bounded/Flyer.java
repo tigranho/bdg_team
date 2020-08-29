@@ -1,4 +1,4 @@
-package main.java.chapter3.generics.bounds.upper_bounded;
+package com.bdg.chapter3.generics.bounds.upper_bounded;
 
 /**
  * @author Tigran

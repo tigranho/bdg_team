@@ -1,4 +1,4 @@
-package main.java.chapter1.accessmodifiers.cat;
+package com.bdg.chapter1.accessmodifiers.cat;
 
 public class CatAdmirer {
     public static void main(String[] args) {

@@ -1,6 +1,6 @@
-package main.java.chapter3.generics;
+package com.bdg.chapter3.generics;
 
-import main.java.chapter1.instance_of.Elephant;
+import com.bdg.chapter1.instance_of.Elephant;
 
 /**
  * @author Tigran

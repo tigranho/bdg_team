@@ -1,6 +1,6 @@
-package main.java.chapter3.method_references;
+package com.bdg.chapter3.method_references;
 
-import main.java.chapter3.comparator.Duck;
+import com.bdg.chapter3.comparator.Duck;
 
 import java.util.*;
 import java.util.function.BiFunction;

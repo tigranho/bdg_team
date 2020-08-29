@@ -1,4 +1,4 @@
-package main.java.chapter1.hashCode;
+package com.bdg.chapter1.hashCode;
 
 public class Lion {
     private int idNumber;

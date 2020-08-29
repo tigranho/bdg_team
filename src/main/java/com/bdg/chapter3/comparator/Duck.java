@@ -1,4 +1,4 @@
-package main.java.chapter3.comparator;
+package com.bdg.chapter3.comparator;
 
 /**
  * @author Tigran

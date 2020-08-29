@@ -1,4 +1,4 @@
-package main.java.chapter1.instance_of;
+package com.bdg.chapter1.instance_of;
 
 public class Main {
 

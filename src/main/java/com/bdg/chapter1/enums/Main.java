@@ -1,4 +1,4 @@
-package main.java.chapter1.enums;
+package com.bdg.chapter1.enums;
 
 public class Main {
 

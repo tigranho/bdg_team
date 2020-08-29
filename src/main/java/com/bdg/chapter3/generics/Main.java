@@ -1,4 +1,4 @@
-package main.java.chapter3.generics;
+package com.bdg.chapter3.generics;
 
 import java.util.ArrayList;
 import java.util.List;

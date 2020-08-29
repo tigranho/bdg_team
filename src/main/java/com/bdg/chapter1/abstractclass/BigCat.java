@@ -1,4 +1,4 @@
-package main.java.chapter1.abstractclass;
+package com.bdg.chapter1.abstractclass;
 
 /**
  * @author Tigran

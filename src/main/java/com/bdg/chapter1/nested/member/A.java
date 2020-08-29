@@ -1,4 +1,4 @@
-package main.java.chapter1.nested.member;
+package com.bdg.chapter1.nested.member;
 
 
 public class A  {

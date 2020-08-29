@@ -1,4 +1,4 @@
-package main.java.chapter3;
+package com.bdg.chapter3;
 
 public class Main<T> {
     public static void main(String[] args) {

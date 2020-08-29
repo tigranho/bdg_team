@@ -1,4 +1,4 @@
-package main.java.chapter1.overriding;
+package com.bdg.chapter1.overriding;
 
 /**
  * @author Tigran

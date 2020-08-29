@@ -1,4 +1,4 @@
-package main.java.chapter4;
+package com.bdg.chapter4;
 
 /**
  * @author Tigran
@@ -16,7 +16,7 @@ public class GorillaFamily {
         play(() -> approach);
     }
 
-    void play(main.java.chapter4.Gorilla g) {
+    void play(Gorilla g) {
         System.out.println(g.move());
     }
 

@@ -1,4 +1,4 @@
-package main.java.chapter1.nested.staticnested;
+package com.bdg.chapter1.nested.staticnested;
 
 public class Enclosing {
 

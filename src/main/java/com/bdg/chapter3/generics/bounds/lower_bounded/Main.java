@@ -1,4 +1,4 @@
-package main.java.chapter3.generics.bounds.lower_bounded;
+package com.bdg.chapter3.generics.bounds.lower_bounded;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;

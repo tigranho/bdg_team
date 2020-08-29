@@ -1,4 +1,4 @@
-package main.java.chapter4;
+package com.bdg.chapter4;
 
 /**
  * @author Tigran

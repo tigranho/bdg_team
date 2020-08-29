@@ -1,4 +1,4 @@
-package main.java.chapter4.simple_lambda;
+package com.bdg.chapter4.simple_lambda;
 
 import java.util.function.Predicate;
 

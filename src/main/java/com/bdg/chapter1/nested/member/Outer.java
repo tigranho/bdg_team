@@ -1,4 +1,4 @@
-package main.java.chapter1.nested.member;
+package com.bdg.chapter1.nested.member;
 
 // Can be declared public, private, or protected or use default access
 // Can extend any class and implement interfaces

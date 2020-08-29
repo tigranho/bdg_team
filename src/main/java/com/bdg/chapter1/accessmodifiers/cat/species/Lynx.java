@@ -1,7 +1,7 @@
-package main.java.chapter1.accessmodifiers.cat.species;
+package com.bdg.chapter1.accessmodifiers.cat.species;
 
 
-import main.java.chapter1.accessmodifiers.cat.BigCat;
+import com.bdg.chapter1.accessmodifiers.cat.BigCat;
 
 public class Lynx extends BigCat {
 

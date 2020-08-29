@@ -1,7 +1,7 @@
-package main.java.chapter3.searching_sorting;
+package com.bdg.chapter3.searching_sorting;
 
 
-import main.java.chapter3.comparable.Duck;
+import com.bdg.chapter3.comparable.Duck;
 
 import java.util.Set;
 import java.util.TreeSet;

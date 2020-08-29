@@ -1,4 +1,4 @@
-package main.java.chapter3.generics;
+package com.bdg.chapter3.generics;
 
 
 public class ShippableCrate implements Shippable {

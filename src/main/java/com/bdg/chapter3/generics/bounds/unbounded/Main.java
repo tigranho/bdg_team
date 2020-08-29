@@ -1,4 +1,4 @@
-package main.java.chapter3.generics.bounds.unbounded;
+package com.bdg.chapter3.generics.bounds.unbounded;
 
 import java.util.ArrayList;
 import java.util.List;

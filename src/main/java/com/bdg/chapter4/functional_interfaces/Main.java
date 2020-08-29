@@ -1,4 +1,4 @@
-package main.java.chapter4.functional_interfaces;
+package com.bdg.chapter4.functional_interfaces;
 
 import java.time.LocalDate;
 import java.util.function.*;

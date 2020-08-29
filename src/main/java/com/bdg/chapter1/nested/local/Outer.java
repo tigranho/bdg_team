@@ -1,4 +1,4 @@
-package main.java.chapter1.nested.local;
+package com.bdg.chapter1.nested.local;
 
 // They do not have an access specifier.
         // They cannot be declared static and cannot declare s tatic fields or methods.

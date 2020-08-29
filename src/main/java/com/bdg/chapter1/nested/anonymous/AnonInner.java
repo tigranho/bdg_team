@@ -1,4 +1,4 @@
-package main.java.chapter1.nested.anonymous;
+package com.bdg.chapter1.nested.anonymous;
 
 public class AnonInner {
 

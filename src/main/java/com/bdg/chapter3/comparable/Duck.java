@@ -1,4 +1,4 @@
-package main.java.chapter3.comparable;
+package com.bdg.chapter3.comparable;
 
 import java.util.ArrayList;
 import java.util.Collections;
