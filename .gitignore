@@ -1,8 +1,12 @@
 .idea
-out
-bdg_team.iml
 /.idea/
 .idea/
+
+out
 /out/
 out/
+
+target
+/target/
+
 *.iml
