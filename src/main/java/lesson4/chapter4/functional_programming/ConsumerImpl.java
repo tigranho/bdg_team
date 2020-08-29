@@ -1,11 +1,15 @@
 package lesson4.chapter4.functional_programming;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.function.BiConsumer;
-import java.util.function.Consumer;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.LongStream;
+import java.util.stream.Stream;
 
+import static java.lang.System.in;
 import static java.lang.System.out;
+import static java.util.stream.Collectors.*;
 
 /**
  * @author Hrach
@@ -30,6 +34,6 @@ public class ConsumerImpl {
         BiConsumer<String, String> b4 = (k, v) -> map1.put(k, v);
         b3.accept("chicken", "Cluck");
         b4.accept("chick", "Tweep");
-        System.out.println(map1);
+        out.println(map1);
     }
 }
