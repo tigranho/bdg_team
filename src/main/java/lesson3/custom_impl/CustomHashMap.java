@@ -22,12 +22,15 @@ public class CustomHashMap<K, V> extends AbstractDataContainer implements Map<K,
     }
 
     public CustomHashMap(int capacity) {
+        if (capacity < 0 || capacity > 1 << 30) throw new IllegalArgumentException("illegal capacity: " + capacity);
         buckets = new Node[this.capacity = capacity];
         loadFactor = DEFAULT_LOAD_FACTOR;
     }
 
     public CustomHashMap(int capacity, float loadFactor) {
         this(capacity);
+        if (loadFactor < 0 || loadFactor > 1.0)
+            throw new IllegalArgumentException("illegal load factor: " + loadFactor);
         this.loadFactor = loadFactor;
     }
 
@@ -150,7 +153,26 @@ public class CustomHashMap<K, V> extends AbstractDataContainer implements Map<K,
 
     @Override
     public void clear() {
+        Node<K, V> oldNode = null;
+        Node<K, V> currentNode = null;
+        for (int i = 0; i < buckets.length; i++) {
+            currentNode = buckets[i];
+            while (currentNode != null) {
+                oldNode = currentNode.next;
+                currentNode = null;
+                currentNode = oldNode;
+            }
+            buckets[i] = null;
+        }
+        setAndGet(0);
+    }
 
+    public int getCapacity() {
+        return capacity;
+    }
+
+    public float getLoadFactor() {
+        return loadFactor;
     }
 
     @Override
