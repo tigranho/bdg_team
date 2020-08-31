@@ -71,6 +71,13 @@ public class CustomHashMap<K, V> implements Map<K, V> {
     private int size = 0;
     private Node<K, V>[] table = new Node[DEFAULT_CAPACITY];
 
+    public CustomHashMap() {
+    }
+
+    public CustomHashMap(Map<? extends K, ? extends V> m) {
+        putAll(m);
+    }
+
     /**
      * The number of the elements in HashMap.
      */
@@ -92,7 +99,7 @@ public class CustomHashMap<K, V> implements Map<K, V> {
      */
     @Override
     public boolean containsKey(Object key) {
-        int hashCode = key.hashCode() % this.table.length;
+        int hashCode = Math.abs(key.hashCode() % this.table.length);
         if (table[hashCode] == null) {
             return false;
         }
@@ -113,6 +120,21 @@ public class CustomHashMap<K, V> implements Map<K, V> {
 
     @Override
     public boolean containsValue(Object value) {
+        V v = (V) value;
+        for (Node<K, V> n : table) {
+            if (n != null) {
+                if (n.getValue().equals(v)) {
+                    return true;
+                } else {
+                    while (n.getNext() != null) {
+                        n = n.getNext();
+                        if (n.getValue().equals(v)) {
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
         return false;
     }
 
@@ -121,7 +143,7 @@ public class CustomHashMap<K, V> implements Map<K, V> {
      */
     @Override
     public V get(Object key) {
-        int hashCode = key.hashCode() % this.table.length;
+        int hashCode = Math.abs(key.hashCode() % this.table.length);
         if (table[hashCode] == null) {
             return null;
         }
@@ -149,7 +171,7 @@ public class CustomHashMap<K, V> implements Map<K, V> {
      */
     @Override
     public V put(K key, V value) {
-        int hashCode = key.hashCode() % this.table.length;
+        int hashCode = Math.abs(key.hashCode() % this.table.length);
         if (table[hashCode] != null) {
             K tempKey = (K) key;
             if (tempKey.equals(table[hashCode].getKey())) {
@@ -172,12 +194,12 @@ public class CustomHashMap<K, V> implements Map<K, V> {
     /**
      * Removes element from HashMap
      *
-     * @param key
+     * @param key is the key of the object to be removed
      * @return removed objects value
      */
     @Override
     public V remove(Object key) {
-        int hashCode = key.hashCode() % this.table.length;
+        int hashCode = Math.abs(key.hashCode() % this.table.length);
         K tempKey = (K) key;
         if (table[hashCode].getNext() == null && tempKey.equals(table[hashCode].getKey())) {
             Node<K, V> temp = table[hashCode];
@@ -198,6 +220,7 @@ public class CustomHashMap<K, V> implements Map<K, V> {
 
     @Override
     public void putAll(Map<? extends K, ? extends V> m) {
+        m.forEach(this::put);
     }
 
     /**
@@ -228,7 +251,17 @@ public class CustomHashMap<K, V> implements Map<K, V> {
 
     @Override
     public Collection<V> values() {
-        return null;
+        Set<V> setOfValues = new HashSet<>();
+        for (Node<K, V> n : table) {
+            if (n != null) {
+                setOfValues.add(n.getValue());
+                while (n.getNext() != null) {
+                    n = n.getNext();
+                    setOfValues.add(n.getValue());
+                }
+            }
+        }
+        return setOfValues;
     }
 
     @Override

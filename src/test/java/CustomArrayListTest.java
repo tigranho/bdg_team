@@ -20,7 +20,7 @@ public class CustomArrayListTest {
     }
 
     @Test
-    public void testListAdd() {
+    public void testAdd() {
         List<String> list = new CustomArrayList<>();
         list.add("hi");
         list.add("hello");
@@ -31,7 +31,7 @@ public class CustomArrayListTest {
     }
 
     @Test
-    public void testListAdd1() {
+    public void testAdd1() {
         List<Integer> list = new CustomArrayList<>();
         list.add(1);
         list.add(2);
@@ -42,7 +42,7 @@ public class CustomArrayListTest {
     }
 
     @Test
-    public void testListSet() {
+    public void testSet() {
         List<Integer> list = new CustomArrayList<>();
         list.add(10);
         list.set(0, 15);
@@ -50,7 +50,7 @@ public class CustomArrayListTest {
     }
 
     @Test
-    public void testListRemove() {
+    public void testRemove() {
         List<String> list = new CustomArrayList<>();
         list.add("wind");
         list.add(0, "cold");

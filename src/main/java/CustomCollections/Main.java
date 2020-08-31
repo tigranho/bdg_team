@@ -5,6 +5,7 @@ import CustomCollections.CustomList.CustomLinkedList;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class Main {
 
@@ -75,10 +76,9 @@ public class Main {
         System.out.println("Is list empty: " + linkedList.isEmpty());
 
         // Test CustomHashMap
+        System.out.println("\nTesting CustomHashMap");
         CustomHashMap<String, Integer> newHashMap = new CustomHashMap<>();
-        newHashMap.put("one", 1);
-        newHashMap.put("two", 2);
-        newHashMap.put("three", 3);
+        newHashMap.putAll(Map.of("one", 1, "two", 2, "three", 3));
         newHashMap.put("x", 5);
         newHashMap.put("y", 6);
         newHashMap.put("x", 15);

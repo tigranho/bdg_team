@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class CustomLinkedListTest {
 
     @Test
-    public void testListInit() {
+    public void testInit() {
         List<Object> list = new CustomLinkedList<>();
         assertTrue(list.isEmpty());
         assertTrue(list.size() == 0);
@@ -26,7 +26,7 @@ public class CustomLinkedListTest {
     }
 
     @Test
-    public void testListAdd() {
+    public void testAdd() {
         List<String> list = new CustomLinkedList<>();
         list.add("hi");
         list.add("hello");
@@ -37,7 +37,7 @@ public class CustomLinkedListTest {
     }
 
     @Test
-    public void testListAdd1() {
+    public void testAdd1() {
         List<Integer> list = new CustomLinkedList<>();
         list.add(1);
         list.add(2);
@@ -51,7 +51,7 @@ public class CustomLinkedListTest {
     }
 
     @Test
-    public void testListSet() {
+    public void testSet() {
         List<Integer> list = new CustomLinkedList<>();
         list.add(10);
         list.set(0, 15);
@@ -59,7 +59,7 @@ public class CustomLinkedListTest {
     }
 
     @Test
-    public void testListRemove() {
+    public void testRemove() {
         List<String> list = new CustomLinkedList<>();
         list.add("wind");
         list.add(0, "cold");
