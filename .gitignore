@@ -7,5 +7,4 @@ out/
 *.iml
 *.ipr
 *.iws
-pom.xml
-target/
+

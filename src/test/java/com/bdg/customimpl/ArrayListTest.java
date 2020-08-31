@@ -1,6 +1,8 @@
 package com.bdg.customimpl;
 
 
+import customCollections.NewCustomLinkedList;
+import customCollections.NewDynamicArray;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -12,14 +14,18 @@ public class ArrayListTest {
 
 	@Test
 	public void testListInit(){
-		List<Object> list = new ArrayList<>();
+		List<Object> list = new NewDynamicArray<>();
+
+//		List<Object> list = new ArrayList<>();
 		Assertions.assertTrue(list.isEmpty());
 		assertTrue(list.size() == 0);
 	}
 
 	@Test
 	public void givenNonEmptyList_whenIsEmpty_thenFalseIsReturned() {
-		List<Object> list = new ArrayList<>();
+		List<Object> list = new NewDynamicArray<>();
+
+//		List<Object> list = new ArrayList<>();
 		list.add(null);
 
 		assertFalse(list.isEmpty());
@@ -27,7 +33,9 @@ public class ArrayListTest {
 
 	@Test
 	public void givenEmptyList_whenElementIsAdded_thenGetReturnsThatElement() {
-		List<Object> list = new ArrayList<>();
+		List<Object> list = new NewDynamicArray<>();
+
+//		List<Object> list = new ArrayList<>();
 		boolean succeeded = list.add(null);
 		assertTrue(succeeded);
 	}
@@ -35,14 +43,18 @@ public class ArrayListTest {
 	@Test
 	public void testInvalidCapacity(){
 		Assertions.assertThrows(IllegalArgumentException.class, () -> {
-			List<String> list = new ArrayList<String>(-1);
+			List<String> list = new NewDynamicArray<String>(-1);
+
+//			List<String> list = new ArrayList<String>(-1);
 		});
 
 	}
 
 	@Test
 	public void testAddElements(){
-		List<String> list = new ArrayList<String>();
+		List<String> list = new NewDynamicArray<>();
+
+//		List<String> list = new ArrayList<String>();
 		list.add(0, "Karol");
 		list.add(1, "Vanessa");
 		list.add(2, "Amanda");
@@ -63,7 +75,9 @@ public class ArrayListTest {
 
 	@Test
 	public void testSetElement(){
-		List<String> list = new ArrayList<>();
+		List<String> list = new NewDynamicArray<>();
+
+//		List<String> list = new ArrayList<>();
 		list.add(0, "Karol");
 		list.add(1, "Vanessa");
 		list.add(2, "Amanda");
@@ -77,7 +91,9 @@ public class ArrayListTest {
 	
 	@Test
 	public void testRemoveElement(){
-		ArrayList<String> list = new ArrayList<>();
+		List<String> list = new NewDynamicArray<>();
+
+//		ArrayList<String> list = new ArrayList<>();
 		list.add(0, "Karol");
 		list.add(1, "Vanessa");
 		list.add(2, "Amanda");
@@ -89,7 +105,9 @@ public class ArrayListTest {
 	@Test
 	public void testRemoveWithEmptyList(){
 		Assertions.assertThrows(IndexOutOfBoundsException.class, () -> {
-			List<Object> list = new ArrayList<>();
+			List<Object> list = new NewDynamicArray<>();
+
+//			List<Object> list = new ArrayList<>();
 			list.remove(0);
 		});
 
@@ -97,7 +115,9 @@ public class ArrayListTest {
 
 	@Test
 	public void whenListIsEmpty_theIteratorHasNextReturnsFalse(){
-		List<String> list = new ArrayList<>();
+		List<String> list = new NewDynamicArray<>();
+
+//		List<String> list = new ArrayList<>();
 		Iterator<String> iterator = list.iterator();
 		assertFalse(iterator.hasNext());
 	}
@@ -105,7 +125,9 @@ public class ArrayListTest {
 	@Test
 	public void whenListIsEmpty_theIteratorNextThrowsException(){
 		Assertions.assertThrows(NoSuchElementException.class, () -> {
-			List<String> list = new ArrayList<>();
+			List<String> list = new NewDynamicArray<>();
+
+//			List<String> list = new ArrayList<>();
 			Iterator<String> iterator = list.iterator();
 			iterator.next();
 		});
@@ -114,7 +136,9 @@ public class ArrayListTest {
 
 	@Test
 	public void whenListIsNotEmpty_theIteratorNextReturnsNextElement(){
-		List<String> list = new ArrayList<>();
+		List<String> list = new NewDynamicArray<>();
+
+//		List<String> list = new ArrayList<>();
 		list.add("A");
 		list.add("B");
 		Iterator<String> iterator = list.iterator();
@@ -128,7 +152,9 @@ public class ArrayListTest {
 	@Test
 	public void listIteratorShouldBeFailFast(){
 		Assertions.assertThrows(ConcurrentModificationException.class, () -> {
-			List<String> list = new ArrayList<>();
+			List<String> list = new NewDynamicArray<>();
+
+//			List<String> list = new ArrayList<>();
 			list.add("A");
 			list.add("B");
 			Iterator<String> iterator = list.iterator();

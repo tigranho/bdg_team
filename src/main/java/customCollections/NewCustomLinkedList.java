@@ -43,6 +43,7 @@ public class NewCustomLinkedList<T> extends AbstractSequentialList<T>  implement
         }
         this.tail = newElement;
         size++;
+        ++modCount;
         return true;
     }
 
@@ -70,6 +71,7 @@ public class NewCustomLinkedList<T> extends AbstractSequentialList<T>  implement
         }
         oldElement.previous = newElement;
         size++;
+        ++modCount;
     }
 
     @Override
@@ -105,6 +107,7 @@ public class NewCustomLinkedList<T> extends AbstractSequentialList<T>  implement
             removingElement.next.previous = removingElement.previous;
         }
         size--;
+        ++modCount;
         return (T) removingElement.item;
     }
 
@@ -120,6 +123,66 @@ public class NewCustomLinkedList<T> extends AbstractSequentialList<T>  implement
             }
             el = el.next;
             index++;
+        }
+        return false;
+    }
+
+    @Override
+    public int indexOf(Object o) {
+        Node<T> current = this.head;
+        int count = 0;
+        int index = -1;
+        if(o == null){
+            while (current != null){
+                if(current.item == null){
+                    index = count;
+                    break;
+                }
+                current = current.next;
+                count++;
+            }
+        }else {
+            while (current != null){
+                if(o.equals(current.item)){
+                    index = count;
+                    break;
+                }
+                current = current.next;
+                count++;
+            }
+        }
+        return index;
+    }
+
+    @Override
+    public int lastIndexOf(Object o) {
+        Node<T> current = this.tail;
+        int count = 0;
+        int index = -1;
+        if(o == null){
+            while (current != null){
+                if(current.item == null){
+                    index = count;
+                    break;
+                }
+                current = current.previous;
+            }
+        }else {
+            while (current != null){
+                if(o.equals(current.item)){
+                    index = count;
+                    break;
+                }
+                current = current.previous;
+            }
+        }
+        return index;
+    }
+
+    @Override
+    public boolean contains(Object o) {
+        if(indexOf(o) >= 0){
+            return true;
         }
         return false;
     }

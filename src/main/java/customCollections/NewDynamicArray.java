@@ -1,19 +1,21 @@
 package customCollections;
 
 import java.util.AbstractList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.function.Consumer;
 
-public class NewDynamicArray<E> extends AbstractList<E> implements List<E> {
+public class NewDynamicArray<E> extends AbstractList<E> implements List<E> , Iterator<E> {
     private int size;
     private static final int MAX_ARRAY_SIZE = 2147483639;
     private Object[] array;
     private static final int DEFAULT_CAPACITY = 10;
 
-    NewDynamicArray() {
+    public NewDynamicArray() {
         this.array = new Object[DEFAULT_CAPACITY];
     }
 
-    NewDynamicArray(int length) {
+    public NewDynamicArray(int length) {
         if(length < 0){
             throw new IllegalArgumentException("Array's capacity can't be negative"+ "Illegal capacity " + length);
         }
@@ -34,6 +36,7 @@ public class NewDynamicArray<E> extends AbstractList<E> implements List<E> {
     public boolean add(E element) {
         checkAndIncrease();
         this.array[size++] = element;
+        ++modCount;
         return true;
     }
 
@@ -52,6 +55,7 @@ public class NewDynamicArray<E> extends AbstractList<E> implements List<E> {
         }
         this.array[index] = element;
         this.size++;
+        ++modCount;
     }
 
     @Override
@@ -84,16 +88,77 @@ public class NewDynamicArray<E> extends AbstractList<E> implements List<E> {
             this.array[i] = this.array[i + 1];
         }
         this.size--;
+        ++modCount;
         return removingElement;
     }
 
-//    @Override
-//    public boolean remove(Object o) {
-//        return false;
-//    }
+    @Override
+    public boolean remove(Object o) {
+        if(o == null){
+            for(int i = 0; i < size; i++){
+                if(array[i] == null){
+                    remove(i);
+                    return true;
+                }
+            }
+        }else{
+            for(int i = 0; i < size; i++){
+                if(o.equals(array[i])){
+                    remove(i);
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public int indexOf(Object o) {
+        if(o == null){
+            for(int i = 0; i < size; i++){
+                if(array[i] == null){
+                    return i;
+                }
+            }
+        }else {
+            for(int i = 0; i < size; i++){
+                if(o.equals(array[i])){
+                    return i;
+                }
+            }
+        }
+        return -1;
+    }
+
+    @Override
+    public int lastIndexOf(Object o) {
+        if(o == null){
+            for(int i = size - 1; i >= 0; i--){
+                if(array[i] == null){
+                    return i;
+                }
+            }
+        }else {
+            for(int i = size - 1; i >= 0; i--){
+                if(o.equals(array[i])){
+                    return i;
+                }
+            }
+        }
+        return -1;
+    }
+
+    @Override
+    public boolean contains(Object o) {
+        if(indexOf(o) >= 0){
+            return true;
+        }
+        return false;
+    }
 
 
-//    @Override
+
+    //    @Override
 //    public boolean addAll(dymanicArray.List<? extends E> list) {
 //        if (list == null) {
 //            throw new NullPointerException("can't add null to existing list");
@@ -140,6 +205,27 @@ public class NewDynamicArray<E> extends AbstractList<E> implements List<E> {
 //        this.size += list.getSize();
 //        return true;
 //    }
+
+
+    @Override
+    public void remove() {
+
+    }
+
+    @Override
+    public void forEachRemaining(Consumer<? super E> consumer) {
+
+    }
+
+    @Override
+    public boolean hasNext() {
+        return false;
+    }
+
+    @Override
+    public E next() {
+        return null;
+    }
 
     private void checkAndIncrease() {
         if (this.size >= this.array.length) {
