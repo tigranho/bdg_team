@@ -293,12 +293,12 @@ public class CustomArrayList<T> extends AbstractDataContainer implements List<T>
     }
 
     @Override
-    public CustomIterator<T> iterator() {
+    public Iterator<T> iterator() {
         return new CustomIteratorImpl<T>(this);
     }
 
 
-    public CustomIterator<T> iterator(int startIndex) {
+    public Iterator<T> iterator(int startIndex) {
         return new CustomIteratorImpl<T>(this, startIndex);
     }
 

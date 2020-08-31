@@ -1,7 +1,8 @@
 package lesson3;
 
-import lesson3.custom_impl.CustomIterator;
 import lesson3.custom_impl.CustomLinkedList;
+
+import java.util.Iterator;
 
 public class Main {
     public static void main(String[] args) {
@@ -13,7 +14,7 @@ public class Main {
         list.add(4);
         list.add(5);
         list.add(6);
-        CustomIterator<Integer> iterator = list.iterator();
+        Iterator<Integer> iterator = list.iterator();
         while (iterator.hasNext()) {
             int current = iterator.next();
             if (current == 3) iterator.remove();

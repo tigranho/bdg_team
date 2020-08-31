@@ -270,17 +270,11 @@ public class CustomLinkedList<E> extends AbstractDataContainer implements List<E
     }
 
     @Override
-    public CustomIterator<E> iterator() {
-//        Node<E> current = first;
-//        List<E> list = new ArrayList<>(size());
-//        while (current != null) {
-//            list.add(current.item);
-//            current = current.next;
-//        }
+    public Iterator<E> iterator() {
         return new CustomIteratorImpl<E>(this);
     }
 
-    public CustomIterator<E> iterator(int startIndex) {
+    public Iterator<E> iterator(int startIndex) {
         return new CustomIteratorImpl<E>(this, startIndex);
     }
 

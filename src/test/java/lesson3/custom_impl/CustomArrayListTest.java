@@ -1,5 +1,5 @@
-import lesson3.custom_impl.CustomArrayList;
-import lesson3.custom_impl.CustomIterator;
+package lesson3.custom_impl;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -108,7 +108,7 @@ public class CustomArrayListTest {
     @Test
     public void whenListIsEmpty_theIteratorHasNextReturnsFalse() {
         customArrayList = new CustomArrayList<>();
-        CustomIterator<String> iterator = customArrayList.iterator();
+        Iterator<String> iterator = customArrayList.iterator();
         assertFalse(iterator.hasNext());
     }
 
@@ -116,7 +116,7 @@ public class CustomArrayListTest {
     public void whenListIsEmpty_theIteratorNextThrowsException() {
         assertThrows(NoSuchElementException.class, () -> {
             customArrayList = new CustomArrayList<>();
-            CustomIterator<String> iterator = customArrayList.iterator();
+            Iterator<String> iterator = customArrayList.iterator();
             iterator.next();
         });
 
@@ -127,7 +127,7 @@ public class CustomArrayListTest {
         customArrayList = new CustomArrayList<>();
         customArrayList.add("A");
         customArrayList.add("B");
-        CustomIterator<String> iterator = customArrayList.iterator();
+        Iterator<String> iterator = customArrayList.iterator();
         assertTrue(iterator.hasNext());
         assertEquals(iterator.next(), "A");
         assertTrue(iterator.hasNext());

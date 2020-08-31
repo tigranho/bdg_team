@@ -1,6 +1,7 @@
 package lesson3.custom_impl;
 
 import java.util.ConcurrentModificationException;
+import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.function.Consumer;
@@ -9,7 +10,7 @@ import java.util.function.Consumer;
  * @author Hrach
  */
 
-class CustomIteratorImpl<T> implements CustomIterator<T> {
+class CustomIteratorImpl<T> implements Iterator<T> {
 
     private int modeCount;
     private int cursor;

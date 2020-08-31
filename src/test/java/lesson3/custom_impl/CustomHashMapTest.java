@@ -45,7 +45,7 @@ class CustomHashMapTest {
     }
 
     @Test
-    void put() {
+    void test_put() {
         customHashMap = new CustomHashMap<>(5);
         customHashMap.put("a", 1); //1
         customHashMap.put("b", 2); //2
@@ -69,7 +69,7 @@ class CustomHashMapTest {
     }
 
     @Test
-    void containsValue() {
+    void test_containsValue() {
         customHashMap = new CustomHashMap<>(5);
         customHashMap.put("a", 1); //1
         customHashMap.put("b", 2); //2
@@ -94,7 +94,7 @@ class CustomHashMapTest {
     }
 
     @Test
-    void containsKey() {
+    void test_containsKey() {
         customHashMap = new CustomHashMap<>(5);
         customHashMap.put("a", 1); //1
         customHashMap.put("b", 2); //2
@@ -116,7 +116,7 @@ class CustomHashMapTest {
     }
 
     @Test
-    void get() {
+    void test_get() {
         customHashMap = new CustomHashMap<>(5);
         customHashMap.put("a", 1); //1
         customHashMap.put("b", 2); //2
@@ -138,7 +138,7 @@ class CustomHashMapTest {
     }
 
     @Test
-    void remove() {
+    void test_remove() {
         customHashMap = new CustomHashMap<>(5);
         customHashMap.put("a", 1); //1
         customHashMap.put("b", 2); //2

@@ -1,5 +1,5 @@
-import lesson3.custom_impl.CustomIterator;
-import lesson3.custom_impl.CustomLinkedList;
+package lesson3.custom_impl;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
@@ -105,7 +105,7 @@ public class CustomLinkedListTest {
     @Test
     public void whenListIsEmpty_theIteratorHasNextReturnsFalse() {
         customLinkedList = new CustomLinkedList<>();
-        CustomIterator<String> iterator = customLinkedList.iterator();
+        Iterator<String> iterator = customLinkedList.iterator();
         assertFalse(iterator.hasNext());
     }
 
@@ -138,7 +138,7 @@ public class CustomLinkedListTest {
             customLinkedList = new CustomLinkedList<>();
             customLinkedList.add("A");
             customLinkedList.add("B");
-            CustomIterator<String> iterator = customLinkedList.iterator();
+            Iterator<String> iterator = customLinkedList.iterator();
             iterator.next();
             customLinkedList.remove(0);
             iterator.next();
