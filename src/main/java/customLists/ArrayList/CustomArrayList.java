@@ -132,14 +132,12 @@ public class CustomArrayList<T> implements List<T> {
         checkIndex(index);
         T removedElement = (T) array[index];
         array[index] = null;
-        for (int i = index; i < size; i++) {
-            array[i] = array[i + 1];
-        }
+        if (size - index >= 0) System.arraycopy(array, index + 1, array, index, size - index);
         size--;
         return removedElement;
     }
 
-/////in process
+    /////in process
     @Override
     public void add(int i, T t) {
         checkIndex(i);
@@ -148,10 +146,8 @@ public class CustomArrayList<T> implements List<T> {
             if (j == i) {
                 element = array[j];
                 array[j] = t;
-                array[j+1] = element;
-                for (int k = j+1; k < size; k++) {
-                    array[k + 1] = array[k];
-                }
+                array[j + 1] = element;
+                if (size - j + 1 >= 0) System.arraycopy(array, j + 1, array, j + 1 + 1, size - j + 1);
             }//else this.add(t);
         }
         size++;

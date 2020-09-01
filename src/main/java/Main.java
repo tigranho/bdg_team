@@ -13,12 +13,9 @@ public class Main {
         list.add("hg");
         list.add("sdf");
         list.add(1, "g");
-        list.add("sdgdfg");
-        // list.add(5,"hhhhh");
+        list.add("hi");
+        //list.add(5, "hi + hi");
 
         System.out.println(list.toString());
     }
-
-
-
 }
