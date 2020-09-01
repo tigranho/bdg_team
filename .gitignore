@@ -73,6 +73,6 @@
 /out/production/bdg_team/chapter3/generics/legacy/Unicorn.class
 /out/production/bdg_team/chapter3/searching_sorting/UseTreeSet$Rabbit.class
 /out/production/bdg_team/chapter3/searching_sorting/UseTreeSet.class
-*.iml
-.idea
-out
+ git rm -r --cached .idea
+ git rm -r --cached out
+ git rm -r --cached *.iml

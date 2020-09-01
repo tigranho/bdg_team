@@ -1,9 +1,13 @@
 package listTask;
 
 import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
+import java.util.*;
+import java.util.function.Supplier;
+
+import static java.lang.invoke.MethodHandles.identity;
+import static javafx.scene.input.KeyCode.T;
+
+
 
 public class Main {
 
@@ -16,13 +20,9 @@ public class Main {
         customArrayList.add("Java");
         customArrayList.add("C++");
 
-//
-        System.out.println(customArrayList.toString());
-
-
-
-
-
 
     }
-}
+ }
+
+
+
