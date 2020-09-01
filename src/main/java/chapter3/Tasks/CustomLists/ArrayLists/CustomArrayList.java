@@ -1,8 +1,8 @@
 package chapter3.Tasks.CustomLists.ArrayLists;
 
+import org.jetbrains.annotations.NotNull;
 import java.util.*;
-import java.util.function.IntFunction;
-import java.util.function.UnaryOperator;
+import java.util.function.*;
 
 public class CustomArrayList<E> implements List<E>, RandomAccess, Cloneable, java.io.Serializable, Iterable<E> {
 
@@ -13,10 +13,8 @@ public class CustomArrayList<E> implements List<E>, RandomAccess, Cloneable, jav
     CustomArrayList<E> root;
     protected transient int modCount = 0;
     private int size;
-    private int offset;
 
-    public CustomArrayList(int initialCapacity, int offset) {
-        this.offset = offset;
+    public CustomArrayList(int initialCapacity) {
 
         if (initialCapacity > 0) {
             elementData = new Object[initialCapacity];
@@ -32,7 +30,7 @@ public class CustomArrayList<E> implements List<E>, RandomAccess, Cloneable, jav
         elementData = DEFAULTCAPACITY_EMPTY_ELEMENTDATA;
     }
 
-    public CustomArrayList(Collection<? extends E> c) {
+    public CustomArrayList(@org.jetbrains.annotations.NotNull Collection<? extends E> c) {
 
         elementData = c.toArray();
         if ((size = elementData.length) != 0){
@@ -46,7 +44,18 @@ public class CustomArrayList<E> implements List<E>, RandomAccess, Cloneable, jav
 
     @Override
     public void replaceAll(UnaryOperator<E> operator) {
+        replaceAllRange(operator, 0, size);
+        modCount++;
+    }
 
+    private void replaceAllRange(UnaryOperator<E> operator, int i, int end) {
+        Objects.requireNonNull(operator);
+        final int expectedModCount = modCount;
+        final Object[] es = elementData;
+        for (; modCount == expectedModCount && i < end; i++)
+            es[i] = operator.apply(elementAt(es, i));
+        if (modCount != expectedModCount)
+            throw new ConcurrentModificationException();
     }
 
     @Override
@@ -82,8 +91,75 @@ public class CustomArrayList<E> implements List<E>, RandomAccess, Cloneable, jav
     }
 
     @Override
-    public Iterator<E> iterator() {
-        return null;
+    public @NotNull Iterator<E> iterator() {
+        return new Itr();
+    }
+
+    private class Itr implements Iterator<E> {
+        int cursor;
+        int lastRet = -1;
+        int expectedModCount = modCount;
+
+        Itr() {}
+
+        public boolean hasNext() {
+            return cursor != size;
+        }
+
+        @SuppressWarnings("unchecked")
+        public E next() {
+            checkForComodification();
+            int i = cursor;
+            if (i >= size)
+                throw new NoSuchElementException();
+            Object[] elementData = CustomArrayList.this.elementData;
+            if (i >= elementData.length)
+                throw new ConcurrentModificationException();
+            cursor = i + 1;
+            return (E) elementData[lastRet = i];
+        }
+
+        public void remove() {
+            if (lastRet < 0)
+                throw new IllegalStateException();
+            checkForComodification();
+
+            try {
+                CustomArrayList.this.remove(lastRet);
+                cursor = lastRet;
+                lastRet = -1;
+                expectedModCount = modCount;
+            } catch (IndexOutOfBoundsException ex) {
+                throw new ConcurrentModificationException();
+            }
+        }
+
+        @Override
+        public void forEachRemaining(Consumer<? super E> action) {
+            Objects.requireNonNull(action);
+            final int size = CustomArrayList.this.size;
+            int i = cursor;
+            if (i < size) {
+                final Object[] es = elementData;
+                if (i >= es.length)
+                    throw new ConcurrentModificationException();
+                for (; i < size && modCount == expectedModCount; i++)
+                    action.accept(elementAt(es, i));
+                cursor = i;
+                lastRet = i - 1;
+                checkForComodification();
+            }
+        }
+
+        final void checkForComodification() {
+            if (modCount != expectedModCount)
+                throw new ConcurrentModificationException();
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    static <E> E elementAt(Object[] es, int index) {
+        return (E) es[index];
     }
 
     @Override
@@ -115,11 +191,6 @@ public class CustomArrayList<E> implements List<E>, RandomAccess, Cloneable, jav
         if (a.length > size)
             a[size] = null;
         return a;
-    }
-
-    @Override
-    public <T> T[] toArray(IntFunction<T[]> generator) {
-        return null;
     }
 
     @SuppressWarnings("unchecked")
@@ -199,22 +270,22 @@ public class CustomArrayList<E> implements List<E>, RandomAccess, Cloneable, jav
     }
 
     @Override
-    public boolean containsAll(Collection<?> c) {
+    public boolean containsAll(@NotNull Collection<?> c) {
         return false;
     }
 
     @Override
-    public boolean addAll(int index, Collection<? extends E> c) {
+    public boolean addAll(int index, @NotNull Collection<? extends E> c) {
         return false;
     }
 
     @Override
-    public boolean removeAll(Collection<?> c) {
+    public boolean removeAll(@NotNull Collection<?> c) {
         return false;
     }
 
     @Override
-    public boolean retainAll(Collection<?> c) {
+    public boolean retainAll(@NotNull Collection<?> c) {
         return false;
     }
 
@@ -250,6 +321,7 @@ public class CustomArrayList<E> implements List<E>, RandomAccess, Cloneable, jav
     E elementData(int index){
         return (E) elementData[index];
     }
+
     private void checkForComodification(){
         if (root.modCount != modCount){
             throw new ConcurrentModificationException();
@@ -349,17 +421,17 @@ public class CustomArrayList<E> implements List<E>, RandomAccess, Cloneable, jav
     }
 
     @Override
-    public ListIterator<E> listIterator() {
+    public @NotNull ListIterator<E> listIterator() {
         return null;
     }
 
     @Override
-    public ListIterator<E> listIterator(int index) {
+    public @NotNull ListIterator<E> listIterator(int index) {
         return null;
     }
 
     @Override
-    public List<E> subList(int fromIndex, int toIndex) {
+    public @NotNull List<E> subList(int fromIndex, int toIndex) {
         return null;
     }
 }

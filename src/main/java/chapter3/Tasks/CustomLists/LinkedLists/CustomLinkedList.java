@@ -1,7 +1,10 @@
 package chapter3.Tasks.CustomLists.LinkedLists;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.io.Serializable;
 import java.util.*;
+import java.util.function.Consumer;
 import java.util.function.IntFunction;
 
 public class CustomLinkedList<E> implements List<E>, Deque<E>, Cloneable, Serializable {
@@ -36,13 +39,13 @@ public class CustomLinkedList<E> implements List<E>, Deque<E>, Cloneable, Serial
     }
 
     @Override
-    public Iterator<E> iterator() {
+    public @NotNull Iterator<E> iterator() {
         return listIterator();
     }
 
     @Override
-    public Iterator<E> descendingIterator() {
-        return null;
+    public @NotNull Iterator<E> descendingIterator() {
+        return new CustomLinkedList.DescendingIterator();
     }
 
     @Override
@@ -159,7 +162,7 @@ public class CustomLinkedList<E> implements List<E>, Deque<E>, Cloneable, Serial
         final E element = f.item;
         final CustomLinkedList.Node<E> next = f.next;
         f.item = null;
-        f.next = null; // help GC
+        f.next = null;
         first = next;
         if (next == null)
             last = null;
@@ -174,7 +177,7 @@ public class CustomLinkedList<E> implements List<E>, Deque<E>, Cloneable, Serial
         final E element = l.item;
         final CustomLinkedList.Node<E> prev = l.prev;
         l.item = null;
-        l.prev = null; // help GC
+        l.prev = null;
         last = prev;
         if (prev == null)
             first = null;
@@ -322,13 +325,16 @@ public class CustomLinkedList<E> implements List<E>, Deque<E>, Cloneable, Serial
     }
 
     @Override
-    public boolean containsAll(Collection<?> c) {
-        return false;
+    public boolean containsAll(@NotNull Collection<?> c) {
+        for (Object e : c)
+        if (!contains(e))
+            return false;
+        return true;
     }
 
     @Override
-    public boolean addAll(Collection<? extends E> c) {
-        return false;
+    public boolean addAll(@NotNull Collection<? extends E> c) {
+        return addAll(size, c);
     }
 
     @Override
@@ -342,12 +348,47 @@ public class CustomLinkedList<E> implements List<E>, Deque<E>, Cloneable, Serial
     }
 
     @Override
-    public boolean addAll(int index, Collection<? extends E> c) {
-        return false;
+    public boolean addAll(int index, @NotNull Collection<? extends E> c) {
+        checkPositionIndex(index);
+
+        Object[] a = c.toArray();
+        int numNew = a.length;
+        if (numNew == 0)
+            return false;
+
+        CustomLinkedList.Node<E> pred, succ;
+        if (index == size) {
+            succ = null;
+            pred = last;
+        } else {
+            succ = node(index);
+            pred = succ.prev;
+        }
+
+        for (Object o : a) {
+            @SuppressWarnings("unchecked") E e = (E) o;
+            CustomLinkedList.Node<E> newNode = new CustomLinkedList.Node<>(pred, e, null);
+            if (pred == null)
+                first = newNode;
+            else
+                pred.next = newNode;
+            pred = newNode;
+        }
+
+        if (succ == null) {
+            last = pred;
+        } else {
+            pred.next = succ;
+            succ.prev = pred;
+        }
+
+        size += numNew;
+        modCount++;
+        return true;
     }
 
     @Override
-    public boolean removeAll(Collection<?> c) {
+    public boolean removeAll(@NotNull Collection<?> c) {
 
         Objects.requireNonNull(c);
         boolean modified = false;
@@ -363,7 +404,7 @@ public class CustomLinkedList<E> implements List<E>, Deque<E>, Cloneable, Serial
     }
 
     @Override
-    public boolean retainAll(Collection<?> c) {
+    public boolean retainAll(@NotNull Collection<?> c) {
         return false;
     }
 
@@ -384,17 +425,17 @@ public class CustomLinkedList<E> implements List<E>, Deque<E>, Cloneable, Serial
 
     CustomLinkedList.Node<E> node(int index) {
 
+        Node<E> x;
         if (index < (size >> 1)) {
-            CustomLinkedList.Node<E> x = first;
+            x = first;
             for (int i = 0; i < index; i++)
                 x = x.next;
-            return x;
         } else {
-            CustomLinkedList.Node<E> x = last;
+            x = last;
             for (int i = size - 1; i > index; i--)
                 x = x.prev;
-            return x;
         }
+        return x;
     }
 
     private void checkElementIndex(int index){
@@ -450,7 +491,7 @@ public class CustomLinkedList<E> implements List<E>, Deque<E>, Cloneable, Serial
     @Override
     public void add(int index, E element) {
 
-        checkPositionIndex(index);
+//        checkPositionIndex(index);
 
         if (index == size)
             linkLast(element);
@@ -509,17 +550,18 @@ public class CustomLinkedList<E> implements List<E>, Deque<E>, Cloneable, Serial
     }
 
     @Override
-    public ListIterator<E> listIterator() {
-        return null;
+    public @NotNull ListIterator<E> listIterator() {
+        return listIterator(0);
     }
 
     @Override
-    public ListIterator<E> listIterator(int index) {
-        return null;
+    public @NotNull ListIterator<E> listIterator(int index) {
+        checkPositionIndex(index);
+        return new CustomLinkedList.ListItr(index);
     }
 
     @Override
-    public List<E> subList(int fromIndex, int toIndex) {
+    public @NotNull List<E> subList(int fromIndex, int toIndex) {
         return null;
     }
 
@@ -552,6 +594,121 @@ public class CustomLinkedList<E> implements List<E>, Deque<E>, Cloneable, Serial
             this.item = element;
             this.next = next;
             this.prev = prev;
+        }
+    }
+
+    private class ListItr implements ListIterator<E> {
+        private CustomLinkedList.Node<E> lastReturned;
+        private CustomLinkedList.Node<E> next;
+        private int nextIndex;
+        private int expectedModCount = modCount;
+
+        ListItr(int index) {
+            assert isPositionIndex(index);
+            next = (index == size) ? null : node(index);
+            nextIndex = index;
+        }
+
+        public boolean hasNext() {
+            return nextIndex < size;
+        }
+
+        public E next() {
+            checkForComodification();
+            if (!hasNext())
+                throw new NoSuchElementException();
+
+            lastReturned = next;
+            next = next.next;
+            nextIndex++;
+            return lastReturned.item;
+        }
+
+        public boolean hasPrevious() {
+            return nextIndex > 0;
+        }
+
+        public E previous() {
+            checkForComodification();
+            if (!hasPrevious())
+                throw new NoSuchElementException();
+
+            lastReturned = next = (next == null) ? last : next.prev;
+            nextIndex--;
+            return lastReturned.item;
+        }
+
+        public int nextIndex() {
+            return nextIndex;
+        }
+
+        public int previousIndex() {
+            return nextIndex - 1;
+        }
+
+        public void remove() {
+            checkForComodification();
+            if (lastReturned == null)
+                throw new IllegalStateException();
+
+            CustomLinkedList.Node<E> lastNext = lastReturned.next;
+            unlink(lastReturned);
+            if (next == lastReturned)
+                next = lastNext;
+            else
+                nextIndex--;
+            lastReturned = null;
+            expectedModCount++;
+        }
+
+        public void set(E e) {
+            if (lastReturned == null)
+                throw new IllegalStateException();
+            checkForComodification();
+            lastReturned.item = e;
+        }
+
+        public void add(E e) {
+            checkForComodification();
+            lastReturned = null;
+            if (next == null)
+                linkLast(e);
+            else
+                linkBefore(e, next);
+            nextIndex++;
+            expectedModCount++;
+        }
+
+        public void forEachRemaining(Consumer<? super E> action) {
+            Objects.requireNonNull(action);
+            while (modCount == expectedModCount && nextIndex < size) {
+                action.accept(next.item);
+                lastReturned = next;
+                next = next.next;
+                nextIndex++;
+            }
+            checkForComodification();
+        }
+
+        final void checkForComodification() {
+            if (modCount != expectedModCount)
+                throw new ConcurrentModificationException();
+        }
+    }
+
+    private class DescendingIterator implements Iterator<E> {
+        private final ListItr itr = new ListItr(size());
+
+        public boolean hasNext() {
+            return itr.hasPrevious();
+        }
+
+        public E next() {
+            return itr.previous();
+        }
+
+        public void remove() {
+            itr.remove();
         }
     }
 }

@@ -2,8 +2,7 @@ package chapter3.Tasks;
 
 import chapter3.Tasks.CustomLists.ArrayLists.CustomArrayList;
 import chapter3.Tasks.CustomLists.LinkedLists.CustomLinkedList;
-
-import java.util.List;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
