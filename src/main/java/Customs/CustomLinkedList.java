@@ -10,7 +10,9 @@ public class CustomLinkedList<E> implements List<E>, Deque<E> {
 
     private int size;
 
-    public CustomLinkedList() {}
+    public CustomLinkedList() {
+        size = 0;
+    }
 
     public CustomLinkedList(Collection<? extends E> c) {
         addAll(c);
@@ -277,6 +279,7 @@ public class CustomLinkedList<E> implements List<E>, Deque<E> {
 
     @Override
     public boolean addAll(Collection<? extends E> c) {
+        size = c.size();
         if(c.size() == 0) {
             return false;
         }
@@ -369,27 +372,33 @@ public class CustomLinkedList<E> implements List<E>, Deque<E> {
     @Override
     public void add(int index, E element) {
         checkIndex(index);
-
+        if(size == 0) {
+            addFirst(element);
+            return;
+        }
         Node<E> current = first;
-        while(index-- != 0) {
+        while(index-- != 1) {
             current = current.next;
         }
 
-        if(current.prev == null) {
-            addFirst(element);
-        }
-        else if(current.next == null) {
+       if(current.next == null) {
             addLast(element);
         }
         else {
-            Node<E> newNode = new Node<>(current.prev, element, current);
-            current.prev = newNode;
-            current.prev.next = newNode;
+            Node<E> newNode = new Node<>(current, element, current.next);
+            if(current.next.prev != null) {
+                current.next.prev = newNode;
+            }
+            current.next = newNode;
+            ++size;
         }
     }
 
     @Override
     public E remove(int index) {
+        if(size == 0) {
+            throw new IndexOutOfBoundsException("The list is empty.");
+        }
         checkIndex(index);
 
         Node<E> current = first;
@@ -425,7 +434,7 @@ public class CustomLinkedList<E> implements List<E>, Deque<E> {
 
     @Override
     public int lastIndexOf(Object o) {
-        int index = size;
+        int index = size - 1;
         if(o == null) {
             for(Node<E> x = last; x != null; x = x.prev) {
                 if(x.item == null) {
@@ -463,7 +472,7 @@ public class CustomLinkedList<E> implements List<E>, Deque<E> {
         return new ArrayList<>();
     }
     private void checkIndex(int index) {
-        if(index < 0 || index >= size) {
+        if(index < 0 || index > size) {
             throw new IndexOutOfBoundsException("Index " + index + " is out of bounds.");
         }
     }

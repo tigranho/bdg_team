@@ -78,7 +78,7 @@ public class CustomHashMap<K, V> implements Map<K, V> {
      * The table, initialized on first use, and resized as
      * necessary. When allocated, length is always a power of two.
      */
-    private Node[] table;
+    private Node<K, V>[] table;
 
     /**
      * The number of key-value mappings contained in this map.
@@ -96,6 +96,7 @@ public class CustomHashMap<K, V> implements Map<K, V> {
      * Constructs an empty <tt>HashMap</tt> with the default initial capacity
      * (16) and the default load factor (0.75).
      */
+    @SuppressWarnings("unchecked")
     public CustomHashMap() {
         table = new Node[DEFAULT_INITIAL_CAPACITY];
         size = 0;
@@ -111,6 +112,7 @@ public class CustomHashMap<K, V> implements Map<K, V> {
      * @throws IllegalArgumentException if the initial capacity is negative
      *         or the load factor is nonpositive
      */
+    @SuppressWarnings("unchecked")
     public CustomHashMap(int initialCapacity, float loadFactor) {
         if (initialCapacity < 0)
             throw new IllegalArgumentException("Illegal initial capacity: " + initialCapacity);
@@ -200,8 +202,8 @@ public class CustomHashMap<K, V> implements Map<K, V> {
     @Override
     public boolean containsValue(Object value) {
         if (table != null && size > 0) {
-            for (int i = 0; i < table.length; ++i) {
-                for (Node<K,V> e = table[i]; e != null; e = e.next) {
+            for (Node<K, V> node : table) {
+                for (Node<K, V> e = node; e != null; e = e.next) {
                     if (Objects.equals(value, e.value))
                         return true;
                 }
@@ -285,7 +287,67 @@ public class CustomHashMap<K, V> implements Map<K, V> {
      */
     @Override
     public V put(K key, V value) {
-        return null;
+        int i = (table.length - 1) & hash(key);
+        V oldValue = null;
+        Node<K, V> toPut = new Node<>(hash(key), key, value);
+        if(table == null || table.length == 0) {
+            resize();
+        }
+        if(table[i] == null) {
+            table[i] = toPut;
+        }
+        else {
+            Node<K, V> current = table[i];
+            while(current.next != null && current.key != key) {
+                current = current.next;
+            }
+            if(current.key == key) {
+                oldValue = current.value;
+                current.value = value;
+            }
+            else {
+                current.next = toPut;
+            }
+        }
+        if(size > table.length * loadFactor) {
+            resize();
+        }
+        ++size;
+
+        return oldValue;
+    }
+
+    /**
+     * Initializes or doubles table size.  If null, allocates in
+     * accord with initial capacity target held in field threshold.
+     * Otherwise, because we are using power-of-two expansion, the
+     * elements from each bin must either stay at same index, or move
+     * with a power of two offset in the new table.
+     */
+    @SuppressWarnings("unchecked")
+    private void resize() {
+        int newCap = (table == null || table.length == 0) ? DEFAULT_INITIAL_CAPACITY : table.length << 1;
+        Node<K,V>[] newTab = new Node[newCap];
+        int i = 0, newSize = 0;
+        if(table != null) {
+            while (newSize != size) {
+                if (table[i] != null) {
+                    int index = (newCap - 1) & hash(table[i].key);
+                    if (newTab[index] == null) {
+                        newTab[index] = table[i];
+                    } else {
+                        Node<K, V> current = newTab[index];
+                        while (current.next != null) {
+                            current = current.next;
+                        }
+                        current.next = table[i];
+                    }
+                    ++newSize;
+                }
+                ++i;
+            }
+        }
+        table = newTab;
     }
 
     /**
@@ -320,6 +382,26 @@ public class CustomHashMap<K, V> implements Map<K, V> {
      */
     @Override
     public V remove(Object key) {
+        int index = (table.length - 1) & hash(key);
+        if(table != null && table[index] != null) {
+            if(table[index].key == key) {
+                V oldValue = table[index].value;
+                table[index] = table[index].next;
+                return oldValue;
+            }
+            else {
+                Node<K, V> current = table[index];
+                while(current.next != null && current.next.key != key) {
+                    current = current.next;
+                }
+                if(current.next == null) {
+                    return null;
+                }
+                V oldValue = current.value;
+                current.next = current.next.next;
+                return oldValue;
+            }
+        }
         return null;
     }
 
@@ -344,7 +426,12 @@ public class CustomHashMap<K, V> implements Map<K, V> {
      */
     @Override
     public void putAll(Map<? extends K, ? extends V> m) {
-
+        if(m == null) {
+            throw new NullPointerException("The given map is null.");
+        }
+        for(Entry<? extends K, ? extends V> el : m.entrySet()) {
+            this.put(el.getKey(), el.getValue());
+        }
     }
 
     /**
@@ -356,7 +443,18 @@ public class CustomHashMap<K, V> implements Map<K, V> {
      */
     @Override
     public void clear() {
-
+        for(int i = 0; i < table.length; ++i) {
+            if(table[i] != null) {
+                Node<K, V> current = table[i], next;
+                while(current != null) {
+                    next = current.next;
+                    current.next = null;
+                    current = next;
+                }
+                table[i] = null;
+            }
+        }
+        size = 0;
     }
 
     /**
@@ -374,9 +472,11 @@ public class CustomHashMap<K, V> implements Map<K, V> {
      *
      * @return a set view of the keys contained in this map
      */
+
+    //To do
     @Override
     public Set<K> keySet() {
-        return null;
+        return new HashSet<>();
     }
 
     /**
@@ -394,9 +494,11 @@ public class CustomHashMap<K, V> implements Map<K, V> {
      *
      * @return a collection view of the values contained in this map
      */
+
+    //To do
     @Override
     public Collection<V> values() {
-        return null;
+        return new HashSet<>();
     }
 
     /**
@@ -415,8 +517,10 @@ public class CustomHashMap<K, V> implements Map<K, V> {
      *
      * @return a set view of the mappings contained in this map
      */
+
+    //To do
     @Override
     public Set<Entry<K, V>> entrySet() {
-        return null;
+        return new HashSet<>();
     }
 }

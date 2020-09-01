@@ -1,3 +1,5 @@
+package Customs;
+
 import Customs.CustomArrayList;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
@@ -11,7 +13,7 @@ public class CustomArrayListTest {
     @Test
     public void testListInit(){
         List<Object> list = new CustomArrayList<>();
-        Assertions.assertTrue(list.isEmpty());
+        assertTrue(list.isEmpty());
         assertTrue(list.size() == 0);
     }
 
@@ -90,6 +92,5 @@ public class CustomArrayListTest {
             list.remove(0);
         });
     }
-
 
 }
