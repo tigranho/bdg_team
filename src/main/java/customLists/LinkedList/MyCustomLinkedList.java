@@ -1,16 +1,13 @@
 package customLists.LinkedList;
 
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
+import java.util.*;
 
 /**
  * @author Tatevik Mirzoyan
  */
 public class MyCustomLinkedList<T> implements List<T> {
     private int size = 0;
-    private Node<T> first;   // todo
+    private Node<T> first;
     private Node<T> last;
     private int modCount = 0;
 
@@ -20,80 +17,84 @@ public class MyCustomLinkedList<T> implements List<T> {
     public MyCustomLinkedList() {
     }
 
-    //???
-    @Override
-    public boolean remove(Object o) {
-        if (last == null) {
-            System.out.println("Empty list");
-        } else {
-            Node<T> currentNode = last;
-            while (currentNode.next.next != null) {
-                if (currentNode.next.item == o) {
-                    currentNode.next = currentNode.next.next;
-                }
-                currentNode = currentNode.next;
-            }
-        }
-        size--;
-        return false;
-    }
-
-    //???
-
-    @Override
-    public T remove(int index) {
-        checkIndex(index);
-        Node<T> removedNode;
-        Node<T> currentNode = last;
-        while (currentNode.next != null) {
-            removedNode = node(index);
-            remove(removedNode.item);
-            currentNode = currentNode.next;
-        }
-        return null;
-    }
-    // OK ???
-
-    @Override
+    @Override //OK
     public boolean add(T t) {
-        Node<T> newNode = new Node<>(t);
-        if (last == null) {
-            last = newNode;
+        Node<T> lastNode = last;
+        Node<T> newNode = new Node<>(t, null);
+        last = newNode;
+        if (lastNode == null) {
+            first = newNode;
         } else {
-            Node<T> currentNode = last;
-            while (currentNode.next != null) {
-                currentNode = currentNode.next;
-            }
-            currentNode.next = newNode;
+            lastNode.next = newNode;
         }
         size++;
         modCount++;
         return true;
     }
 
-    @Override
+    @SuppressWarnings("unchecked")
+    @Override  //OK
+    public void add(int i, Object o) {
+        if (i == size) {
+            add((T) o);
+        } else if (i == 0) {
+            Node<T> newNode = new Node<>((T) o);
+            newNode.next = first;
+            first = newNode;
+        } else {
+            checkIndex(i);
+            Node<T> oldNode = node(i);
+            Node<T> prevNode = node(i - 1);
+            Node<T> newNode = new Node<>((T) o);
+            prevNode.next = newNode;
+            newNode.next = oldNode;
+
+        }
+        size++;
+        modCount++;
+    }
+
+    @Override //OK
+    public boolean remove(Object o) {
+        Node<T> currentNode = first;
+        for (Node<T> x = first; x.next != null; x = x.next) {
+            if (x.next.item == o) {
+                x.next = x.next.next;
+                size--;
+                modCount++;
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override  //OK
+    public T remove(int index) {
+        checkIndex(index);
+        Node<T> removedNode = node(index);
+        T removedItem = removedNode.item;
+        if (index == 0) {
+            first = removedNode.next;
+            size--;
+            modCount++;
+        } else {
+            remove(removedItem);
+        }
+        return removedItem;
+    }
+
+    @Override //OK
     public T get(int index) {
         checkIndex(index);
         return node(index).item;
     }
 
-    @Override
+    @Override  //OK
     public T set(int index, T t) {
         checkIndex(index);
-        Node<T> oldNode = last;
-        Node<T> newNode = new Node<>(t);
-        Node<T> currentNode = last;
-        while (currentNode.next != null) {
-            oldNode = node(index);
-            node(index).item = newNode.item;
-            currentNode = currentNode.next;
-        }
-        return oldNode.item;
-    }
-
-    @Override
-    public void add(int i, Object o) {
-
+        T oldItem = node(index).item;
+        node(index).item = t;
+        return oldItem;
     }
 
     @Override
@@ -127,10 +128,10 @@ public class MyCustomLinkedList<T> implements List<T> {
      * @param index the index that has to be checked
      * @throws IndexOutOfBoundsException .
      */
-
+    //OK
     private void checkIndex(int index) {
         if (index >= size || index < 0) {
-            throw new IndexOutOfBoundsException("The index is out of bounds");
+            throw new IndexOutOfBoundsException();
         }
     }
 
@@ -139,24 +140,23 @@ public class MyCustomLinkedList<T> implements List<T> {
      *
      * @return the number of elements in this list
      */
-    @Override
+    @Override //OK
     public int size() {
         return size;
     }
 
-    @Override
+    @Override  //OK
     public boolean isEmpty() {
-        return false;
+        return size == 0;
     }
 
     /**
      * Removes all of the elements from this list.
      * The list will be empty after this call returns.
      */
-    @Override
+    @Override  //OK
     public void clear() {
         size = 0;
-
     }
 
     @Override
@@ -179,14 +179,20 @@ public class MyCustomLinkedList<T> implements List<T> {
         return null;
     }
 
-    @Override
+    @Override  //OK
     public int indexOf(Object o) {
-        return 0;
+        int index = 0;
+        for (Node<T> x = first; x != null; x = x.next) {
+            if (o.equals(x.item))
+                return index;
+            index++;
+        }
+        return -1;
     }
 
     @Override
     public int lastIndexOf(Object o) {
-        return 0;
+        return -1;
     }
 
     @Override
@@ -204,24 +210,26 @@ public class MyCustomLinkedList<T> implements List<T> {
         return null;
     }
 
-    @Override
+    @Override  //OK
     public String toString() {
-        if (last == null) {
-            System.out.println("Empty list");
+        StringBuilder sb = new StringBuilder();
+        if (isEmpty()) {
+            sb.append("[]");
         } else {
-            System.out.println("This is my list");
-            Node<T> currentNode = last;
+            Node<T> currentNode = first;
+            sb.append("[");
             while (currentNode.next != null) {
-                System.out.print(currentNode.item + " ");
+                sb.append(currentNode.item.toString()).append(", ");
                 currentNode = currentNode.next;
             }
-            System.out.print(currentNode.item);
+            sb.append(last.item.toString()).append("]");
         }
-        return "";
+        return sb.toString();
     }
 
+    //OK
     private Node<T> node(int index) {
-        Node<T> indexNode = last;
+        Node<T> indexNode = first;
         for (int i = 0; i < index; i++)
             indexNode = indexNode.next;
         return indexNode;

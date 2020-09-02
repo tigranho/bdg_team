@@ -18,10 +18,10 @@ public class CustomLinkedList<T> extends LinkedList<T> implements List<T>, Deque
 
     }
 
-    @Override
+  /*  @Override
     public <T> T[] toArray(IntFunction<T[]> generator) {
         return null;
-    }
+    }*/
 
     @Override
     public boolean removeIf(Predicate<? super T> filter) {

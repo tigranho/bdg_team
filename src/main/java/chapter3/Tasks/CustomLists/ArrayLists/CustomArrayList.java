@@ -196,7 +196,7 @@ public class CustomArrayList<E> extends ArrayList<E> implements List<E>, RandomA
         super.sort(c);
     }
 
-    @Override
+
     public <T> T[] toArray(IntFunction<T[]> generator) {
         return null;
     }

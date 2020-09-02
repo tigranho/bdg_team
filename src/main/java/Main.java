@@ -1,5 +1,7 @@
-import customLists.ArrayList.CustomArrayList;
+import customLists.LinkedList.MyCustomLinkedList;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -8,14 +10,14 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        List<String> list = new CustomArrayList<>();
-        list.add("h");
-        list.add("hg");
-        list.add("sdf");
-        list.add(1, "g");
-        list.add("hi");
-        //list.add(5, "hi + hi");
+        List<String> listd = new MyCustomLinkedList<>();
+        listd.add("java");
+        listd.add("Python");
+        listd.add("C++");
+        System.out.println(listd.toString());
+        System.out.println(listd.indexOf("C++"));
+        System.out.println(listd.indexOf("java"));
+        System.out.println(listd.indexOf("C"));
 
-        System.out.println(list.toString());
     }
 }
