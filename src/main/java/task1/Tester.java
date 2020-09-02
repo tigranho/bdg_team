@@ -3,7 +3,7 @@ package task1;
 public class Tester {
     public static void main(String[] args) {
 
-        CustomArrayList<String> pinkItems = new CustomArrayList<>();
+        CustomArrayList<String> pinkItems = new CustomArrayList<String>();
         pinkItems.add("phone");
         pinkItems.add("bag");
         pinkItems.add("wallet");
@@ -25,12 +25,12 @@ public class Tester {
 
         pinkItems.clear();
 
-        CustomLinkedList n = new CustomLinkedList();
-        n.insert(1);
-        n.insert(2);
-        n.insert(1);
-        n.insert(2);
-        n.insertFirst(3);
+        CustomLinkedList<String> n = new CustomLinkedList<>();
+        n.insert("a");
+        n.insert("b");
+        n.insert("c");
+        n.insert("d");
+        n.insertFirst("e");
         n.removeFirst();
         n.removeAt(0);
 

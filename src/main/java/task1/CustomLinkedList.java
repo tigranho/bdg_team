@@ -1,14 +1,14 @@
 package task1;
 
-public class CustomLinkedList {
+public class CustomLinkedList<E> {
     Node head;
 
     class Node{
-        int data;
+        E data;
         Node next;
     }
 
-    public void insert(int data){
+    public void insert(E data){
         Node node = new Node();
         node.data = data;
         node.next = null;
@@ -24,7 +24,7 @@ public class CustomLinkedList {
         }
     }
 
-    public void insertFirst(int data){
+    public void insertFirst(E data){
         Node node = new Node();
         node.data = data;
         node.next = head;
@@ -42,7 +42,7 @@ public class CustomLinkedList {
         else {
             Node node = head;
             Node node1 = null;
-            for (int i = 0; i < index; i++) {
+            for (int i = 0; i < index-1; i++) {
                 node = node.next;
             }
             node1 = node.next;
