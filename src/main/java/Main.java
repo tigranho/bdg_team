@@ -15,9 +15,8 @@ public class Main {
         listd.add("Python");
         listd.add("C++");
         System.out.println(listd.toString());
-        System.out.println(listd.indexOf("C++"));
-        System.out.println(listd.indexOf("java"));
-        System.out.println(listd.indexOf("C"));
+        System.out.println(listd.contains("java"));
+        System.out.println(listd.contains("Java"));
 
     }
 }

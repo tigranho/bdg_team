@@ -161,6 +161,11 @@ public class MyCustomLinkedList<T> implements List<T> {
 
     @Override
     public boolean contains(Object o) {
+        for (Node<T> x = first; x != null; x = x.next) {
+            if (o.equals(x.item)){
+             return true;
+            }
+        }
         return false;
     }
 
