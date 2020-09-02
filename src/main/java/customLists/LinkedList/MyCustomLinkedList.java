@@ -20,7 +20,7 @@ public class MyCustomLinkedList<T> implements List<T> {
     @Override //OK
     public boolean add(T t) {
         Node<T> lastNode = last;
-        Node<T> newNode = new Node<>(t, null);
+        Node<T> newNode = new Node<>(t);
         last = newNode;
         if (lastNode == null) {
             first = newNode;
@@ -56,13 +56,26 @@ public class MyCustomLinkedList<T> implements List<T> {
 
     @Override //OK
     public boolean remove(Object o) {
-        Node<T> currentNode = first;
-        for (Node<T> x = first; x.next != null; x = x.next) {
-            if (x.next.item == o) {
-                x.next = x.next.next;
-                size--;
-                modCount++;
-                return true;
+        Node<T> prevNode = node(size-2);
+        if (first.item == o) {
+            first = first.next;
+            size--;
+            modCount++;
+            return true;
+        } else if (prevNode.next.item == o) {
+            last = prevNode;
+            prevNode.next = null;
+            size--;
+            modCount++;
+            return true;
+        } else {
+            for (Node<T> x = first; x.next != null; x = x.next) {
+                if (x.next.item == o) {
+                    x.next = x.next.next;
+                    size--;
+                    modCount++;
+                    return true;
+                }
             }
         }
         return false;
@@ -77,6 +90,9 @@ public class MyCustomLinkedList<T> implements List<T> {
             first = removedNode.next;
             size--;
             modCount++;
+        } else if (index == (size - 1)) {
+            remove(removedItem);
+            last = node(index - 1);
         } else {
             remove(removedItem);
         }
@@ -161,12 +177,7 @@ public class MyCustomLinkedList<T> implements List<T> {
 
     @Override
     public boolean contains(Object o) {
-        for (Node<T> x = first; x != null; x = x.next) {
-            if (o.equals(x.item)){
-             return true;
-            }
-        }
-        return false;
+        return indexOf(o) >= 0;
     }
 
     @Override
@@ -248,11 +259,6 @@ public class MyCustomLinkedList<T> implements List<T> {
             this.item = item;
         }
 
-        public Node(T element, Node<T> next) {
-            this.item = element;
-            this.next = next;
-
-        }
     }
 
 }
