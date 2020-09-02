@@ -74,13 +74,14 @@ class LionPenManager2 {
 
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         ExecutorService service = null;
         try {
             service = Executors.newFixedThreadPool(4);
             Phaser phaser = new Phaser(4);
             LionPenManager2 manager = new LionPenManager2();
             for (int i = 0; i < 4; i++) {
+                TimeUnit.SECONDS.sleep(2);
                 service.submit(() -> manager.performTask(phaser));
             }
             phaser.forceTermination();
