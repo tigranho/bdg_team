@@ -1,18 +1,18 @@
-package lesson7.cunsumer_supplier.wait_notify;
+package lesson7.cunsumer_supplier.blocking_queue;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
-import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class Warehouse {
     private final int limit;
     private static final int WAREHOUSE_SIZE = 35;
-    private final Queue<String> warehouse;
+    private final BlockingQueue<String> warehouse;
 
-    public Warehouse(int limit, Queue<String> warehouse) {
+    public Warehouse(int limit, BlockingQueue<String> warehouse) {
         if (warehouse == null) throw new NullPointerException("warehouse not defined");
         if (limit < 0 || limit > WAREHOUSE_SIZE)
             throw new IllegalArgumentException("illegal warehouse limit: "
@@ -30,17 +30,17 @@ public class Warehouse {
         return warehouse.size();
     }
 
-    public String getItem() {
-        return warehouse.poll();
+    public String getItem() throws InterruptedException {
+        return warehouse.take();
     }
 
-    public void addItem(String item) {
-        warehouse.add(item);
+    public void addItem(String item) throws InterruptedException {
+        warehouse.put(item);
     }
 
     public static void main(String[] args) {
         long start = System.currentTimeMillis();
-        final Queue<String> mainWarehouse = new ConcurrentLinkedQueue<>();
+        final BlockingQueue<String> mainWarehouse = new ArrayBlockingQueue<>(30);
         final Warehouse warehouse = new Warehouse(30, mainWarehouse);
         List<Runnable> workers = new LinkedList<>();
         for (int i = 0; i < 6; i++) {
@@ -51,7 +51,7 @@ public class Warehouse {
         for (Runnable worker : workers) service.submit(worker);
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             service.shutdown();
-            System.out.printf("executed in %d second", (System.currentTimeMillis() - start) / 1000); // 8 second
+            System.out.printf("executed in %d second", (System.currentTimeMillis() - start) / 1000); // 10 second
         }));
     }
 }
