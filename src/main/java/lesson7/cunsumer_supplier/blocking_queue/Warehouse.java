@@ -40,7 +40,7 @@ public class Warehouse {
 
     public static void main(String[] args) {
         long start = System.currentTimeMillis();
-        final BlockingQueue<String> mainWarehouse = new ArrayBlockingQueue<>(30);
+        final BlockingQueue<String> mainWarehouse = new ArrayBlockingQueue<>(30, true);
         final Warehouse warehouse = new Warehouse(30, mainWarehouse);
         List<Runnable> workers = new LinkedList<>();
         for (int i = 0; i < 6; i++) {
