@@ -6,7 +6,7 @@ public class Task2A {
 
     public static void main(String[] args) {
         new Thread(() -> {
-            for (int i = 0; i < 1000000; i++) counter++;
+            for (int i = 0; i < 1_000_000; i++) counter++;
         }).start();
         new Thread(() -> {
             System.out.println(counter);
