@@ -39,6 +39,7 @@ public class Warehouse {
     }
 
     public static void main(String[] args) {
+        long start = System.currentTimeMillis();
         final Queue<String> mainWarehouse = new ConcurrentLinkedQueue<>();
         final Warehouse warehouse = new Warehouse(30, mainWarehouse);
         List<Runnable> workers = new LinkedList<>();
@@ -48,8 +49,9 @@ public class Warehouse {
         }
         ExecutorService service = Executors.newFixedThreadPool(6);
         for(Runnable worker: workers) service.submit(worker);
-//        service.submit(new Producer(warehouse));
-//        service.submit(new Consumer(warehouse));
-        Runtime.getRuntime().addShutdownHook(new Thread(service::shutdown));
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            service.shutdown();
+            System.out.printf("executed in %d second",  (System.currentTimeMillis() - start) / 1000); // 8 second
+        }));
     }
 }

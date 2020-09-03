@@ -21,6 +21,7 @@ public class Producer implements Runnable {
                     }
                     warehouse.addItem("item N%" + PROD_GENERATOR.incrementAndGet());
                     System.out.println("Produced item N%" + PROD_GENERATOR.get());
+                    if (PROD_GENERATOR.get() == 50000) System.exit(0);
                     warehouse.notifyAll();
                 }
             } catch (InterruptedException e) {
