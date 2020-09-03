@@ -1,5 +1,6 @@
-package chapter3.Tasks.CustomLists.LinkedLists;
+package Tasks.CustomLists.LinkedLists;
 
+import Tasks.CustomLists.LinkedLists.CustomLinkedList;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import java.util.*;
