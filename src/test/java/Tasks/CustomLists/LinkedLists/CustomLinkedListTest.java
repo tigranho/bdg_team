@@ -1,4 +1,4 @@
-package com.bdg.Tasks.CustomLists.LinkedLists;
+package Tasks.CustomLists.LinkedLists;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
