@@ -12,14 +12,35 @@ public class CustomArrayList<E> {
     private Object data[];
 
     public CustomArrayList() {
+
         this.data = new Object[CAPACITY];
     }
 
-    public void add(E e){
+    public CustomArrayList(int capacity) {
+        this.data = new Object[capacity];
+    }
+
+    public boolean add(E e){
         if(size == data.length){
             sizeDoubler();
         }
         data[size++] = e;
+        return true;
+    }
+
+    public void add(int index, E elem){
+        if(index< 0 || index > size){
+            throw new ArrayIndexOutOfBoundsException();
+        }
+        if(index == size){
+            add(elem);
+            return;
+        }
+        for (int i = size; i > index ; i--) {
+            this.data[i] = this.data[i-1];
+        }
+        this.data[index] = elem;
+        this.size++;
     }
 
     public void sizeDoubler(){
