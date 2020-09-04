@@ -1,27 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="02049015-7a73-40bc-878b-01e4dc8d50b7" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/homework/producerConsumer/Consumer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/homework/producerConsumer/Factory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/homework/producerConsumer/Producer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/homework/putGetNumsUsingThreads/FirstThreadIncrementSharedIntegerSecondThreadPrintWithoutWaiting.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/homework/putGetNumsUsingThreads/GenerateNum.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/homework/putGetNumsUsingThreads/GetNum.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/homework/putGetNumsUsingThreads/WorkingThread.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/homework/putGetNumsUsingThreadsAndFlag/ControlThread.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/homework/putGetNumsUsingThreadsAndFlag/GenerateNum.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/homework/putGetNumsUsingThreadsAndFlag/GetNum.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/homework/putGetNumsUsingThreadsAndFlag/putGetNumsByFollowingEachOtherUsingThreads.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/homework/sumThreadsGeneratingRandomNumbers/SumThreadsGeneratingRandomNumbers.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/customCollections/NewCustomHashMap$Node.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/customCollections/NewCustomHashMap$Node.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/customCollections/NewCustomHashMap.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/customCollections/NewCustomHashMap.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/customCollections/NewCustomLinkedList$Node.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/customCollections/NewCustomLinkedList$Node.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/customCollections/NewCustomLinkedList.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/customCollections/NewCustomLinkedList.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/customCollections/NewDynamicArray.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/customCollections/NewDynamicArray.class" afterDir="false" />
     </list>
-    <ignored path="$PROJECT_DIR$/target/" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/test/java/com/bdg/customimpl/ArrayListTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -34,11 +55,12 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsGulpfileManager">
-    <detection-done>true</detection-done>
-    <sorting>DEFINITION_ORDER</sorting>
+  <component name="GithubPullRequestsUISettings">
+    <option name="hiddenUrls">
+      <set>
+        <option value="https://github.com/tigranho/bdg_team.git" />
+      </set>
+    </option>
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
@@ -48,90 +70,118 @@
       </MavenGeneralSettings>
     </option>
   </component>
-  <component name="MavenProjectNavigator">
-    <treeState>
-      <expand />
-      <select />
-    </treeState>
-  </component>
+  <component name="ProjectId" id="1h03j1BnFjMiw7tBi0d0RYYjr76" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
-  <component name="ProjectView">
-    <navigator proportions="" version="1">
-      <autoscrollFromSource ProjectPane="true" />
-      <foldersAlwaysOnTop value="true" />
-    </navigator>
-    <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="bdg_team" type="b2602c69:ProjectViewProjectNode" />
-              <item name="bdg_team" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="bdg_team" type="b2602c69:ProjectViewProjectNode" />
-              <item name="bdg_team" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="bdg_team" type="b2602c69:ProjectViewProjectNode" />
-              <item name="bdg_team" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="bdg_team" type="b2602c69:ProjectViewProjectNode" />
-              <item name="bdg_team" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="bdg_team" type="b2602c69:ProjectViewProjectNode" />
-              <item name="bdg_team" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="customimpl" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="bdg_team" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Scratches and Consoles" type="1a2a3e82:ScratchProjectViewPane$MyProjectNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="PackagesPane" />
-      <pane id="CatdeaLogs" />
-      <pane id="Scope" />
-    </panes>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="false" />
+    <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15136719" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="MavenSettings" />
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="firstThreadIncrementSharedIntegerSecondPrintIt" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.SumThreadsGeneratingRandomNumbers">
+    <configuration name="Factory (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="homework.producerConsumer.Factory" />
+      <module name="bdg_team" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="homework.producerConsumer.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FirstThreadIncrementSharedIntegerSecondThreadPrintWithoutWaiting (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="homework.putGetNumsUsingThreads.FirstThreadIncrementSharedIntegerSecondThreadPrintWithoutWaiting" />
+      <module name="bdg_team" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="homework.putGetNumsUsingThreads.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FirstThreadIncrementSharedIntegerSecondThreadPrintWithoutWaiting" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="homework.firstThreadIncrementSharedIntegerSecondPrintIt.FirstThreadIncrementSharedIntegerSecondThreadPrintWithoutWaiting" />
+      <module name="bdg_team" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="homework.firstThreadIncrementSharedIntegerSecondPrintIt.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SumThreadsGeneratingRandomNumbers" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="homework.sumThreadsGeneratingRandomNumbers.SumThreadsGeneratingRandomNumbers" />
+      <module name="bdg_team" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="homework.sumThreadsGeneratingRandomNumbers.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="putGetNumsByFollowingEachOtherUsingThreads" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="homework.putGetNumsUsingThreadsAndFlag.putGetNumsByFollowingEachOtherUsingThreads" />
+      <module name="bdg_team" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="homework.putGetNumsUsingThreadsAndFlag.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
       <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
+        <item itemvalue="Application.SumThreadsGeneratingRandomNumbers" />
+        <item itemvalue="Application.putGetNumsByFollowingEachOtherUsingThreads" />
+        <item itemvalue="Application.FirstThreadIncrementSharedIntegerSecondThreadPrintWithoutWaiting (1)" />
+        <item itemvalue="Application.Factory (1)" />
+        <item itemvalue="Application.FirstThreadIncrementSharedIntegerSecondThreadPrintWithoutWaiting" />
       </list>
-    </option>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="3a176ef9-be1d-4f15-a283-82fe2c3a5a38" name="Default Changelist" comment="" />
+      <changelist id="02049015-7a73-40bc-878b-01e4dc8d50b7" name="Default Changelist" comment="" />
       <created>1597588322634</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -140,6 +190,8 @@
       <workItem from="1597650006032" duration="452000" />
       <workItem from="1597920147108" duration="21897000" />
       <workItem from="1598003570763" duration="4310000" />
+      <workItem from="1599209414156" duration="6460000" />
+      <workItem from="1599229320846" duration="5864000" />
     </task>
     <task id="LOCAL-00001" summary="Adding a new package with task1 name">
       <created>1597589746874</created>
@@ -150,96 +202,78 @@
     </task>
     <servers />
   </component>
-  <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="175000" />
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
   </component>
-  <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17750533" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Designer" order="2" />
-      <window_info id="UI Designer" order="3" />
-      <window_info id="Favorites" order="4" side_tool="true" />
-      <window_info id="Capture Tool" order="5" />
-      <window_info id="Azure Explorer" order="6" show_stripe_button="false" />
-      <window_info id="Image Layers" order="7" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.50278085" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39933258" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.32925472" />
-      <window_info anchor="bottom" id="Cosmos Serverless Spark Jobs" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Debug Remote Spark Job in Cluster" order="8" />
-      <window_info anchor="bottom" id="Remote Spark Job in Cluster" order="9" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5010661" side_tool="true" weight="0.4983315" />
-      <window_info anchor="bottom" id="Messages" order="11" weight="0.32925472" />
-      <window_info anchor="bottom" id="JProfiler" order="12" />
-      <window_info anchor="bottom" id="Database Changes" order="13" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="14" sideWeight="0.4989339" visible="true" weight="0.34593993" />
-      <window_info anchor="bottom" id="Terminal" order="15" weight="0.32925472" />
-      <window_info anchor="bottom" id="Azure Activity Log" order="16" show_stripe_button="false" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="right" id="Capture Analysis" order="4" />
-      <window_info active="true" anchor="right" id="Maven Projects" order="5" visible="true" weight="0.32995737" />
-      <window_info anchor="right" id="Database" order="6" />
-      <window_info anchor="right" id="Palette&#9;" order="7" />
-      <window_info anchor="right" id="Theme Preview" order="8" />
-    </layout>
-    <layout-to-restore>
-      <window_info id="Designer" order="0" />
-      <window_info id="UI Designer" order="1" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info id="Capture Tool" order="3" />
-      <window_info id="Azure Explorer" order="4" show_stripe_button="false" />
-      <window_info id="Image Layers" order="5" />
-      <window_info active="true" content_ui="combo" id="Project" order="6" visible="true" weight="0.16044776" />
-      <window_info id="Structure" order="7" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Debug Remote Spark Job in Cluster" order="0" />
-      <window_info anchor="bottom" id="Terminal" order="1" weight="0.32925472" />
-      <window_info anchor="bottom" id="Remote Spark Job in Cluster" order="2" />
-      <window_info anchor="bottom" id="Event Log" order="3" sideWeight="0.50053304" side_tool="true" weight="0.32925472" />
-      <window_info anchor="bottom" id="Messages" order="4" weight="0.32925472" />
-      <window_info anchor="bottom" id="Cosmos Serverless Spark Jobs" order="5" show_stripe_button="false" />
-      <window_info anchor="bottom" id="JProfiler" order="6" />
-      <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" sideWeight="0.49946696" weight="0.8531702" />
-      <window_info anchor="bottom" id="Azure Activity Log" order="9" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Message" order="10" />
-      <window_info anchor="bottom" id="Find" order="11" />
-      <window_info anchor="bottom" id="Run" order="12" weight="0.32925472" />
-      <window_info anchor="bottom" id="Debug" order="13" weight="0.39933258" />
-      <window_info anchor="bottom" id="Cvs" order="14" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="15" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="16" weight="0.32925472" />
-      <window_info anchor="right" id="Palette" order="0" />
-      <window_info anchor="right" id="Capture Analysis" order="1" />
-      <window_info anchor="right" id="Maven Projects" order="2" />
-      <window_info anchor="right" id="Database" order="3" />
-      <window_info anchor="right" id="Palette&#9;" order="4" />
-      <window_info anchor="right" id="Theme Preview" order="5" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="6" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="7" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="8" weight="0.25" />
-    </layout-to-restore>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Adding a new package with task1 name" />
     <option name="LAST_COMMIT_MESSAGE" value="Adding a new package with task1 name" />
   </component>
-  <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/bdg/customimpl/ArrayListTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
+  <component name="WindowStateProjectService">
+    <state x="528" y="90" key="#com.intellij.ide.util.MemberChooser" timestamp="1599235649853">
+      <screen x="65" y="24" width="1301" height="744" />
+    </state>
+    <state x="528" y="90" key="#com.intellij.ide.util.MemberChooser/65.24.1301.744@65.24.1301.744" timestamp="1599235649853" />
+    <state x="135" y="307" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1599232947154">
+      <screen x="65" y="24" width="1301" height="744" />
+    </state>
+    <state x="135" y="307" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/65.24.1301.744@65.24.1301.744" timestamp="1599232947154" />
+    <state x="473" y="264" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages" timestamp="1599232960912">
+      <screen x="65" y="24" width="1301" height="744" />
+    </state>
+    <state x="473" y="264" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages/65.24.1301.744@65.24.1301.744" timestamp="1599232960912" />
+    <state x="453" y="132" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1599231622748">
+      <screen x="65" y="24" width="1301" height="744" />
+    </state>
+    <state x="453" y="132" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/65.24.1301.744@65.24.1301.744" timestamp="1599231622748" />
+    <state width="1255" height="207" key="GridCell.Tab.0.bottom" timestamp="1599236999205">
+      <screen x="65" y="24" width="1301" height="744" />
+    </state>
+    <state width="1255" height="207" key="GridCell.Tab.0.bottom/65.24.1301.744@65.24.1301.744" timestamp="1599236999205" />
+    <state width="1255" height="207" key="GridCell.Tab.0.center" timestamp="1599236999202">
+      <screen x="65" y="24" width="1301" height="744" />
+    </state>
+    <state width="1255" height="207" key="GridCell.Tab.0.center/65.24.1301.744@65.24.1301.744" timestamp="1599236999202" />
+    <state width="1255" height="207" key="GridCell.Tab.0.left" timestamp="1599236999202">
+      <screen x="65" y="24" width="1301" height="744" />
+    </state>
+    <state width="1255" height="207" key="GridCell.Tab.0.left/65.24.1301.744@65.24.1301.744" timestamp="1599236999202" />
+    <state width="1255" height="207" key="GridCell.Tab.0.right" timestamp="1599236999204">
+      <screen x="65" y="24" width="1301" height="744" />
+    </state>
+    <state width="1255" height="207" key="GridCell.Tab.0.right/65.24.1301.744@65.24.1301.744" timestamp="1599236999204" />
+    <state width="1255" height="240" key="GridCell.Tab.1.bottom" timestamp="1599211509819">
+      <screen x="65" y="24" width="1301" height="744" />
+    </state>
+    <state width="1255" height="240" key="GridCell.Tab.1.bottom/65.24.1301.744@65.24.1301.744" timestamp="1599211509819" />
+    <state width="1255" height="240" key="GridCell.Tab.1.center" timestamp="1599211509817">
+      <screen x="65" y="24" width="1301" height="744" />
+    </state>
+    <state width="1255" height="240" key="GridCell.Tab.1.center/65.24.1301.744@65.24.1301.744" timestamp="1599211509817" />
+    <state width="1255" height="240" key="GridCell.Tab.1.left" timestamp="1599211509817">
+      <screen x="65" y="24" width="1301" height="744" />
+    </state>
+    <state width="1255" height="240" key="GridCell.Tab.1.left/65.24.1301.744@65.24.1301.744" timestamp="1599211509817" />
+    <state width="1255" height="240" key="GridCell.Tab.1.right" timestamp="1599211509818">
+      <screen x="65" y="24" width="1301" height="744" />
+    </state>
+    <state width="1255" height="240" key="GridCell.Tab.1.right/65.24.1301.744@65.24.1301.744" timestamp="1599211509818" />
+    <state x="378" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1599236133339">
+      <screen x="65" y="24" width="1301" height="744" />
+    </state>
+    <state x="378" y="89" width="672" height="678" key="search.everywhere.popup/65.24.1301.744@65.24.1301.744" timestamp="1599236133339" />
   </component>
   <component name="masterDetails">
     <states>
