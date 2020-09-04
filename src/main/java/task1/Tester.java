@@ -36,6 +36,12 @@ public class Tester {
 
         n.printList();
 
-
+        CustomHashMap<String, Integer> hashMap = new CustomHashMap<>();
+        hashMap.put("a", 1);
+        hashMap.put("b", 2);
+        hashMap.display();
+        System.out.println(hashMap.get("a"));
+        hashMap.remove("b");
+        hashMap.display();
     }
 }
