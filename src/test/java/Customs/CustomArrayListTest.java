@@ -1,6 +1,5 @@
 package Customs;
 
-import Customs.CustomArrayList;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 
