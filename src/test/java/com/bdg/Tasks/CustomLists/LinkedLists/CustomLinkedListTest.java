@@ -1,29 +1,36 @@
-package Tasks.CustomLists.CustomArrayLists;
+package com.bdg.Tasks.CustomLists.LinkedLists;
 
-import Tasks.CustomLists.ArrayLists.CustomArrayList;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
 import java.util.*;
-
 import static org.junit.jupiter.api.Assertions.*;
 
-class CustomArrayListTest {
-    
+class CustomLinkedListTest {
+
     @Test
-    public void testListInit(){
-        List<Object> list = new CustomArrayList<>();
+    void notEquals() {
+
+        List<String> list = new CustomLinkedList<>();
+        list.add("A");
+        list.add("B");
+
+        assertNotEquals("A", list.get(1));
+    }
+
+    @Test
+    public void testListInit() {
+        List<Object> list = new CustomLinkedList<>();
         Assertions.assertTrue(list.isEmpty());
-        assertTrue(list.size() == 0);
+        assertEquals(0, 0);
 
         list.add("");
         Assertions.assertFalse(list.isEmpty());
-        assertFalse(list.size() == 0);
+        assertNotEquals(list.size(), 0);
     }
 
     @Test
     public void givenNonEmptyList_whenIsEmpty_thenFalseIsReturned() {
-        List<Object> list = new CustomArrayList<>();
+        List<Object> list = new CustomLinkedList<>();
         list.add(null);
 
         assertFalse(list.isEmpty());
@@ -31,22 +38,14 @@ class CustomArrayListTest {
 
     @Test
     public void givenEmptyList_whenElementIsAdded_thenGetReturnsThatElement() {
-        List<Object> list = new CustomArrayList<>();
+        List<Object> list = new CustomLinkedList<>();
         boolean succeeded = list.add(null);
         assertTrue(succeeded);
     }
 
     @Test
-    public void testInvalidCapacity(){
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            List<String> list = new CustomArrayList<String>(-1);
-        });
-
-    }
-
-    @Test
-    public void testAddElements(){
-        List<String> list = new CustomArrayList<String>();
+    public void testAddElements() {
+        List<String> list = new CustomLinkedList<>();
         list.add(0, "Karol");
         list.add(1, "Vanessa");
         list.add(2, "Amanda");
@@ -55,19 +54,19 @@ class CustomArrayListTest {
         assertEquals("Vanessa", list.get(1));
         assertEquals("Amanda", list.get(2));
 
-        list.add(1, "Mariana");
+        list.add(0, "Mariana");
 
-        assertEquals("Karol", list.get(0));
-        assertEquals("Mariana", list.get(1));
+        assertEquals("Mariana", list.get(0));
+        assertEquals("Karol", list.get(1));
         assertEquals("Vanessa", list.get(2));
         assertEquals("Amanda", list.get(3));
 
-        assertTrue(list.size()==4);
+        assertEquals(list.size(), 4);
     }
 
     @Test
-    public void testSetElement(){
-        List<String> list = new CustomArrayList<>();
+    public void testSetElement() {
+        List<String> list = new CustomLinkedList<>();
         list.add(0, "Karol");
         list.add(1, "Vanessa");
         list.add(2, "Amanda");
@@ -80,59 +79,42 @@ class CustomArrayListTest {
     }
 
     @Test
-    public void testRemoveElement(){
-        CustomArrayList<String> list = new CustomArrayList<>();
+    public void testRemoveElement() {
+        CustomLinkedList<String> list = new CustomLinkedList<>();
         list.add(0, "Karol");
         list.add(1, "Vanessa");
         list.add(2, "Amanda");
 
         assertEquals("Amanda", list.remove(2));
-        assertTrue(list.size() == 2);
+        assertEquals(list.size(), 2);
     }
 
     @Test
-    public void testRemoveWithEmptyList(){
+    public void testRemoveWithEmptyList() {
         Assertions.assertThrows(IndexOutOfBoundsException.class, () -> {
-            List<Object> list = new CustomArrayList<>();
+            List<Object> list = new CustomLinkedList<>();
             list.remove(0);
         });
 
     }
 
     @Test
-    public void whenListIsEmpty_theIteratorHasNextReturnsFalse(){
-        List<String> list = new CustomArrayList<>();
-        Iterator<String> iterator = list.iterator();
-        assertFalse(iterator.hasNext());
-    }
-
-    @Test
-    public void whenListIsEmpty_theIteratorNextThrowsException(){
-        Assertions.assertThrows(NoSuchElementException.class, () -> {
-            List<String> list = new CustomArrayList<>();
-            Iterator<String> iterator = list.iterator();
-            iterator.next();
-        });
-
-    }
-
-    @Test
-    public void whenListIsNotEmpty_theIteratorNextReturnsNextElement(){
-        List<String> list = new CustomArrayList<>();
+    public void whenListIsNotEmpty_theIteratorNextReturnsNextElement() {
+        List<String> list = new CustomLinkedList<>();
         list.add("A");
         list.add("B");
         Iterator<String> iterator = list.iterator();
         assertTrue(iterator.hasNext());
-        assertEquals(iterator.next(),"A");
+        assertEquals(iterator.next(), "A");
         assertTrue(iterator.hasNext());
-        assertEquals(iterator.next(),"B");
+        assertEquals(iterator.next(), "B");
         assertFalse(iterator.hasNext());
     }
 
     @Test
-    public void listIteratorShouldBeFailFast(){
+    public void listIteratorShouldBeFailFast() {
         Assertions.assertThrows(ConcurrentModificationException.class, () -> {
-            List<String> list = new CustomArrayList<>();
+            List<String> list = new CustomLinkedList<>();
             list.add("A");
             list.add("B");
             Iterator<String> iterator = list.iterator();
