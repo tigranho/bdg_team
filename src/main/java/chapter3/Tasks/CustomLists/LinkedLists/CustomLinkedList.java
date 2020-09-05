@@ -1,4 +1,4 @@
-package Tasks.CustomLists.LinkedLists;
+package chapter3.Tasks.CustomLists.LinkedLists;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -830,10 +830,6 @@ public class CustomLinkedList<E> implements List<E>, Deque<E>, Cloneable, Serial
         return null;
     }
 
-    @Override
-    public <T> T[] toArray(IntFunction<T[]> generator) {
-        return toArray(generator.apply(0));
-    }
 
     /**
      * @return a string representation of this collection

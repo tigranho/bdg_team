@@ -1,8 +1,6 @@
-package Tasks;
+package chapter3.Tasks;
 
-import Tasks.CustomLists.ArrayLists.CustomArrayList;
-import Tasks.CustomLists.LinkedLists.CustomLinkedList;
-import Tasks.CustomMaps.CustomHashMap;
+import chapter3.Tasks.CustomLists.LinkedLists.CustomLinkedList;
 
 import java.util.*;
 

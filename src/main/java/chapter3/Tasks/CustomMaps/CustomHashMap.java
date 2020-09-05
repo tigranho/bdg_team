@@ -1,4 +1,4 @@
-package Tasks.CustomMaps;
+package chapter3.Tasks.CustomMaps;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
