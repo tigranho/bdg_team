@@ -1,8 +1,7 @@
 package sam.util;
 
-import java.util.AbstractList;
-import java.util.List;
-import java.util.NoSuchElementException;
+import java.util.*;
+import java.util.function.Consumer;
 
 public class CustomLinkedList<E> extends AbstractList<E> implements List<E> {
     int size = 0;
@@ -13,6 +12,8 @@ public class CustomLinkedList<E> extends AbstractList<E> implements List<E> {
 
     public CustomLinkedList() {
     }
+
+
 
     private void linkFirst(E e) {
         final Node<E> f = first;
@@ -115,7 +116,7 @@ public class CustomLinkedList<E> extends AbstractList<E> implements List<E> {
     }
 
     private void checkIndex(int index) {
-        if(index < 0 || index >= size) {
+        if(index < 0 || index > size) {
             throw new IndexOutOfBoundsException();
         }
     }
@@ -208,6 +209,9 @@ public class CustomLinkedList<E> extends AbstractList<E> implements List<E> {
     @Override
     public E remove(int index) {
         checkIndex(index);
+        if(size == 0) {
+            throw new IndexOutOfBoundsException();
+        }
         return unlink(node(index));
     }
 
@@ -365,4 +369,88 @@ public class CustomLinkedList<E> extends AbstractList<E> implements List<E> {
     }
 
 
+    public ListIterator<E> listIterator(int index) {
+        checkIndex(index);
+        return new ListItr(index);
+    }
+
+    public Iterator<E> iterator() {
+        checkIndex(0);
+        return new ListItr(0);
+    }
+
+    private class ListItr implements ListIterator<E> {
+        private Node<E> lastReturned;
+        private Node<E> next;
+        private int nextIndex;
+
+        ListItr(int index) {
+            next = (index == size) ? null : node(index);
+            nextIndex = index;
+        }
+
+        public boolean hasNext() {
+            return nextIndex < size;
+        }
+
+        public E next() {
+            if (!hasNext())
+                throw new ConcurrentModificationException();
+
+            lastReturned = next;
+            next = next.next;
+            nextIndex++;
+            return lastReturned.item;
+        }
+
+        public boolean hasPrevious() {
+            return nextIndex > 0;
+        }
+
+        public E previous() {
+            if (!hasPrevious())
+                throw new ConcurrentModificationException();
+
+            lastReturned = next = (next == null) ? last : next.prev;
+            nextIndex--;
+            return lastReturned.item;
+        }
+
+        public int nextIndex() {
+            return nextIndex;
+        }
+
+        public int previousIndex() {
+            return nextIndex - 1;
+        }
+
+        public void remove() {
+            if (lastReturned == null)
+                throw new IllegalStateException();
+
+            Node<E> lastNext = lastReturned.next;
+            unlink(lastReturned);
+            if (next == lastReturned)
+                next = lastNext;
+            else
+                nextIndex--;
+            lastReturned = null;
+        }
+
+        public void set(E e) {
+            if (lastReturned == null)
+                throw new IllegalStateException();
+            lastReturned.item = e;
+        }
+
+        public void add(E e) {
+            lastReturned = null;
+            if (next == null)
+                linkLast(e);
+            else
+                linkBefore(e, next);
+            nextIndex++;
+        }
+
+    }
 }

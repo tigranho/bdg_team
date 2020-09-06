@@ -49,6 +49,7 @@ public class CustomArrayList<E> extends AbstractList<E> implements List<E>
 
     @Override
     public boolean add(E e) {
+        modCount++;
         add(e, elementData, size);
         return true;
     }
@@ -92,6 +93,7 @@ public class CustomArrayList<E> extends AbstractList<E> implements List<E>
     }
 
     private void fastRemove(Object[] es, int i) {
+        modCount++;
         final int newSize;
         if ((newSize = size - 1) > i)
             System.arraycopy(es, i + 1, es, i, newSize - i);
@@ -100,6 +102,7 @@ public class CustomArrayList<E> extends AbstractList<E> implements List<E>
 
     @Override
     public void clear() {
+        modCount++;
         for(int i = 0; i< size; i++) {
             elementData[i] = null;
         }
@@ -180,7 +183,40 @@ public class CustomArrayList<E> extends AbstractList<E> implements List<E>
                 }
             }
         }
-
         return -1;
+    }
+
+    public Iterator<E> iterator() {
+        return new Itr();
+    }
+
+    private class Itr implements Iterator<E> {
+        int cursor;       // index of next element to return
+        int lastRet = -1; // index of last element returned; -1 if no such
+        int expectedModCount = modCount;
+
+        Itr() {}
+
+        public boolean hasNext() {
+            return cursor != size;
+        }
+
+        @SuppressWarnings("unchecked")
+        public E next() {
+            checkForComodification();
+            int i = cursor;
+            if (i >= size)
+                throw new NoSuchElementException();
+            Object[] elementData = CustomArrayList.this.elementData;
+            if (i >= elementData.length)
+                throw new ConcurrentModificationException();
+            cursor = i + 1;
+            return (E) elementData[lastRet = i];
+        }
+
+        final void checkForComodification() {
+            if (modCount != expectedModCount)
+                throw new ConcurrentModificationException();
+        }
     }
 }
