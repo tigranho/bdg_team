@@ -1,4 +1,4 @@
-package collections;
+package CustomCollectionTest;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -8,7 +8,7 @@ import sam.util.CustomArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class ArrayListTest {
+public class CustomArrayListTest {
 
     @Test
     public void testListInit() {

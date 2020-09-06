@@ -1,15 +1,14 @@
-package collections;
+package CustomCollectionTest;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import sam.util.CustomArrayList;
 import sam.util.CustomLinkedList;
 
 import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class LinkedListTest {
+public class CustomLinkedListTest {
     @Test
     void notEquals() {
 
