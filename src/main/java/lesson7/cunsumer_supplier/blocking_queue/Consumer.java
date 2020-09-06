@@ -4,7 +4,7 @@ public class Consumer implements Runnable {
     private final Warehouse warehouse;
 
     public Consumer(Warehouse warehouse) {
-        if (warehouse == null) throw new NullPointerException("warehouse not defined");
+        if (warehouse == null) throw new IllegalArgumentException("warehouse not defined");
         this.warehouse = warehouse;
     }
 

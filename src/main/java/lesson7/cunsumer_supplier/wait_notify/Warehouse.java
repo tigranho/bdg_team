@@ -10,15 +10,12 @@ import java.util.concurrent.Executors;
 public class Warehouse {
     private final int limit;
     private static final int WAREHOUSE_SIZE = 35;
-    private final Queue<String> warehouse;
+    private final Queue<String> warehouse = new ConcurrentLinkedQueue<>();;
 
-    public Warehouse(int limit, Queue<String> warehouse) {
-        if (warehouse == null) throw new NullPointerException("warehouse not defined");
+    public Warehouse(int limit) {
         if (limit < 0 || limit > WAREHOUSE_SIZE)
             throw new IllegalArgumentException("illegal warehouse limit: "
                     + limit + "\n limit must be grater than zero and less or equals warehouse max capacity:" + WAREHOUSE_SIZE);
-
-        this.warehouse = warehouse;
         this.limit = limit;
     }
 
@@ -40,8 +37,7 @@ public class Warehouse {
 
     public static void main(String[] args) {
         long start = System.currentTimeMillis();
-        final Queue<String> mainWarehouse = new ConcurrentLinkedQueue<>();
-        final Warehouse warehouse = new Warehouse(30, mainWarehouse);
+        final Warehouse warehouse = new Warehouse(30);
         List<Runnable> workers = new LinkedList<>();
         for (int i = 0; i < 6; i++) {
             if (i % 2 == 0) workers.add(new Producer(warehouse));

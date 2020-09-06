@@ -1,10 +1,8 @@
 package lesson7.cunsumer_supplier.wait_notify;
 
-import java.util.concurrent.atomic.AtomicLong;
-
 public class Producer implements Runnable {
     private final Warehouse warehouse;
-    private static final AtomicLong PROD_GENERATOR = new AtomicLong();
+    private static int PROD_GENERATOR = 0;
 
     public Producer(Warehouse warehouse) {
         if (warehouse == null) throw new NullPointerException("warehouse not defined");
@@ -16,12 +14,12 @@ public class Producer implements Runnable {
         while (true) {
             try {
                 synchronized (warehouse) {
-                    while (warehouse.getSize() > warehouse.getLimit()) {
+                    while (warehouse.getSize() >= warehouse.getLimit()) {
                         warehouse.wait();
                     }
-                    warehouse.addItem("item N%" + PROD_GENERATOR.incrementAndGet());
-                    System.out.println("Produced item N%" + PROD_GENERATOR.get());
-                    if (PROD_GENERATOR.get() == 50000) System.exit(0);
+                    warehouse.addItem("item N%" + (++PROD_GENERATOR));
+                    System.out.println("Produced item N%" + PROD_GENERATOR);
+                    if (PROD_GENERATOR == 50000) System.exit(0);
                     warehouse.notifyAll();
                 }
             } catch (InterruptedException e) {

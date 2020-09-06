@@ -7,7 +7,7 @@ public class Producer implements Runnable {
     private static final AtomicLong PROD_GENERATOR = new AtomicLong();
 
     public Producer(Warehouse warehouse) {
-        if (warehouse == null) throw new NullPointerException("warehouse not defined");
+        if (warehouse == null) throw new IllegalArgumentException("warehouse not defined");
         this.warehouse = warehouse;
     }
 

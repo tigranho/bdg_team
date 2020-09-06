@@ -7,7 +7,7 @@ public class Producer implements Runnable {
     private static final AtomicLong PROD_GENERATOR = new AtomicLong();
 
     public Producer(Warehouse warehouse) {
-        if (warehouse == null) throw new NullPointerException("warehouse not defined");
+        if (warehouse == null) throw new IllegalArgumentException("warehouse not defined");
         this.warehouse = warehouse;
     }
 
@@ -16,11 +16,15 @@ public class Producer implements Runnable {
         while (true) {
             try {
                 warehouse.lock.lock();
-                if (warehouse.getSize() <= warehouse.getLimit()) {
-                    warehouse.addItem("item N%" + PROD_GENERATOR.incrementAndGet());
-                    System.out.println("Produced item N%" + PROD_GENERATOR.get());
-                    if (PROD_GENERATOR.get() == 50000) System.exit(0);
+                while (warehouse.getSize() == warehouse.getLimit()) {
+                    warehouse.isFull.await();
                 }
+                warehouse.addItem("item N%" + PROD_GENERATOR.incrementAndGet());
+                System.out.println("Produced item N%" + PROD_GENERATOR.get());
+                if (PROD_GENERATOR.get() == 50000) System.exit(0);
+                warehouse.isEmpty.signalAll();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             } finally {
                 warehouse.lock.unlock();
             }
