@@ -1,4 +1,4 @@
-package homework.putGetNumsUsingThreads;
+package concurrency.putGetNumsUsingThreads;
 
 public class GetNum implements Runnable{
     public WorkingThread thread;
@@ -8,10 +8,12 @@ public class GetNum implements Runnable{
 
     @Override
     public void run() {
-        for(int i = 0; i < 1_000_000; i++){
-            int g = thread.getNum();
-            System.out.println("Get " + g);
+        synchronized (this){
+            for(int i = 0; i < 1_000_000; i++){
+                int g = thread.getNum();
+                System.out.println("Get " + g);
 //            thread.getNum();
+            }
         }
     }
 }

@@ -1,21 +1,20 @@
-package homework.putGetNumsUsingThreadsAndFlag;
+package concurrency.putGetNumsUsingThreadsAndFlag;
 
-public class GenerateNum implements Runnable{
+public class GetNum implements Runnable{
     ControlThread controlThread;
-    GenerateNum(ControlThread controlThread){
+    GetNum(ControlThread controlThread){
         this.controlThread = controlThread;
     }
     @Override
     public void run() {
         synchronized (this){
-            int i = 0;
+            int i;
             while (true){
+                i = controlThread.getNum();
+                System.out.println("get " + i);
                 if(i == 1_000_000){
                     break;
                 }
-                controlThread.putNum(i);
-                System.out.println("put " + i);
-                i++;
             }
         }
     }

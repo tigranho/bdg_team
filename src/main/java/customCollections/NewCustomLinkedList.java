@@ -2,8 +2,9 @@ package customCollections;
 
 import java.util.*;
 import java.util.List;
+import java.util.function.Consumer;
 
-public class NewCustomLinkedList<T> extends AbstractSequentialList<T>  implements List<T>  {
+public class NewCustomLinkedList<T> extends AbstractSequentialList<T> implements List<T>, Iterator<T> {
 
     private int size;
 
@@ -93,10 +94,10 @@ public class NewCustomLinkedList<T> extends AbstractSequentialList<T>  implement
         checkIndexRange(index);
         NewCustomLinkedList.Node removingElement = getNodeByIndex(index);
         if (removingElement == this.head) {
-            if(size != 1){
+            if (size != 1) {
                 this.head = removingElement.next;
                 removingElement.next.previous = null;
-            }else{
+            } else {
                 this.head = null;
             }
         } else if (removingElement == this.tail) {
@@ -132,18 +133,18 @@ public class NewCustomLinkedList<T> extends AbstractSequentialList<T>  implement
         Node<T> current = this.head;
         int count = 0;
         int index = -1;
-        if(o == null){
-            while (current != null){
-                if(current.item == null){
+        if (o == null) {
+            while (current != null) {
+                if (current.item == null) {
                     index = count;
                     break;
                 }
                 current = current.next;
                 count++;
             }
-        }else {
-            while (current != null){
-                if(o.equals(current.item)){
+        } else {
+            while (current != null) {
+                if (o.equals(current.item)) {
                     index = count;
                     break;
                 }
@@ -159,21 +160,23 @@ public class NewCustomLinkedList<T> extends AbstractSequentialList<T>  implement
         Node<T> current = this.tail;
         int count = 0;
         int index = -1;
-        if(o == null){
-            while (current != null){
-                if(current.item == null){
-                    index = count;
+        if (o == null) {
+            while (current != null) {
+                if (current.item == null) {
+                    index = size - 1 - count;
                     break;
                 }
                 current = current.previous;
+                count++;
             }
-        }else {
-            while (current != null){
-                if(o.equals(current.item)){
-                    index = count;
+        } else {
+            while (current != null) {
+                if (o.equals(current.item)) {
+                    index = size - 1 - count;
                     break;
                 }
                 current = current.previous;
+                count++;
             }
         }
         return index;
@@ -181,7 +184,7 @@ public class NewCustomLinkedList<T> extends AbstractSequentialList<T>  implement
 
     @Override
     public boolean contains(Object o) {
-        if(indexOf(o) >= 0){
+        if (indexOf(o) >= 0) {
             return true;
         }
         return false;
@@ -225,14 +228,35 @@ public class NewCustomLinkedList<T> extends AbstractSequentialList<T>  implement
 //        return true;
 //    }
 
+
+    @Override
+    public void remove() {
+
+    }
+
+    @Override
+    public void forEachRemaining(Consumer<? super T> consumer) {
+
+    }
+
+    @Override
+    public boolean hasNext() {
+        return false;
+    }
+
+    @Override
+    public T next() {
+        return null;
+    }
+
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("[");
         NewCustomLinkedList.Node el = this.head;
-        while (el != null){
+        while (el != null) {
             stringBuilder.append(el.item);
-            if(el != this.tail){
+            if (el != this.tail) {
                 stringBuilder.append(", ");
             }
             el = el.next;
@@ -251,12 +275,12 @@ public class NewCustomLinkedList<T> extends AbstractSequentialList<T>  implement
             element = this.tail;
         } else if (index <= size / 2) {
             element = this.head;
-            for (int i = 0; i <= index; i++) {
+            for (int i = 1; i <= index; i++) {
                 element = element.next;
             }
         } else {
             element = this.tail;
-            for (int i = size - 1; i > index; i--) {
+            for (int i = 1; i <= size-1-index; i++) {
                 element = element.previous;
             }
         }

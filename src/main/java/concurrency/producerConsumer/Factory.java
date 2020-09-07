@@ -1,4 +1,4 @@
-package homework.producerConsumer;
+package concurrency.producerConsumer;
 
 import java.util.ArrayDeque;
 
@@ -14,7 +14,7 @@ public class Factory {
 
 
     synchronized void consume(){
-        if (arrayDeque.size() == 0){
+        while (arrayDeque.size() == 0){
             try {
                 wait();
             }catch (InterruptedException e){
@@ -22,10 +22,10 @@ public class Factory {
             }
         }
         System.out.println("consumed " + arrayDeque.poll());
-        notify();
+        notifyAll();
     }
     synchronized void produce(int i){
-        if (arrayDeque.size() == 100){
+        while (arrayDeque.size() == 100){
             try{
                 wait();
             }catch (InterruptedException e){
@@ -38,7 +38,7 @@ public class Factory {
         }catch (InterruptedException e){
             e.printStackTrace();
         }
-        notify();
+        notifyAll();
     }
     public static void main(String[] args) {
         ArrayDeque<String> arrayDeque = new ArrayDeque<>();

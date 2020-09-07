@@ -1,4 +1,4 @@
-package homework.putGetNumsUsingThreadsAndFlag;
+package concurrency.putGetNumsUsingThreadsAndFlag;
 
 public class putGetNumsByFollowingEachOtherUsingThreads {
     public static void main(String[] args) {

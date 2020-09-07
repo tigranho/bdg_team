@@ -1,4 +1,4 @@
-package homework.producerConsumer;
+package concurrency.producerConsumer;
 
 import java.util.ArrayDeque;
 

@@ -1,10 +1,12 @@
-package homework.sumThreadsGeneratingRandomNumbers;
+package concurrency.sumThreadsGeneratingRandomNumbers;
 
 public class SumThreadsGeneratingRandomNumbers {
     private static int  sum = 0;
     synchronized void generateAndSumRandomNumber(){
         int r = (int) (Math.random()*10);
-        //System.out.println(r);
+//        int i =new Random().nextInt(10);
+//        System.out.println(i);
+//        System.out.println(r);
         sum += r;
         //System.out.println(sum);
     }

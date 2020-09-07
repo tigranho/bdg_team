@@ -1,4 +1,4 @@
-package homework.putGetNumsUsingThreads;
+package concurrency.putGetNumsUsingThreads;
 
 public class GenerateNum implements Runnable{
     public WorkingThread thread;

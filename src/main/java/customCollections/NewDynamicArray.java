@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.function.Consumer;
 
-public class NewDynamicArray<E> extends AbstractList<E> implements List<E> , Iterator<E> {
+public class NewDynamicArray<E> extends AbstractList<E> implements List<E>, Iterator<E> {
     private int size;
     private static final int MAX_ARRAY_SIZE = 2147483639;
     private Object[] array;
@@ -16,8 +16,8 @@ public class NewDynamicArray<E> extends AbstractList<E> implements List<E> , Ite
     }
 
     public NewDynamicArray(int length) {
-        if(length < 0){
-            throw new IllegalArgumentException("Array's capacity can't be negative"+ "Illegal capacity " + length);
+        if (length < 0) {
+            throw new IllegalArgumentException("Array's capacity can't be negative" + "Illegal capacity " + length);
         }
         this.array = new Object[length];
     }
@@ -94,16 +94,16 @@ public class NewDynamicArray<E> extends AbstractList<E> implements List<E> , Ite
 
     @Override
     public boolean remove(Object o) {
-        if(o == null){
-            for(int i = 0; i < size; i++){
-                if(array[i] == null){
+        if (o == null) {
+            for (int i = 0; i < size; i++) {
+                if (array[i] == null) {
                     remove(i);
                     return true;
                 }
             }
-        }else{
-            for(int i = 0; i < size; i++){
-                if(o.equals(array[i])){
+        } else {
+            for (int i = 0; i < size; i++) {
+                if (o.equals(array[i])) {
                     remove(i);
                     return true;
                 }
@@ -114,15 +114,15 @@ public class NewDynamicArray<E> extends AbstractList<E> implements List<E> , Ite
 
     @Override
     public int indexOf(Object o) {
-        if(o == null){
-            for(int i = 0; i < size; i++){
-                if(array[i] == null){
+        if (o == null) {
+            for (int i = 0; i < size; i++) {
+                if (array[i] == null) {
                     return i;
                 }
             }
-        }else {
-            for(int i = 0; i < size; i++){
-                if(o.equals(array[i])){
+        } else {
+            for (int i = 0; i < size; i++) {
+                if (o.equals(array[i])) {
                     return i;
                 }
             }
@@ -132,15 +132,15 @@ public class NewDynamicArray<E> extends AbstractList<E> implements List<E> , Ite
 
     @Override
     public int lastIndexOf(Object o) {
-        if(o == null){
-            for(int i = size - 1; i >= 0; i--){
-                if(array[i] == null){
+        if (o == null) {
+            for (int i = size - 1; i >= 0; i--) {
+                if (array[i] == null) {
                     return i;
                 }
             }
-        }else {
-            for(int i = size - 1; i >= 0; i--){
-                if(o.equals(array[i])){
+        } else {
+            for (int i = size - 1; i >= 0; i--) {
+                if (o.equals(array[i])) {
                     return i;
                 }
             }
@@ -150,12 +150,11 @@ public class NewDynamicArray<E> extends AbstractList<E> implements List<E> , Ite
 
     @Override
     public boolean contains(Object o) {
-        if(indexOf(o) >= 0){
+        if (indexOf(o) >= 0) {
             return true;
         }
         return false;
     }
-
 
 
     //    @Override

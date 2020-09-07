@@ -1,4 +1,4 @@
-package homework.putGetNumsUsingThreads;
+package concurrency.putGetNumsUsingThreads;
 
 public class FirstThreadIncrementSharedIntegerSecondThreadPrintWithoutWaiting {
     public static void main(String[] args) {

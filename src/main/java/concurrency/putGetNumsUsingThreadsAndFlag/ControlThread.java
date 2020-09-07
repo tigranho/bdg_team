@@ -1,10 +1,10 @@
-package homework.putGetNumsUsingThreadsAndFlag;
+package concurrency.putGetNumsUsingThreadsAndFlag;
 
 public class ControlThread {
     int num;
     boolean flag = false;
     synchronized int getNum(){
-        if(!flag){
+        while (!flag){
             try{
                 wait();
             }catch (InterruptedException e){
@@ -12,11 +12,11 @@ public class ControlThread {
             }
         }
         flag = false;
-        notify();
+        notifyAll();
         return num;
     }
     synchronized int putNum(int num){
-        if(flag){
+        while (flag){
             try{
                 wait();
             }catch (InterruptedException e){
@@ -30,7 +30,7 @@ public class ControlThread {
         }catch (InterruptedException e){
             e.printStackTrace();
         }
-        notify();
+        notifyAll();
         return num;
     }
 }
