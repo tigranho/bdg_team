@@ -1,4 +1,4 @@
-package Tasks.CustomLists.ArrayLists;
+package tasks.customLists.arrayLists;
 
 import org.jetbrains.annotations.NotNull;
 

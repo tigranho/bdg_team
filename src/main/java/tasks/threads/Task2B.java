@@ -1,4 +1,4 @@
-package Tasks.Threads;
+package tasks.threads;
 
 public class Task2B {
     public static void main(String[] args) throws InterruptedException {
