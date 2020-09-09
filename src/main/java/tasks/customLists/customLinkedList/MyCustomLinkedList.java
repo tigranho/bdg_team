@@ -1,4 +1,4 @@
-package customLists.LinkedList;
+package tasks.customLists.customLinkedList;
 
 import java.util.*;
 

@@ -1,4 +1,4 @@
-package customLists.ArrayList;
+package tasks.customLists.customArrayList;
 
 /**
  * @author Tatevik Mirzoyan

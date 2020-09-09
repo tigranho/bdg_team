@@ -1,4 +1,4 @@
-package customLists.ArrayList;
+package tasks.customLists.customArrayList;
 
 import java.util.Collection;
 import java.util.Iterator;
