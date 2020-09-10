@@ -2,10 +2,10 @@ package concurrency.putGetNumsUsingThreads;
 
 public class WorkingThread {
     int num;
-    public synchronized int getNum(){
+    public int getNum(){
         return num;
     }
-    public synchronized int putNum(int num){
+    public int putNum(int num){
         this.num = num;
         try{
             Thread.sleep(1000);

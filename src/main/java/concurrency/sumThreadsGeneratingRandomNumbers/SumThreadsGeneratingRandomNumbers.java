@@ -6,9 +6,9 @@ public class SumThreadsGeneratingRandomNumbers {
         int r = (int) (Math.random()*10);
 //        int i =new Random().nextInt(10);
 //        System.out.println(i);
-//        System.out.println(r);
+        System.out.println(r);
         sum += r;
-        //System.out.println(sum);
+        System.out.println(sum);
     }
     public static void main(String[] args) {
         SumThreadsGeneratingRandomNumbers s = new SumThreadsGeneratingRandomNumbers();

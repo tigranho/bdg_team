@@ -3,7 +3,7 @@ package concurrency.producerConsumer;
 import java.util.ArrayDeque;
 
 public class Consumer implements Runnable{
-    private volatile ArrayDeque<String> arrayDeque;
+    private ArrayDeque<String> arrayDeque;
     private Factory factory;
     public Consumer(Factory factory){
         this.arrayDeque = factory.getArrayDeque();

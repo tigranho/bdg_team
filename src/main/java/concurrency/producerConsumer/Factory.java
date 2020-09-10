@@ -3,7 +3,7 @@ package concurrency.producerConsumer;
 import java.util.ArrayDeque;
 
 public class Factory {
-    private volatile ArrayDeque<String> arrayDeque;
+    private ArrayDeque<String> arrayDeque;
     public Factory(ArrayDeque arrayDeque){
         this.arrayDeque = arrayDeque;
     }
@@ -13,7 +13,7 @@ public class Factory {
     }
 
 
-    synchronized void consume(){
+    void consume(){
         while (arrayDeque.size() == 0){
             try {
                 wait();
@@ -24,7 +24,7 @@ public class Factory {
         System.out.println("consumed " + arrayDeque.poll());
         notifyAll();
     }
-    synchronized void produce(int i){
+    void produce(int i){
         while (arrayDeque.size() == 100){
             try{
                 wait();

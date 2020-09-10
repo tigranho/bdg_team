@@ -3,7 +3,7 @@ package concurrency.putGetNumsUsingThreadsAndFlag;
 public class ControlThread {
     int num;
     boolean flag = false;
-    synchronized int getNum(){
+    int getNum(){
         while (!flag){
             try{
                 wait();
@@ -15,7 +15,7 @@ public class ControlThread {
         notifyAll();
         return num;
     }
-    synchronized int putNum(int num){
+    int putNum(int num){
         while (flag){
             try{
                 wait();
