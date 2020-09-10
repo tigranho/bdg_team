@@ -1,12 +1,20 @@
+<<<<<<< HEAD
 ##############################
 ## IntelliJ
 ##############################
 out/
 /target/
 /.idea/
+=======
+out/
+>>>>>>> 2caff536220d7ec98edc475eeb77d6825be751e7
 .idea/
 .idea_modules/
 *.iml
 *.ipr
 *.iws
+<<<<<<< HEAD
 
+=======
+.idea
+>>>>>>> 2caff536220d7ec98edc475eeb77d6825be751e7
