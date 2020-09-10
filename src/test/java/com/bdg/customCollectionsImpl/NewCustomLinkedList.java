@@ -1,14 +1,10 @@
-package com.bdg.customCollectionsIml;
+package com.bdg.customCollectionsImpl;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import customCollections.NewDynamicArray;
 import org.junit.jupiter.api.Test;
 
-import java.util.ConcurrentModificationException;
-import java.util.Iterator;
 import java.util.List;
-import java.util.NoSuchElementException;
 
 
 public class NewCustomLinkedList {

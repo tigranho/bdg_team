@@ -1,4 +1,4 @@
-package com.bdg.customCollectionsIml;
+package com.bdg.customCollectionsImpl;
 
 import static org.junit.jupiter.api.Assertions.*;
 
