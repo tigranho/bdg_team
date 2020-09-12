@@ -19,7 +19,10 @@ public class ScrollingResultSet {
             out.println(rs.first());
             out.println(rs.getInt(1));
             rs.beforeFirst();
-            out.println(rs.getInt(1));
+            out.println(rs.absolute(-1));
+            rs.relative(3);
+            rs.relative(-5);
+//            out.println(rs.getInt(1));
         } catch (SQLException e) {
             e.printStackTrace();
         }
