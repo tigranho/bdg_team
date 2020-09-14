@@ -14,13 +14,11 @@ public class WareHouse {
             try {
                 wait();
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                System.out.println("InterruptedException thrown");
             }
         }
-        while (wareHouse.size() < 100) {
-            wareHouse.offer("Produced element");
-            notify();
-        }
+        wareHouse.offer("Produced element");
+        notify();
     }
 
     public synchronized void consume() {
@@ -28,12 +26,10 @@ public class WareHouse {
             try {
                 wait();
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                System.out.println("InterruptedException thrown");
             }
         }
-        while (wareHouse.size() > 0) {
-            System.out.println("Consumed the " + wareHouse.poll());
-            notify();
-        }
+        System.out.println("Consumed the " + wareHouse.poll());
+        notify();
     }
 }

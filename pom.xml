@@ -23,6 +23,7 @@
     <modules>
         <module>Threads</module>
         <module>Collections</module>
+        <module>JDBC</module>
     </modules>
 
     <dependencies>

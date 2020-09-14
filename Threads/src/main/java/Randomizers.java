@@ -1,14 +1,18 @@
 import java.util.Random;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.IntSupplier;
 import java.util.function.Supplier;
 
 public class Randomizers {
-    private static int sum;
+    private static AtomicInteger sum = new AtomicInteger(0);
 
     private static void randomNumberAccumulator() {
-        Supplier<Integer> a = () -> new Random().nextInt(10);
-        sum += a.get();
+        IntSupplier a = () -> new Random().nextInt(10);
+        int i = a.getAsInt();
+//        System.out.println("Random Number: " + i);
+        sum.addAndGet(i);
     }
 
     public static void main(String[] args) {
@@ -22,6 +26,6 @@ public class Randomizers {
             if (service != null) service.shutdown();
         }
 
-        System.out.println(sum);
+        System.out.println("Sum: " + sum.get());
     }
 }
