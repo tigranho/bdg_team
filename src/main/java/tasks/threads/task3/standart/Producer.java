@@ -1,4 +1,4 @@
-package tasks.threads.task3;
+package tasks.threads.task3.standart;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

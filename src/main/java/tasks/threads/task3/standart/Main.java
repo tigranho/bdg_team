@@ -1,4 +1,4 @@
-package tasks.threads.task3;
+package tasks.threads.task3.standart;
 
 public class Main {
     public static void main(String[] args) {
