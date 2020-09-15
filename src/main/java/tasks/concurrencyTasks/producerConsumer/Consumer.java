@@ -1,8 +1,6 @@
 package tasks.concurrencyTasks.producerConsumer;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Stream;
 
 /**
  * @author Tatevik Mirzoyan
@@ -29,7 +27,7 @@ public class Consumer extends Thread {
             try {
                 wait();
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                System.out.println("Throws Interrupted Exception");
             }
         }
     }

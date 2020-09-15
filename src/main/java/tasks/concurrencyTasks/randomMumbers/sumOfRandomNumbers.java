@@ -27,14 +27,17 @@ public class sumOfRandomNumbers {
             thread4.join();
             thread5.join();
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            System.out.println("Throws Interrupted Exception");
         }
 
-        System.out.println(sum);
+        System.out.println("\b\b = " + sum);
+        System.out.println("The average of numbers is " + (double)sum / 5);
     }
 
     static synchronized void getRandomNumber() {
-        sum += (int) (Math.random() * 10) + 1;
+        int num = (int) (Math.random() * 10) + 1;
+        System.out.print(num + " + ");
+        sum += num;
     }
 
 

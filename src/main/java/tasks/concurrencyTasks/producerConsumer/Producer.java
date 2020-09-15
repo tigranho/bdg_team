@@ -30,7 +30,7 @@ public class Producer extends Thread {
                 try {
                     wait();
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    System.out.println("Throws Interrupted Exception");
                 }
             }
         }

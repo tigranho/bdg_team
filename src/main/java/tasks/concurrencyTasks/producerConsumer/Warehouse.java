@@ -30,7 +30,7 @@ public class Warehouse {
             threadConsumer1.join();
             threadConsumer2.join();
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            System.out.println("Throws Interrupted Exception");
         }
         System.out.println(warehouse);
     }

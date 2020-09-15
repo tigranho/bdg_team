@@ -10,17 +10,15 @@ public class IncrementingTask2 {
         for (int i = 0; i < 100; i++) {
             number++;
         }
-            if (number == 100) {
-                notify();
-        }
+        notify();
     }
 
     synchronized void print() {
-        if (number == 0) {
+        while (number < 100) {
             try {
                 wait();
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                System.out.println("Throws Interrupted Exception");
             }
         }
         System.out.println(number);
@@ -28,9 +26,9 @@ public class IncrementingTask2 {
 
     public static void main(String[] args) {
         IncrementingTask2 object = new IncrementingTask2();
-        Thread thread = new Thread(object::increment);
-        Thread thread1 = new Thread(object::print);
-        thread.start();
+        Thread thread1 = new Thread(object::increment);
+        Thread thread2 = new Thread(object::print);
         thread1.start();
+        thread2.start();
     }
 }
