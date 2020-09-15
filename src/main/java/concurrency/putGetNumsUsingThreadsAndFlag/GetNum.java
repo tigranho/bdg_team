@@ -1,18 +1,20 @@
 package concurrency.putGetNumsUsingThreadsAndFlag;
 
-public class GetNum implements Runnable{
+public class GetNum implements Runnable {
     ControlThread controlThread;
-    GetNum(ControlThread controlThread){
+
+    GetNum(ControlThread controlThread) {
         this.controlThread = controlThread;
     }
+
     @Override
     public void run() {
-        synchronized (this){
+        synchronized (this) {
             int i;
-            while (true){
+            while (true) {
                 i = controlThread.getNum();
                 System.out.println("get " + i);
-                if(i == 1_000_000){
+                if (i == 1_000_000) {
                     break;
                 }
             }

@@ -2,17 +2,19 @@ package concurrency.producerConsumer;
 
 import java.util.ArrayDeque;
 
-public class Consumer implements Runnable{
+public class Consumer implements Runnable {
     private ArrayDeque<String> arrayDeque;
     private Factory factory;
-    public Consumer(Factory factory){
+
+    public Consumer(Factory factory) {
         this.arrayDeque = factory.getArrayDeque();
         this.factory = factory;
     }
+
     @Override
     public void run() {
         synchronized (this) {
-            while (true){
+            while (true) {
                 factory.consume();
             }
         }

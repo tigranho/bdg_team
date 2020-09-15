@@ -10,29 +10,29 @@ import java.util.List;
 public class NewCustomLinkedList {
 
     @Test
-    public void testListInit(){
-        List<Object> list = new customCollections.NewCustomLinkedList<>();
+    public void testListInit() {
+        List<Object> list = new customcollections.NewCustomLinkedList<>();
         assertTrue(list.size() == 0);
         assertTrue(list.isEmpty());
     }
 
     @Test
-    public void testNonEmptyList_isEmptyMethodReturnsFalse(){
-        List<Integer> list = new customCollections.NewCustomLinkedList<>();
+    public void testNonEmptyList_isEmptyMethodReturnsFalse() {
+        List<Integer> list = new customcollections.NewCustomLinkedList<>();
         list.add(12);
         assertFalse(list.isEmpty());
     }
 
     @Test
-    public void testAddElementIntoList_addMethodReturnsTrue(){
-        List<String> list = new customCollections.NewCustomLinkedList<>();
+    public void testAddElementIntoList_addMethodReturnsTrue() {
+        List<String> list = new customcollections.NewCustomLinkedList<>();
         assertTrue(list.add("add"));
     }
 
     @Test
-    public void addElements(){
-        List<Integer> list = new customCollections.NewCustomLinkedList<>();
-        list.add(0,12);
+    public void addElements() {
+        List<Integer> list = new customcollections.NewCustomLinkedList<>();
+        list.add(0, 12);
         list.add(1, 5);
         list.add(2, 25);
 
@@ -52,8 +52,8 @@ public class NewCustomLinkedList {
     }
 
     @Test
-    public void testSetElements(){
-        List<String> list = new customCollections.NewCustomLinkedList<>();
+    public void testSetElements() {
+        List<String> list = new customcollections.NewCustomLinkedList<>();
         list.add("as");
         list.add(1, "sd");
         list.add(2, "fsf");
@@ -70,8 +70,8 @@ public class NewCustomLinkedList {
     }
 
     @Test
-    public void testRemoveelement(){
-        List<String> list = new customCollections.NewCustomLinkedList<>();
+    public void testRemoveelement() {
+        List<String> list = new customcollections.NewCustomLinkedList<>();
         list.add("as");
         list.add("asfsdf");
 
@@ -81,16 +81,16 @@ public class NewCustomLinkedList {
     }
 
     @Test
-    public void testRemoveEmptyList(){
-        assertThrows(ArrayIndexOutOfBoundsException.class, ()->{
-            List<String> list = new customCollections.NewCustomLinkedList<>();
+    public void testRemoveEmptyList() {
+        assertThrows(ArrayIndexOutOfBoundsException.class, () -> {
+            List<String> list = new customcollections.NewCustomLinkedList<>();
             list.remove(0);
         });
     }
 
     @Test
-    public void testIndexOf(){
-        List<Integer> list = new customCollections.NewCustomLinkedList<>();
+    public void testIndexOf() {
+        List<Integer> list = new customcollections.NewCustomLinkedList<>();
         list.add(23);
         list.add(35);
         list.add(1, 52);
@@ -100,8 +100,8 @@ public class NewCustomLinkedList {
     }
 
     @Test
-    public void testLastIndexOf(){
-        List<Integer> list = new customCollections.NewCustomLinkedList<>();
+    public void testLastIndexOf() {
+        List<Integer> list = new customcollections.NewCustomLinkedList<>();
         list.add(23);
         list.add(35);
         list.add(35);
@@ -114,8 +114,8 @@ public class NewCustomLinkedList {
     }
 
     @Test
-    public void testContains(){
-        List<Integer> list = new customCollections.NewCustomLinkedList<>();
+    public void testContains() {
+        List<Integer> list = new customcollections.NewCustomLinkedList<>();
         list.add(15);
         list.add(65);
         assertTrue(list.contains(65));

@@ -10,21 +10,21 @@ public class NewDynamicArray {
 
     @Test
     public void testListInit() {
-        List<Object> list = new customCollections.NewDynamicArray<>();
+        List<Object> list = new customcollections.NewDynamicArray<>();
         assertTrue(list.isEmpty());
         assertTrue(list.size() == 0);
     }
 
     @Test
     public void testNonEmptyList_isEmptyMethodReturnsFalse() {
-        List<Object> list = new customCollections.NewDynamicArray<>();
+        List<Object> list = new customcollections.NewDynamicArray<>();
         list.add("ass");
         assertFalse(list.isEmpty());
     }
 
     @Test
     public void testAddElementIntoList_addMethodRetursTrue() {
-        List<Object> list = new customCollections.NewDynamicArray<>();
+        List<Object> list = new customcollections.NewDynamicArray<>();
         boolean succeed = list.add(null);
         assertTrue(succeed);
     }
@@ -32,13 +32,13 @@ public class NewDynamicArray {
     @Test
     public void testInvalidCapacity() {
         assertThrows(IllegalArgumentException.class, () -> {
-            List<String> list = new customCollections.NewDynamicArray<>(-5);
+            List<String> list = new customcollections.NewDynamicArray<>(-5);
         });
     }
 
     @Test
     public void testAddElements() {
-        List<String> list = new customCollections.NewDynamicArray<>();
+        List<String> list = new customcollections.NewDynamicArray<>();
         list.add(0, "a");
         list.add(1, "b");
         list.add("as");
@@ -59,7 +59,7 @@ public class NewDynamicArray {
 
     @Test
     public void testSetElement() {
-        List<Integer> list = new customCollections.NewDynamicArray<>();
+        List<Integer> list = new customcollections.NewDynamicArray<>();
 
         list.add(12);
         list.add(13);
@@ -78,7 +78,7 @@ public class NewDynamicArray {
 
     @Test
     public void testRemoveElement() {
-        List<Integer> list = new customCollections.NewDynamicArray<>();
+        List<Integer> list = new customcollections.NewDynamicArray<>();
 
         list.add(10);
         list.add(11);
@@ -91,28 +91,28 @@ public class NewDynamicArray {
     @Test
     public void testRemoveEmptyList() {
         assertThrows(ArrayIndexOutOfBoundsException.class, () -> {
-            List<Integer> list = new customCollections.NewDynamicArray<>();
+            List<Integer> list = new customcollections.NewDynamicArray<>();
             list.remove(2);
         });
     }
 
     @Test
     public void testWhenListIsEmpty_theIteratorsHasNextReturnsFalse() {
-        List<Integer> l = new customCollections.NewDynamicArray<>();
+        List<Integer> l = new customcollections.NewDynamicArray<>();
         assertFalse(l.iterator().hasNext());
     }
 
     @Test
     public void testWhenListIsEmpty_theIteratorsNextMethodWillThrowException() {
         assertThrows(NoSuchElementException.class, () -> {
-            List<String> list = new customCollections.NewDynamicArray<>();
+            List<String> list = new customcollections.NewDynamicArray<>();
             list.iterator().next();
         });
     }
 
     @Test
     public void testWhenListIsNotEmpty_theIteratorsHasNextMethodReturnsTrue() {
-        List<Integer> list = new customCollections.NewDynamicArray<>();
+        List<Integer> list = new customcollections.NewDynamicArray<>();
         list.add(12);
         Iterator<Integer> l = list.iterator();
         assertTrue(l.hasNext());
@@ -120,7 +120,7 @@ public class NewDynamicArray {
 
     @Test
     public void testWhenListIteratorIsNotEmpty_theIteratorsNextReturnsNextElement() {
-        List<String> list = new customCollections.NewDynamicArray<>();
+        List<String> list = new customcollections.NewDynamicArray<>();
         list.add("a");
         list.add("asd");
         list.add("sd");
@@ -137,7 +137,7 @@ public class NewDynamicArray {
     @Test
     public void listIteratorShouldBeFailFast() {
         assertThrows(ConcurrentModificationException.class, () -> {
-            List<Integer> list = new customCollections.NewDynamicArray<>();
+            List<Integer> list = new customcollections.NewDynamicArray<>();
             list.add(12);
             list.add(15);
             Iterator<Integer> l = list.iterator();
@@ -148,8 +148,8 @@ public class NewDynamicArray {
     }
 
     @Test
-    public void testIndexOf(){
-        List<Integer> list = new customCollections.NewDynamicArray<>();
+    public void testIndexOf() {
+        List<Integer> list = new customcollections.NewDynamicArray<>();
         list.add(23);
         list.add(35);
         list.add(1, 52);
@@ -159,8 +159,8 @@ public class NewDynamicArray {
     }
 
     @Test
-    public void testLastIndexOf(){
-        List<Integer> list = new customCollections.NewDynamicArray<>();
+    public void testLastIndexOf() {
+        List<Integer> list = new customcollections.NewDynamicArray<>();
         list.add(23);
         list.add(35);
         list.add(35);
@@ -169,8 +169,8 @@ public class NewDynamicArray {
     }
 
     @Test
-    public void testContains(){
-        List<Integer> list = new customCollections.NewDynamicArray<>();
+    public void testContains() {
+        List<Integer> list = new customcollections.NewDynamicArray<>();
         list.add(15);
         list.add(65);
         assertTrue(list.contains(65));

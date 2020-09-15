@@ -3,11 +3,12 @@ package concurrency.putGetNumsUsingThreadsAndFlag;
 public class ControlThread {
     int num;
     boolean flag = false;
-    int getNum(){
-        while (!flag){
-            try{
+
+    int getNum() {
+        while (!flag) {
+            try {
                 wait();
-            }catch (InterruptedException e){
+            } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
@@ -15,19 +16,20 @@ public class ControlThread {
         notifyAll();
         return num;
     }
-    int putNum(int num){
-        while (flag){
-            try{
+
+    int putNum(int num) {
+        while (flag) {
+            try {
                 wait();
-            }catch (InterruptedException e){
+            } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
         this.num = num;
         flag = true;
-        try{
+        try {
             Thread.sleep(1000);
-        }catch (InterruptedException e){
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
         notifyAll();

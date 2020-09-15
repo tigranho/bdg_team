@@ -9,10 +9,10 @@ public class FirstThreadIncrementSharedIntegerSecondThreadPrintWithoutWaiting {
         Thread thread1 = new Thread(get);
         thread.start();
         thread1.start();
-        try{
+        try {
             thread.join();
             thread1.join();
-        }catch (InterruptedException e){
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }

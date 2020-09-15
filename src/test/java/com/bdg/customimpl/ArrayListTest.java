@@ -1,8 +1,7 @@
 package com.bdg.customimpl;
 
 
-import customCollections.NewCustomLinkedList;
-import customCollections.NewDynamicArray;
+import customcollections.NewDynamicArray;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

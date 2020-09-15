@@ -2,14 +2,16 @@ package concurrency.putGetNumsUsingThreads;
 
 public class WorkingThread {
     int num;
-    public int getNum(){
+
+    public int getNum() {
         return num;
     }
-    public int putNum(int num){
+
+    public int putNum(int num) {
         this.num = num;
-        try{
+        try {
             Thread.sleep(1000);
-        }catch (InterruptedException e){
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
         return num;
