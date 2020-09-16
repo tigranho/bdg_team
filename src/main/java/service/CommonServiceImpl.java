@@ -1,15 +1,9 @@
 package service;
 
-import model.PC;
-import model.Printer;
 import repository.FirmRepo;
 import repository.FirmRepoImpl;
-
 import java.sql.SQLException;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Set;
+
 
 public class CommonServiceImpl implements CommonService{
     FirmRepo firmRepo;

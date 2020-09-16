@@ -1,12 +1,6 @@
 import model.PC;
-import model.Printer;
-import org.junit.Assert;
-import org.junit.Test;
 import repository.FirmRepo;
-import repository.FirmRepoImpl;
-import service.CommonService;
-import service.CommonServiceImpl;
-
+import repository.FirmRepoImpl;:
 import java.sql.SQLException;
 import java.util.*;
 

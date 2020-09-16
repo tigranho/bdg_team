@@ -1,9 +1,7 @@
 package repository;
 
-import model.Laptop;
 import model.PC;
 import model.Printer;
-import model.Product;
 
 import java.sql.SQLException;
 import java.util.List;
