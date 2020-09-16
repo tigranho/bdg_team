@@ -1,5 +1,6 @@
-CREATE DATABASE taburetka;
-CREATE TABLE taburetka.Laptop (
+CREATE DATABASE mydb;
+use mydb;
+CREATE TABLE Laptop (
 	code int NOT NULL ,
 	model varchar (4) NOT NULL ,
 	speed decimal(4, 0) NOT NULL ,
@@ -10,7 +11,7 @@ CREATE TABLE taburetka.Laptop (
 );
 
 
-CREATE TABLE taburetka.PC (
+CREATE TABLE PC (
 	code int NOT NULL ,
 	model varchar (4) NOT NULL ,
 	speed decimal(4, 0) NOT NULL ,
@@ -21,14 +22,14 @@ CREATE TABLE taburetka.PC (
 );
 
 
-CREATE TABLE taburetka.Product (
+CREATE TABLE Product (
 	maker char (1) NOT NULL ,
 	model varchar (4) NOT NULL ,
 	type varchar (7) NOT NULL
 );
 
 
-CREATE TABLE taburetka.Printer (
+CREATE TABLE Printer (
 	code int NOT NULL ,
 	model varchar (4) NOT NULL ,
 	color char (1) NOT NULL ,
@@ -36,34 +37,34 @@ CREATE TABLE taburetka.Printer (
 	price float NOT NULL
 );
 
-ALTER TABLE taburetka.Laptop  ADD
+ALTER TABLE Laptop  ADD
 	CONSTRAINT PK_Laptop PRIMARY KEY  NONCLUSTERED
 	(
 		code
 	) ;
 
-ALTER TABLE taburetka.PC  ADD
+ALTER TABLE PC  ADD
 	CONSTRAINT PK_PC PRIMARY KEY  NONCLUSTERED
 	(
 		code
 	) ;
 
 
-ALTER TABLE taburetka.Product  ADD
+ALTER TABLE Product  ADD
 	CONSTRAINT PK_Product PRIMARY KEY  NONCLUSTERED
 	(
 		model
 	) ;
 
 
-ALTER TABLE taburetka.Printer  ADD
+ALTER TABLE Printer  ADD
 	CONSTRAINT PK_Printer PRIMARY KEY  NONCLUSTERED
 	(
 		code
 	) ;
 
 
-ALTER TABLE taburetka.Laptop ADD
+ALTER TABLE Laptop ADD
 	CONSTRAINT FK_Laptop_Product FOREIGN KEY
 	(
 		model
@@ -72,7 +73,7 @@ ALTER TABLE taburetka.Laptop ADD
 	);
 
 
-ALTER TABLE taburetka.PC ADD
+ALTER TABLE PC ADD
 	CONSTRAINT FK_PC_Product FOREIGN KEY
 	(
 		model
@@ -81,14 +82,14 @@ ALTER TABLE taburetka.PC ADD
 	);
 
 
-ALTER TABLE taburetka.Printer ADD
+ALTER TABLE Printer ADD
 	CONSTRAINT FK_Printer_Product FOREIGN KEY
 	(
 		model
 	) REFERENCES Product (
 		model
 	);
-use taburetka;
+
 insert into Product values('B','1121','PC');
 insert into Product values('A','1232','PC');
 insert into Product values('A','1233','PC');
