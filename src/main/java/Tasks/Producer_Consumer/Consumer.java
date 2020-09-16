@@ -24,7 +24,7 @@ public class Consumer extends Thread {
         while (warehouse.size() == 0) {
                 wait();
         }
-        System.out.println(warehouse.poll() + " is consumed");
+        System.out.println(warehouse.remove() + " is consumed");
         notify();
     }
 }
