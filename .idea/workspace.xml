@@ -2,7 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="02049015-7a73-40bc-878b-01e4dc8d50b7" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/commondbproperties/DBConnection.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/commondbproperties/LoadProperties.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/Laptop.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/PC.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/Printer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/Product.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/repository/FirmRepo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/repository/FirmRepoImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/service/CommonService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/service/CommonServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/applicaiton.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/CommonServiceImplTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/packageForConcurency/lockThreads/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/packageForConcurency/lockThreads/ProducConsum.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/packageForConcurency/lockThreads/Queue.java" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -34,7 +50,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15136719" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -75,7 +91,12 @@
       <workItem from="1599469981517" duration="713000" />
       <workItem from="1599507302451" duration="48000" />
       <workItem from="1599543837546" duration="728000" />
-      <workItem from="1599630340431" duration="591000" />
+      <workItem from="1599630340431" duration="4332000" />
+      <workItem from="1599726210683" duration="592000" />
+      <workItem from="1599727819691" duration="68000" />
+      <workItem from="1599727920193" duration="14000" />
+      <workItem from="1600192654719" duration="1919000" />
+      <workItem from="1600233244172" duration="5090000" />
     </task>
     <task id="LOCAL-00001" summary="Adding a new package with task1 name">
       <created>1597589746874</created>
