@@ -10,6 +10,9 @@ public class Passenger {
     private Address address;
     Set<Trip> trips;
 
+    public Passenger() {
+    }
+
     public Passenger(String name, String phone, Address address) {
         this.name = name;
         this.phone = phone;

@@ -31,7 +31,7 @@ public class TripDAOImpl implements TripDAO {
                 trip.setId(rs.getLong("trip_id"));
             }
         } catch (SQLException e) {
-            System.err.println("failed to save data: message: " + e.getMessage());
+            System.err.printf("failed to fetch trip by id:%d message:%s%n", id, e.getMessage());
         }
         return Optional.ofNullable(trip);
     }
@@ -108,9 +108,9 @@ public class TripDAOImpl implements TripDAO {
                     trip.setId(genKey.getLong(1));
             }
         } catch (SQLException e) {
-            System.err.println("failed to save data: message: " + e.getMessage());
+            System.err.printf("failed to save trip by id:%d message:%s%n", trip.getId(), e.getMessage());
         }
-        return Optional.of(trip);
+        return Optional.ofNullable(trip);
     }
 
     @Override
@@ -175,9 +175,9 @@ public class TripDAOImpl implements TripDAO {
             if (stmt.executeUpdate() == 1)
                 System.out.printf("trip by id:%d successfully updated%n", trip.getId());
         } catch (SQLException e) {
-            System.err.println(e.getSQLState());
+            System.err.printf("failed to update trip by id:%d message:%s%n ", trip.getId(),  e.getMessage());
         }
-        return Optional.of(trip);
+        return Optional.ofNullable(trip);
     }
 
     @Override
@@ -189,7 +189,7 @@ public class TripDAOImpl implements TripDAO {
             if (stmt.executeUpdate() == 1)
                 System.out.printf("trip by id:%d successfully deleted%n", tripId);
         } catch (SQLException e) {
-            System.err.println(e.getMessage());
+            System.err.printf("failed to delete trip by id:%d message:%s%n ", tripId,  e.getMessage());
         }
     }
 
@@ -256,7 +256,7 @@ public class TripDAOImpl implements TripDAO {
                 trips.add(trip);
             }
         } catch (SQLException e) {
-            System.err.println(e.getSQLState());
+            System.err.printf("failed to fetch trips by city:%s message:%s%n ", city, e.getMessage());
         }
         return trips != null ? trips : Collections.emptyList();
     }

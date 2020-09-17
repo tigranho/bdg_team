@@ -10,6 +10,9 @@ public class Company {
     private LocalDate foundingDate;
     private Set<Trip> trips;
 
+    public Company() {
+    }
+
     public Company(String name, LocalDate foundingDate) {
         this.name = name;
         this.foundingDate = foundingDate;

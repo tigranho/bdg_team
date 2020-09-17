@@ -13,6 +13,9 @@ public class Trip {
     private String toCity;
     private Set<Passenger> passengers;
 
+    public Trip() {
+    }
+
     public Trip(Company company, LocalDateTime timeIn, LocalDateTime timeOut, String fromCity, String toCity) {
         this.company = company;
         this.timeIn = timeIn;

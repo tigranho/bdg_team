@@ -1,11 +1,11 @@
 package lesson10.airport_management_system.service;
 
 public interface PassengerTripService {
-    void create(long passengerId, long tripId);
+    boolean create(long passengerId, long tripId);
 
-    void createAll(String path);
+    void loadPassengersTripsInfoFromFileAndCreateAll(String path);
 
-    void remove(long passengerId, long tripId);
+    boolean remove(long passengerId, long tripId);
 
     boolean editPassengerId(long newPassengerId, long tripId);
 

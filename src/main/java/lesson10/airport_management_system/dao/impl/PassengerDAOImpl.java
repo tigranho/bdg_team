@@ -25,38 +25,43 @@ public class PassengerDAOImpl implements PassengerDAO {
                 passenger.setId(rs.getLong("id"));
             }
         } catch (SQLException e) {
-            System.err.println(e.getSQLState());
+            System.err.println("failed to fetch data: message: " + e.getMessage());
         }
         return Optional.ofNullable(passenger);
     }
 
     @Override
     public Set<Passenger> getAll() {
-        final String query = "select * from passenger p left join address a on p.id = a.id";
+        final String query = "select p.id as passenger_id, name, phone, " +
+                "country, city, a.id as address_id from passenger p left join address a on p.id = a.id";
         Set<Passenger> passengers = null;
         Passenger passenger = null;
+        Address address = null;
         try (Connection con = DBConnector.getConnection();
              PreparedStatement stmt = con.prepareStatement(query)) {
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 if (passengers == null) passengers = new HashSet<>();
-                passenger = new Passenger(rs.getString("name"), rs.getString("phone"),
-                        new Address(rs.getString("country"), rs.getString("city")));
-                passenger.setId(rs.getLong("id"));
+                address = new Address(rs.getString("country"), rs.getString("city"));
+                address.setId(rs.getLong("address_id"));
+                passenger = new Passenger(rs.getString("name"), rs.getString("phone"), address);
+                passenger.setId(rs.getLong("passenger_id"));
                 passengers.add(passenger);
             }
         } catch (SQLException e) {
-            System.err.println(e.getSQLState());
+            System.err.println("failed to fetch data: message: " + e.getMessage());
         }
         return passengers != null ? passengers : Collections.emptySet();
     }
 
     @Override
     public Set<Passenger> get(int page, int perPage, String sort) {
-        final String query = "select * from passenger p left join address a on p.id = a.id" +
+        final String query = "select  p.id as passenger_id, name, phone, country, city, a.id as address_id " +
+                " from passenger p left join address a on p.id = a.id" +
                 " order by ? Limit ? offset ?";
         Set<Passenger> passengers = null;
         Passenger passenger = null;
+        Address address = null;
         try (Connection con = DBConnector.getConnection();
              PreparedStatement stmt = con.prepareStatement(query)) {
             stmt.setString(1, sort);
@@ -65,13 +70,14 @@ public class PassengerDAOImpl implements PassengerDAO {
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 if (passengers == null) passengers = new HashSet<>();
-                passenger = new Passenger(rs.getString("name"), rs.getString("phone"),
-                        new Address(rs.getString("country"), rs.getString("city")));
-                passenger.setId(rs.getLong("id"));
+                address = new Address(rs.getString("country"), rs.getString("city"));
+                address.setId(rs.getLong("address_id"));
+                passenger = new Passenger(rs.getString("name"), rs.getString("phone"), address);
+                passenger.setId(rs.getLong("passenger_id"));
                 passengers.add(passenger);
             }
         } catch (SQLException e) {
-            System.err.println(e.getSQLState());
+            System.err.println("failed to fetch data: message: " + e.getMessage());
         }
         return passengers != null ? passengers : Collections.emptySet();
     }
@@ -105,7 +111,7 @@ public class PassengerDAOImpl implements PassengerDAO {
             }
             con.commit();
         } catch (SQLException e) {
-            System.err.println(e.getSQLState());
+            System.err.printf("failed to save passenger by id:%d: message:%s%n ", passenger.getId(), e.getMessage());
         }
         return Optional.of(passenger);
     }
@@ -132,7 +138,7 @@ public class PassengerDAOImpl implements PassengerDAO {
             System.out.println(count);
             con.commit();
         } catch (SQLException e) {
-            System.err.println("failed to save data: message: " + e.getSQLState());
+            System.err.println("failed to save data: message: " + e.getMessage());
         }
         return true;
     }
@@ -156,7 +162,7 @@ public class PassengerDAOImpl implements PassengerDAO {
                 System.out.printf("passenger by id:%d successfully updated%n", passenger.getId());
             con.commit();
         } catch (SQLException e) {
-            System.err.println(e.getSQLState());
+            System.err.printf("failed to update passenger by id:%d: message:%s%n ", passenger.getId(), e.getMessage());
         }
         return Optional.of(passenger);
     }
@@ -176,7 +182,7 @@ public class PassengerDAOImpl implements PassengerDAO {
                 System.out.printf("passenger by id:%d successfully deleted%n", passengerId);
             con.commit();
         } catch (SQLException e) {
-            System.err.println(e.getMessage());
+            System.err.printf("failed to delete passenger by id:%d: message:%s%n ", passengerId, e.getMessage());
         }
     }
 
@@ -200,7 +206,7 @@ public class PassengerDAOImpl implements PassengerDAO {
                 passengers.add(passenger);
             }
         } catch (SQLException e) {
-            System.err.println(e.getMessage());
+            System.err.println("failed to fetch data: message: " + e.getMessage());
         }
         return passengers != null ? passengers : Collections.emptySet();
     }
@@ -215,7 +221,7 @@ public class PassengerDAOImpl implements PassengerDAO {
             int count = stmt.executeUpdate();
             if (count == 1) System.out.println("Trip successfully registered!");
         } catch (SQLException e) {
-            System.err.println(e.getMessage());
+            System.err.println("failed to register the trip: message: " + e.getMessage());
         }
     }
 
@@ -231,7 +237,7 @@ public class PassengerDAOImpl implements PassengerDAO {
             int count = stmt.executeUpdate();
             if (count == 1) System.out.println("Trip successfully deleted");
         } catch (SQLException e) {
-            System.err.println(e.getMessage());
+            System.err.println("failed to cancel trip: message: " + e.getMessage());
         }
     }
 }

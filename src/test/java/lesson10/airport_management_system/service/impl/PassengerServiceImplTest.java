@@ -4,10 +4,12 @@ import lesson10.airport_management_system.dao.impl.PassengerDAOImpl;
 import lesson10.airport_management_system.model.Address;
 import lesson10.airport_management_system.model.Passenger;
 import lesson10.airport_management_system.service.PassengerService;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.util.Comparator;
+import java.util.Optional;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -23,8 +25,8 @@ class PassengerServiceImplTest {
 
     @Test
     void getCompanyById() {
-        Passenger passenger = service.get(456);
-        assertEquals(456, passenger.getId());
+        Optional<Passenger> passenger = service.get(456);
+        passenger.ifPresentOrElse(p -> assertEquals(456, p.getId()), Assertions::fail);
     }
 
     @Test
@@ -37,35 +39,40 @@ class PassengerServiceImplTest {
     void testGetCompanyBySortingAndPaging() {
         Set<Passenger> passengers = service.getPassengers(20, 34, "founding_date");
         assertEquals(20, passengers.size());
-        assertEquals(35, passengers.stream().sorted(Comparator.comparingLong(Passenger::getId)).findAny().get().getId());
+        passengers.stream().sorted(Comparator.comparingLong(Passenger::getId))
+                .forEach(passenger -> assertEquals(35, passenger.getId()));
     }
 
     @Test
     void create() {
-        Passenger passenger = service.create(new Passenger("Teo Walcott", "1-2243-4646-6655", new Address("England", "Chelsea")));
-        passenger = service.get(passenger.getId());
-        assertEquals("Teo Walcott", passenger.getName());
-        assertEquals("Chelsea", passenger.getAddress().getCity());
+        Optional<Passenger> passenger = service.create(new Passenger("Teo Walcott", "1-2243-4646-6655", new Address("England", "Chelsea")));
+        passenger = service.get(passenger.orElse(new Passenger()).getId());
+        passenger.ifPresentOrElse(p -> assertEquals("Teo Walcott", p.getName()), Assertions::fail);
+        passenger.ifPresentOrElse(p -> assertEquals("Chelsea", p.getAddress().getCity()), Assertions::fail);
+        ;
     }
 
     @Test
     void edit() {
         final String newName = "Therry Anry";
         final int id = 210;
-        Passenger passenger = service.get(id);
-        passenger.setName(newName);
-        service.edit(passenger);
-        assertEquals(newName, service.get(id).getName());
+        Optional<Passenger> passenger = service.get(id);
+        passenger.ifPresent(p -> {
+            p.setName(newName);
+            service.edit(p);
+        });
+        service.get(id).ifPresentOrElse(p -> assertEquals(newName, p.getName()), Assertions::fail);
+        ;
     }
 
 
     @Test
     void remove() {
         final int id = 675;
-        Passenger passenger = service.get(id);
-        assertNotNull(passenger);
+        Optional<Passenger> passenger = service.get(id);
+        assertNotNull(passenger.orElse(null));
         service.remove(id);
-        assertNull(service.get(id));
+        assertNull(service.get(id).orElse(null));
     }
 
     @Test

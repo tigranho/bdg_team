@@ -1,12 +1,16 @@
 package lesson10.airport_management_system.model;
 
+import java.util.Set;
 import java.util.StringJoiner;
 
 public class Address {
     private long id;
-    private Passenger passenger;
     private String country;
     private String city;
+    private Set<Passenger> passengers;
+
+    public Address() {
+    }
 
     public Address(String country, String city) {
         this.country = country;
@@ -21,12 +25,12 @@ public class Address {
         this.id = id;
     }
 
-    public Passenger getPassenger() {
-        return passenger;
+    public Set<Passenger> getPassengers() {
+        return passengers;
     }
 
-    public void setPassenger(Passenger passenger) {
-        this.passenger = passenger;
+    public void setPassengers(Set<Passenger> passengers) {
+        this.passengers = passengers;
     }
 
     public String getCountry() {

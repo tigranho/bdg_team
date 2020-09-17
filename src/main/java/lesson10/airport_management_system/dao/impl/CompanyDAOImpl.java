@@ -86,7 +86,7 @@ public class CompanyDAOImpl implements CompanyDAO {
         } catch (SQLException e) {
             System.err.println(e.getMessage());
         }
-        return Optional.of(company);
+        return Optional.ofNullable(company);
     }
 
     @Override
@@ -124,7 +124,7 @@ public class CompanyDAOImpl implements CompanyDAO {
         } catch (SQLException e) {
             System.err.println(e.getMessage());
         }
-        return Optional.of(company);
+        return Optional.ofNullable(company);
     }
 
     @Override

@@ -4,6 +4,9 @@ public class PassengerTrip {
     private Passenger passenger;
     private Trip trip;
 
+    public PassengerTrip() {
+    }
+
     public PassengerTrip(Passenger passenger, Trip trip) {
         this.passenger = passenger;
         this.trip = trip;

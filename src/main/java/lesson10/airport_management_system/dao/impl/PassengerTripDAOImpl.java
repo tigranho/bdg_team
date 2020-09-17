@@ -12,7 +12,7 @@ import java.util.List;
 public class PassengerTripDAOImpl implements PassengerTripDAO {
 
     @Override
-    public void save(long passengerId, long tripId) {
+    public boolean save(long passengerId, long tripId) {
         final String query = "insert into passengers_trips values (?, ?);";
         try (Connection con = DBConnector.getConnection();
              PreparedStatement stmt = con.prepareStatement(query)) {
@@ -21,11 +21,13 @@ public class PassengerTripDAOImpl implements PassengerTripDAO {
             stmt.executeUpdate();
         } catch (SQLException e) {
             System.err.println("failed to save data: message: " + e.getMessage());
+            return false;
         }
+        return true;
     }
 
     @Override
-    public void delete(long passengerId, long tripId) {
+    public boolean delete(long passengerId, long tripId) {
         final String query = "delete from passengers_trips where passenger_id = ? and trip_id = ?;";
         try (Connection con = DBConnector.getConnection();
              PreparedStatement stmt = con.prepareStatement(query)) {
@@ -34,7 +36,9 @@ public class PassengerTripDAOImpl implements PassengerTripDAO {
             stmt.executeUpdate();
         } catch (SQLException e) {
             System.err.println("failed to save data: message: " + e.getMessage());
+            return false;
         }
+        return true;
     }
 
     @Override
@@ -47,6 +51,7 @@ public class PassengerTripDAOImpl implements PassengerTripDAO {
             stmt.executeUpdate();
         } catch (SQLException e) {
             System.err.println("failed to save data: message: " + e.getMessage());
+            return false;
         }
         return true;
     }
@@ -61,6 +66,7 @@ public class PassengerTripDAOImpl implements PassengerTripDAO {
             stmt.executeUpdate();
         } catch (SQLException e) {
             System.err.println("failed to save data: message: " + e.getMessage());
+            return false;
         }
         return true;
     }

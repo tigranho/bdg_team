@@ -3,12 +3,14 @@ package lesson10.airport_management_system.service.impl;
 import lesson10.airport_management_system.dao.impl.CompanyDAOImpl;
 import lesson10.airport_management_system.model.Company;
 import lesson10.airport_management_system.service.CompanyService;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.Comparator;
+import java.util.Optional;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -24,8 +26,8 @@ class CompanyServiceImplTest {
 
     @Test
     void getCompanyById() {
-        Company company = service.getCompany(456);
-        assertEquals(456, company.getId());
+        Optional<Company> company = service.getCompany(2345);
+        company.ifPresentOrElse(c -> assertEquals(456, c.getId()), Assertions::fail);
     }
 
     @Test
@@ -43,26 +45,29 @@ class CompanyServiceImplTest {
 
     @Test
     void create() {
-        Company company = service.create(new Company("Luftganza", LocalDate.of(1983, Month.AUGUST, 7)));
-        assertEquals("Luftganza", service.getCompany(company.getId()).getName());
+        Optional<Company> company = service.create(new Company("Luftganza", LocalDate.of(1983, Month.AUGUST, 7)));
+        company.ifPresent(c -> service.getCompany(c.getId())
+                .ifPresentOrElse(c1 -> assertEquals("Luftganza", c1.getName()), Assertions::fail));
     }
 
     @Test
     void edit() {
         final String newName = "AirLane";
         final int id = 675;
-        Company company = service.getCompany(id);
-        company.setName(newName);
-        service.edit(company);
-        assertEquals(newName, service.getCompany(id).getName());
+        Optional<Company> company = service.getCompany(id);
+        company.ifPresent(c -> {
+            c.setName(newName);
+            service.edit(c);
+        });
+        service.getCompany(id).ifPresentOrElse(c -> assertEquals(newName, c.getName()), Assertions::fail);
     }
 
     @Test
     void remove() {
         final int id = 210;
-        Company company = service.getCompany(id);
-        assertNotNull(company);
+        Optional<Company> company = service.getCompany(id);
+        assertNotNull(company.orElse(null));
         service.remove(id);
-        assertNull(service.getCompany(id));
+        assertNull(service.getCompany(id).orElse(null));
     }
 }

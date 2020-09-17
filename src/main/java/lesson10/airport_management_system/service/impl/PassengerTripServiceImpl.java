@@ -6,6 +6,7 @@ import lesson10.airport_management_system.service.PassengerTripService;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -19,24 +20,24 @@ public class PassengerTripServiceImpl implements PassengerTripService {
     }
 
     @Override
-    public void create(long passengerId, long tripId) {
-        passengerTripDAO.save(passengerId, tripId);
+    public boolean create(long passengerId, long tripId) {
+         return passengerTripDAO.save(passengerId, tripId);
     }
 
     @Override
-    public void createAll(String path) {
+    public void loadPassengersTripsInfoFromFileAndCreateAll(String path) {
         List<String> lineData = null;
         try (Stream<String> fileContent = Files.lines(Paths.get(path))) {
             lineData = fileContent.skip(1).map(String::trim).collect(Collectors.toList());
         } catch (IOException e) {
             System.err.println("An error occurred while reading the file: message: " + e.getMessage());
         }
-        passengerTripDAO.saveAll(lineData);
+        passengerTripDAO.saveAll(lineData != null ? lineData : Collections.emptyList());
     }
 
     @Override
-    public void remove(long passengerId, long tripId) {
-        passengerTripDAO.delete(passengerId, tripId);
+    public boolean remove(long passengerId, long tripId) {
+        return passengerTripDAO.delete(passengerId, tripId);
     }
 
     @Override

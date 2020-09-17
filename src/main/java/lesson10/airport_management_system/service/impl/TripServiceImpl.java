@@ -8,7 +8,9 @@ import lesson10.airport_management_system.service.TripService;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -22,8 +24,8 @@ public class TripServiceImpl implements TripService {
     }
 
     @Override
-    public Trip getTrip(long id) {
-        return tripDAO.getById(id).orElse(null);
+    public Optional<Trip> getTrip(long id) {
+        return tripDAO.getById(id);
     }
 
     @Override
@@ -37,19 +39,19 @@ public class TripServiceImpl implements TripService {
     }
 
     @Override
-    public Trip create(Trip trip) {
-        return tripDAO.save(trip).orElse(null);
+    public Optional<Trip> create(Trip trip) {
+        return tripDAO.save(trip);
     }
 
     @Override
-    public void createAll(String path) {
+    public void loadTripsInfoFromFileAndCreateAll(String path) {
         List<String> lineData = null;
         try (Stream<String> fileContent = Files.lines(Paths.get(path))) {
             lineData = fileContent.skip(1).map(String::trim).collect(Collectors.toList());
         } catch (IOException e) {
             System.err.println("An error occurred while reading the file: message: " + e.getMessage());
         }
-        tripDAO.saveAll(lineData);
+        tripDAO.saveAll(lineData != null ? lineData : Collections.emptyList());
     }
 
     @Override
@@ -58,8 +60,8 @@ public class TripServiceImpl implements TripService {
     }
 
     @Override
-    public Trip edit(Trip trip) {
-        return tripDAO.update(trip).orElse(null);
+    public Optional<Trip> edit(Trip trip) {
+        return tripDAO.update(trip);
     }
 
     @Override

@@ -8,7 +8,9 @@ import lesson10.airport_management_system.service.PassengerService;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -22,8 +24,8 @@ public class PassengerServiceImpl implements PassengerService {
     }
 
     @Override
-    public Passenger get(long id) {
-        return passengerDAO.getById(id).orElse(null);
+    public Optional<Passenger> get(long id) {
+        return passengerDAO.getById(id);
     }
 
     @Override
@@ -37,13 +39,13 @@ public class PassengerServiceImpl implements PassengerService {
     }
 
     @Override
-    public Passenger create(Passenger passenger) {
-        return passengerDAO.save(passenger).orElse(null);
+    public Optional<Passenger> create(Passenger passenger) {
+        return passengerDAO.save(passenger);
     }
 
     @Override
-    public Passenger edit(Passenger passenger) {
-        return passengerDAO.update(passenger).orElse(null);
+    public Optional<Passenger> edit(Passenger passenger) {
+        return passengerDAO.update(passenger);
     }
 
     @Override
@@ -67,13 +69,13 @@ public class PassengerServiceImpl implements PassengerService {
     }
 
     @Override
-    public void createAll(String path) {
+    public void loadPassengersInfoFromFileAndCreateAll(String path) {
         List<String> lineData = null;
         try (Stream<String> fileContent = Files.lines(Paths.get(path))) {
             lineData = fileContent.skip(1).map(String::trim).collect(Collectors.toList());
         } catch (IOException e) {
             System.err.println("An error occurred while reading the file: message: " + e.getMessage());
         }
-        passengerDAO.saveAll(lineData);
+        passengerDAO.saveAll(lineData != null ? lineData : Collections.emptyList());
     }
 }

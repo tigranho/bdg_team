@@ -19,9 +19,9 @@ public class InsertProjectData {
         PassengerService passengerService = new PassengerServiceImpl(new PassengerDAOImpl());
         TripService tripService = new TripServiceImpl(new TripDAOImpl());
         PassengerTripService passengerTripService = new PassengerTripServiceImpl(new PassengerTripDAOImpl());
-        companyService.createAll("src/main/resources/airport_management_system_source/companies.txt");
-        passengerService.createAll("src/main/resources/airport_management_system_source/passengers.txt");
-        tripService.createAll("src/main/resources/airport_management_system_source/trips.txt");
-        passengerTripService.createAll("src/main/resources/airport_management_system_source/passengers_trips.txt");
+        companyService.loadCompaniesInfoFromFileAndCreateAll("src/main/resources/airport_management_system_source/companies.txt");
+        passengerService.loadPassengersInfoFromFileAndCreateAll("src/main/resources/airport_management_system_source/passengers.txt");
+        tripService.loadTripsInfoFromFileAndCreateAll("src/main/resources/airport_management_system_source/trips.txt");
+        passengerTripService.loadPassengersTripsInfoFromFileAndCreateAll("src/main/resources/airport_management_system_source/passengers_trips.txt");
     }
 }
