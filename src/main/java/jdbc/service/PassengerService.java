@@ -1,6 +1,6 @@
 package jdbc.service;
 
-import jdbc.Passenger;
+import jdbc.model.Passenger;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

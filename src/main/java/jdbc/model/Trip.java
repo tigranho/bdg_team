@@ -1,4 +1,4 @@
-package jdbc;
+package jdbc.model;
 
 public class Trip {
 }

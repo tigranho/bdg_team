@@ -1,12 +1,12 @@
-package jdbc;
+package jdbc.model;
 
 import java.sql.Date;
 
 public class Company {
     private String name;
-    private Date date;
+    private String date;
 
-    public Company(String name, Date date) {
+    public Company(String name, String date) {
         this.name = name;
         this.date = date;
     }
@@ -15,7 +15,7 @@ public class Company {
         this.name = name;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
@@ -23,7 +23,7 @@ public class Company {
         return name;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 }
