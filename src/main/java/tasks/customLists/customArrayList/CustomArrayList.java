@@ -80,6 +80,7 @@ public class CustomArrayList<T> implements List<T> {
     /**
      * Returns the element at the specified position in the list.
      */
+    @SuppressWarnings("unchecked")
     @Override
     public T get(int index) {
         checkIndex(index);
@@ -89,6 +90,7 @@ public class CustomArrayList<T> implements List<T> {
     /**
      * Replaces the element at the specified position in the list with the specified element.
      */
+    @SuppressWarnings("unchecked")
     @Override
     public T set(int index, T element) {
         checkIndex(index);
@@ -127,6 +129,7 @@ public class CustomArrayList<T> implements List<T> {
      * Removes the element at the specified position in the list.
      * And shifts rest elements to the left one position.
      */
+    @SuppressWarnings("unchecked")
     @Override
     public T remove(int index) {
         checkIndex(index);
@@ -137,20 +140,25 @@ public class CustomArrayList<T> implements List<T> {
         return removedElement;
     }
 
-    /////in process
+    //OK
     @Override
     public void add(int i, T t) {
-        checkIndex(i);
-        Object element;
-        for (int j = 0; j < size; j++) {
-            if (j == i) {
-                element = array[j];
-                array[j] = t;
-                array[j + 1] = element;
-                if (size - j + 1 >= 0) System.arraycopy(array, j + 1, array, j + 1 + 1, size - j + 1);
-            }//else this.add(t);
+        if (i == size) {
+            add(t);
+        } else {
+            checkIndex(i);
+            // Object element = array[i];
+            Object[] newArray = new Object[size + 1];
+            for (int j = 0; j < i; j++) {
+                newArray[j] = array[j];
+            }
+            newArray[i] = t;
+            for (int j = i + 1; j < size+1; j++) {
+                newArray[j] = array[j-1];
+            }
+            this.array = newArray;
+            size++;
         }
-        size++;
     }
 
     @Override
@@ -233,16 +241,18 @@ public class CustomArrayList<T> implements List<T> {
     }
 
 
-
     @Override
     public String toString() {
-        System.out.println("This is my list");
-        System.out.print("[ ");
-        for (int i = 0; i < size; i++) {
-            System.out.print(array[i] + " ");
+        StringBuilder sb = new StringBuilder();
+        if (isEmpty()) {
+            sb.append("[]");
+        } else {
+            sb.append("[");
+            for (int i = 0; i < size; i++) {
+                sb.append(array[i]).append(", ");
+            }
+            sb.append("\b\b]");
         }
-        System.out.println("]");
-
-        return "";
+        return sb.toString();
     }
 }
