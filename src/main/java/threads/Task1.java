@@ -1,4 +1,4 @@
-package ThreadTask;
+package threads;
 
 public class Task1 {
     public static void main(String[] args) throws InterruptedException {
