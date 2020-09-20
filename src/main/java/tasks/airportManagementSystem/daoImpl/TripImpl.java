@@ -1,6 +1,7 @@
 package tasks.airportManagementSystem.daoImpl;
 
-import tasks.airportManagementSystem.dao.Trip;
+import tasks.airportManagementSystem.dao.TripDAO;
+import tasks.airportManagementSystem.model.Trip;
 
 import java.util.List;
 import java.util.Set;
@@ -9,9 +10,9 @@ import java.util.Set;
  * @author Tatevik Mirzoyan
  * Created on 17-Sep-20
  */
-public class TripImpl implements Trip {
+public class TripImpl implements TripDAO {
     @Override
-    public Trip getById(long id) {
+    public Trip getById(int id) {
         return null;
     }
 
@@ -26,17 +27,17 @@ public class TripImpl implements Trip {
     }
 
     @Override
-    public Trip save(Trip passenger) {
+    public Trip save(Trip trip) {
         return null;
     }
 
     @Override
-    public Trip update(Trip passenger) {
+    public Trip update(Trip trip) {
         return null;
     }
 
     @Override
-    public void delete(long tripId) {
+    public void delete(int tripId) {
 
     }
 

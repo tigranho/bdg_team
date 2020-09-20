@@ -1,5 +1,7 @@
 package tasks.airportManagementSystem.dao;
 
+import tasks.airportManagementSystem.model.Trip;
+
 import java.util.List;
 import java.util.Set;
 
@@ -7,18 +9,18 @@ import java.util.Set;
  * @author Tatevik Mirzoyan
  * Created on 17-Sep-20
  */
-public interface Trip {
-    Trip getById(long id);
+public interface TripDAO {
+    Trip getById(int id);
 
     Set<Trip> getAll();
 
     Set<Trip> get(int page, int perPage, String sort);
 
-    Trip save(Trip passenger);
+    Trip save(Trip trip);
 
-    Trip update(Trip passenger);
+    Trip update(Trip trip);
 
-    void delete(long tripId);
+    void delete(int tripId);
 
     List<Trip> getTripsFrom(String city);
 

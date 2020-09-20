@@ -1,5 +1,6 @@
 package tasks.airportManagementSystem.model;
 
+import java.sql.Date;
 import java.time.LocalDate;
 
 /**
@@ -10,6 +11,9 @@ public class Company {
     int id;
     String name;
     LocalDate found_date;
+
+    public Company() {
+    }
 
     public Company(String name, LocalDate found_date) {
         this.name = name;

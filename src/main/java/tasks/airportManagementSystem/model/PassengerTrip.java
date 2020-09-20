@@ -9,6 +9,9 @@ public class PassengerTrip {
     Passenger passenger;
     Trip trip;
 
+    public PassengerTrip() {
+    }
+
     public PassengerTrip(Passenger passenger, Trip trip) {
         this.passenger = passenger;
         this.trip = trip;

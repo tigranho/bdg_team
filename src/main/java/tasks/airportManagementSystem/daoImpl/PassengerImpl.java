@@ -1,7 +1,9 @@
 package tasks.airportManagementSystem.daoImpl;
 
-import tasks.airportManagementSystem.dao.Passenger;
-import tasks.airportManagementSystem.dao.Trip;
+
+import tasks.airportManagementSystem.dao.PassengerDAO;
+import tasks.airportManagementSystem.model.Passenger;
+import tasks.airportManagementSystem.model.Trip;
 
 import java.util.List;
 import java.util.Set;
@@ -10,9 +12,9 @@ import java.util.Set;
  * @author Tatevik Mirzoyan
  * Created on 17-Sep-20
  */
-public class PassengerImpl implements Passenger {
+public class PassengerImpl implements PassengerDAO {
     @Override
-    public Passenger getById(long id) {
+    public Passenger getById(int id) {
         return null;
     }
 
@@ -37,12 +39,12 @@ public class PassengerImpl implements Passenger {
     }
 
     @Override
-    public void delete(long passengerId) {
+    public void delete(int passengerId) {
 
     }
 
     @Override
-    public List<Passenger> getPassengersOfTrip(long tripNumber) {
+    public List<Passenger> getPassengersOfTrip(int tripNumber) {
         return null;
     }
 
@@ -52,7 +54,7 @@ public class PassengerImpl implements Passenger {
     }
 
     @Override
-    public void cancelTrip(long passengerId, long tripNumber) {
+    public void cancelTrip(int passengerId, int tripNumber) {
 
     }
 }

@@ -15,6 +15,9 @@ public class Trip {
     String city_from;
     String city_too;
 
+    public Trip() {
+    }
+
     public Trip(Company company, LocalDate time_in, LocalDate time_out, String city_from, String city_too) {
         this.company = company;
         this.time_in = time_in;
