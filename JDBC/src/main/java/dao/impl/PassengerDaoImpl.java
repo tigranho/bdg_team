@@ -56,7 +56,7 @@ public class PassengerDaoImpl implements PassengerDao {
     @Override
     public Passenger save(Passenger passenger) {
         try (Connection conn = DBConnection.connect();
-             PreparedStatement stmt = conn.prepareStatement("INSERT INTO Passenger " +
+             PreparedStatement stmt = conn.prepareStatement("INSERT INTO Passenger" +
                      "(name, phone, address_id) VALUES (?, ?, ?)")) {
             stmt.setString(1, passenger.getName());
             stmt.setString(2, passenger.getPhone());
@@ -118,7 +118,7 @@ public class PassengerDaoImpl implements PassengerDao {
         try (Connection conn = DBConnection.connect();
              PreparedStatement stmt1 = conn.prepareStatement("SELECT passenger_id FROM Passenger WHERE name=?");
              PreparedStatement stmt2 = conn.prepareStatement("SELECT trip_id FROM Trips WHERE trip_id=?");
-             PreparedStatement stmt = conn.prepareStatement("INSERT INTO PassengersOfTrip " +
+             PreparedStatement stmt = conn.prepareStatement("INSERT INTO PassengersOfTrip" +
                      "(name, trip_id, passenger_id) VALUES (?, ?)")) {
             stmt1.setString(1, passenger.getName());
             ResultSet rs1 = stmt1.executeQuery();
@@ -135,7 +135,7 @@ public class PassengerDaoImpl implements PassengerDao {
     @Override
     public void cancelTrip(long passengerId, long tripNumber) {
         try (Connection conn = DBConnection.connect();
-             PreparedStatement stmt = conn.prepareStatement("DELETE FROM PassengersOfTrip " +
+             PreparedStatement stmt = conn.prepareStatement("DELETE FROM PassengersOfTrip" +
                      "WHERE trip_id=? AND passenger_id=?")) {
             stmt.setLong(1, passengerId);
             stmt.setLong(2, tripNumber);

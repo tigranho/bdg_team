@@ -57,7 +57,7 @@ public class TripDaoImpl implements TripDao {
     @Override
     public Trip save(Trip trip) {
         try (Connection conn = DBConnection.connect();
-             PreparedStatement stmt = conn.prepareStatement("INSERT INTO Trip " +
+             PreparedStatement stmt = conn.prepareStatement("INSERT INTO Trip" +
                      "(tripNumber, company_id, timeIn, timeOut, destination, origin) VALUES (?, ?, ?, ?, ?, ?)")) {
             setTripFields(trip, stmt);
         } catch (SQLException e) {
@@ -69,7 +69,7 @@ public class TripDaoImpl implements TripDao {
     @Override
     public Trip update(Trip trip) {
         try (Connection conn = DBConnection.connect();
-             PreparedStatement stmt = conn.prepareStatement("UPDATE Trip " +
+             PreparedStatement stmt = conn.prepareStatement("UPDATE Trip" +
                      "SET tripNumber=?, company_id=?, timeIn=?, timeOut=?, destination=?, origin=?")) {
             setTripFields(trip, stmt);
         } catch (SQLException e) {

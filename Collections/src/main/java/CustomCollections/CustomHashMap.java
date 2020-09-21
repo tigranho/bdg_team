@@ -63,7 +63,7 @@ public class CustomHashMap<K, V> implements Map<K, V> {
 
         @Override
         public final String toString() {
-            return key + " = " + value;
+            return key + " =  value;
         }
     }
 

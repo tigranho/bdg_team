@@ -50,7 +50,7 @@ public class CompanyDaoImpl implements CompanyDao {
     @Override
     public Company save(Company company) {
         try (Connection conn = DBConnection.connect();
-             PreparedStatement stmt = conn.prepareStatement("INSERT INTO Company " +
+             PreparedStatement stmt = conn.prepareStatement("INSERT INTO Company" +
                      "(name, found_date ) VALUES (?, ?)")) {
             stmt.setString(1, company.getName());
             stmt.setString(2, company.getFound_date());

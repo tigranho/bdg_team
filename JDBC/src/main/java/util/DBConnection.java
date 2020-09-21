@@ -11,12 +11,12 @@ public class DBConnection {
 
     //  Database credentials
     static final String USER = "root";
-    static final String PASS = "@Non#Dual";
+    static final String PASS = "";
 
     private DBConnection() {
     }
 
-    private static DBConnection instance = new DBConnection();
+    private static final DBConnection instance = new DBConnection();
 
     public static DBConnection getInstance() {
         return instance;

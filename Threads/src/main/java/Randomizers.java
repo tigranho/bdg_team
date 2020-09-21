@@ -11,7 +11,7 @@ public class Randomizers {
     private static void randomNumberAccumulator() {
         IntSupplier a = () -> new Random().nextInt(10);
         int i = a.getAsInt();
-//        System.out.println("Random Number: " + i);
+//        System.out.println("Random Number:  i);
         sum.addAndGet(i);
     }
 
@@ -26,6 +26,6 @@ public class Randomizers {
             if (service != null) service.shutdown();
         }
 
-        System.out.println("Sum: " + sum.get());
+        System.out.println("Sum:  sum.get());
     }
 }

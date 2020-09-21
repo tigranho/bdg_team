@@ -29,7 +29,7 @@ public class WareHouse {
                 System.out.println("InterruptedException thrown");
             }
         }
-        System.out.println("Consumed the " + wareHouse.poll());
+        System.out.println("Consumed the  wareHouse.poll());
         notify();
     }
 }

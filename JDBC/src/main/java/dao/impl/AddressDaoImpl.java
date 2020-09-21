@@ -31,7 +31,8 @@ public class AddressDaoImpl implements AddressDao {
         try (Connection conn = DBConnection.connect();
              PreparedStatement stmt = conn.prepareStatement("INSERT INTO Address (country, city) VALUES (?, ?)")) {
             stmt.setString(1, address.getCountry());
-            stmt.setString(1, address.getCity());
+            stmt.setString(2, address.getCity());
+            stmt.execute();
         } catch (SQLException e) {
             System.out.println("Failed to save data: " + e.getMessage());
         }
@@ -42,9 +43,9 @@ public class AddressDaoImpl implements AddressDao {
     public long getTripId(Address address) {
         long id = 0;
         try (Connection conn = DBConnection.connect();
-             PreparedStatement stmt = conn.prepareStatement("SELECT address_id FROM Address WHERE country=? AND city=?)")) {
+             PreparedStatement stmt = conn.prepareStatement("SELECT address_id FROM Address WHERE country=? AND city=?")) {
             stmt.setString(1, address.getCountry());
-            stmt.setString(1, address.getCity());
+            stmt.setString(2, address.getCity());
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
                 id = rs.getLong("address_id");
