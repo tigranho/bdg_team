@@ -4,7 +4,7 @@ import tasks.airportManagementSystem.dao.CompanyDAO;
 import tasks.airportManagementSystem.model.Company;
 
 import java.sql.*;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 /**
@@ -15,8 +15,7 @@ public class CompanyImpl implements CompanyDAO {
 
     public static Connection getConnection() throws SQLException {
         String url = "jdbc:mysql://localhost:3306/airport_management_system";
-        Connection conn = DriverManager.getConnection(url, "root", "root");
-        return conn;
+        return DriverManager.getConnection(url, "root", "root");
     }
 
     @Override
@@ -33,18 +32,16 @@ public class CompanyImpl implements CompanyDAO {
                 company.setFound_date(rs.getDate("found_date").toLocalDate());
             }
         } catch (SQLException e) {
-            System.out.println(e);
+            e.printStackTrace();
         }
         return company;
     }
 
     @Override
     public Set<Company> getAll() {
-        //todo didn't return in -id- order
-
         String query = "select * from companies";
-        Set<Company> companySet = new HashSet<>();
-        Company company = null;
+        Set<Company> companySet = new LinkedHashSet<>();
+        Company company;
         try {
             PreparedStatement stmt = getConnection().prepareStatement(query);
             ResultSet rs = stmt.executeQuery();
@@ -56,16 +53,38 @@ public class CompanyImpl implements CompanyDAO {
                 companySet.add(company);
             }
         } catch (SQLException e) {
-            System.out.println(e);
+            e.printStackTrace();
         }
         return companySet;
     }
 
-
-    //TODO
+    //TODO represents this query //SELECT * FROM companies ORDER BY 'name'//
     @Override
     public Set<Company> get(int page, int perPage, String sort) {
-        return null;
+        final String query = "SELECT * FROM companies ORDER BY ? LIMIT ? offset ?";
+        Set<Company> companySet = new LinkedHashSet<>();
+        Company company;
+        try (PreparedStatement stmt = getConnection().prepareStatement(query)) {
+            stmt.setString(1, sort);
+            stmt.setInt(2, perPage);
+            // stmt.setInt(3, ((page - 1) * perPage));
+            stmt.setInt(3, page);
+            String st = stmt.toString();
+            System.out.println(st);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                company = new Company();
+                company.setName(rs.getString("name"));
+                company.setId(rs.getInt("id"));
+                company.setFound_date(rs.getDate("found_date").toLocalDate());
+                System.out.println(company);
+                companySet.add(company);
+                System.out.println(rs.getString(2));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return companySet;
     }
 
     @Override
@@ -80,7 +99,7 @@ public class CompanyImpl implements CompanyDAO {
             while (resultSet.next())
                 company.setId(resultSet.getInt(1));
         } catch (SQLException e) {
-            System.out.println(e);
+            e.printStackTrace();
         }
         return company;
     }
@@ -95,7 +114,7 @@ public class CompanyImpl implements CompanyDAO {
             stmt.setInt(3, company.getId());
             stmt.execute();
         } catch (SQLException e) {
-            System.out.println(e);
+            e.printStackTrace();
         }
         return company;
     }
@@ -108,7 +127,7 @@ public class CompanyImpl implements CompanyDAO {
             stmt.setInt(1, companyId);
             stmt.execute();
         } catch (SQLException e) {
-            System.out.println(e);
+            e.printStackTrace();
         }
     }
 }
