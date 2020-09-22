@@ -61,8 +61,9 @@ public class Storedb {
 
     public static void main(String[] args) throws SQLException, IOException {
         String url = "jdbc:mysql://localhost:3306/airportsystem";
-        storePassengersInfo(url);
-        storeCompaniesInfo(url);
+//        storePassengersInfo(url);
+//        storeCompaniesInfo(url);
+
     }
 }
 

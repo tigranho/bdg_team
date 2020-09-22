@@ -1,7 +1,5 @@
 package jdbc.model;
 
-import java.sql.Date;
-
 public class Company {
     private String name;
     private String date;

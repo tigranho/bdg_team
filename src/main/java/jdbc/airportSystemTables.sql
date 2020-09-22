@@ -4,7 +4,7 @@ use airportSystem;
 create table companies(
 company_id int not null auto_increment,
 name varchar(50) not null,
-found_date date not null,
+found_date varchar(50) not null,
 primary key(company_id)
  );
 
