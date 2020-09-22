@@ -122,6 +122,7 @@ public class LoadDataBase {
     public static void loadCompanies() {
         try (BufferedReader reader = new BufferedReader(new FileReader("JDBC/src/main/resources/companies.txt"))) {
             String s;
+            reader.readLine();
             while ((s = reader.readLine()) != null) {
                 String[] strInput = s.split(",");
                 Company company = new Company(strInput[0], strInput[1]);

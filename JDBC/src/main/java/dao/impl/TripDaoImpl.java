@@ -18,6 +18,7 @@ public class TripDaoImpl implements TripDao {
              PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Trip WHERE trip_id=?")) {
             stmt.setLong(1, id);
             ResultSet rs = stmt.executeQuery();
+            rs.next();
             trip = new Trip(rs.getLong("tripNumber"),
                     new CompanyDaoImpl().getById(rs.getLong("company_id")),
                     rs.getString("timeIn"), rs.getString("timeOut"),
@@ -83,9 +84,9 @@ public class TripDaoImpl implements TripDao {
             stmt.setLong(1, trip.getNumber());
             stmt.setLong(2, new CompanyDaoImpl().getCompanyId(trip.getCompany()));
             stmt.setString(3, trip.getTimeIn());
-            stmt.setString(3, trip.getTimeOut());
-            stmt.setString(3, trip.getDestination());
-            stmt.setString(3, trip.getOrigin());
+            stmt.setString(4, trip.getTimeOut());
+            stmt.setString(5, trip.getDestination());
+            stmt.setString(6, trip.getOrigin());
             stmt.execute();
         } catch (SQLException e) {
             System.out.println("Failed to update data: " + e.getMessage());
@@ -95,9 +96,9 @@ public class TripDaoImpl implements TripDao {
     @Override
     public void delete(long tripId) {
         try (Connection conn = DBConnection.connect();
-             PreparedStatement stmt = conn.prepareStatement("DELETE FROM Trip WHERE trip_id=?)")) {
+             PreparedStatement stmt = conn.prepareStatement("DELETE FROM Trip WHERE trip_id=?")) {
             stmt.setLong(1, tripId);
-            stmt.execute();
+            stmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println("Failed to delete data: " + e.getMessage());
         }
@@ -107,7 +108,7 @@ public class TripDaoImpl implements TripDao {
     public List<Trip> getTripsFrom(String city) {
         List<Trip> trips = new ArrayList<>();
         try (Connection conn = DBConnection.connect();
-             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Trip WHERE origin=?)")) {
+             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Trip WHERE origin=?")) {
             getTripResultsIntoList(city, trips, stmt);
         } catch (SQLException e) {
             System.out.println("Failed to get data: " + e.getMessage());
@@ -119,7 +120,7 @@ public class TripDaoImpl implements TripDao {
     public List<Trip> getTripsTo(String city) {
         List<Trip> trips = new ArrayList<>();
         try (Connection conn = DBConnection.connect();
-             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Trip WHERE destination=?)")) {
+             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Trip WHERE destination=?")) {
             getTripResultsIntoList(city, trips, stmt);
         } catch (SQLException e) {
             System.out.println("Failed to get data: " + e.getMessage());
@@ -142,5 +143,19 @@ public class TripDaoImpl implements TripDao {
         } catch (SQLException e) {
             System.out.println("Failed to get data: " + e.getMessage());
         }
+    }
+
+    @Override
+    public long getTripIDByTripNumber(long tripNumber) {
+        try (Connection conn = DBConnection.connect();
+             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Trip WHERE tripNumber=?")) {
+            stmt.setLong(1, tripNumber);
+            ResultSet rs = stmt.executeQuery();
+            rs.next();
+            return rs.getLong("trip_id");
+        } catch (SQLException e) {
+            System.out.println("Failed to get data: " + e.getMessage());
+        }
+        return 0;
     }
 }

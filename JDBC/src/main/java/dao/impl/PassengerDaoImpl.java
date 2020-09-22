@@ -20,6 +20,7 @@ public class PassengerDaoImpl implements PassengerDao {
              PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Passenger WHERE passenger_id=?")) {
             stmt.setLong(1, id);
             ResultSet rs = stmt.executeQuery();
+            rs.next();
             Address address = new AddressDaoImpl().getById(rs.getLong("address_id"));
             passenger = new Passenger(rs.getString("name"), rs.getString("phone"), address);
             return passenger;
@@ -60,7 +61,7 @@ public class PassengerDaoImpl implements PassengerDao {
                      "(name, phone, address_id) VALUES (?, ?, ?)")) {
             stmt.setString(1, passenger.getName());
             stmt.setString(2, passenger.getPhone());
-            stmt.setLong(3, new AddressDaoImpl().getTripId(passenger.getAddress()));
+            stmt.setLong(3, new AddressDaoImpl().getAddressId(passenger.getAddress()));
             stmt.execute();
         } catch (SQLException e) {
             System.out.println("Failed to save data: " + e.getMessage());
@@ -74,7 +75,7 @@ public class PassengerDaoImpl implements PassengerDao {
              PreparedStatement stmt = conn.prepareStatement("UPDATE Passenger SET name=?, phone=?, address_id=?")) {
             stmt.setString(1, passenger.getName());
             stmt.setString(2, passenger.getPhone());
-            stmt.setLong(3, new AddressDaoImpl().getTripId(passenger.getAddress()));
+            stmt.setLong(3, new AddressDaoImpl().getAddressId(passenger.getAddress()));
             stmt.execute();
         } catch (SQLException e) {
             System.out.println("Failed to update data: " + e.getMessage());
@@ -98,10 +99,9 @@ public class PassengerDaoImpl implements PassengerDao {
         List<Passenger> passengers = new ArrayList<>();
         try (Connection conn = DBConnection.connect();
              PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Passenger WHERE passenger_id IN" +
-                     "(SELECT passenger_id PassengersOfTrip WHERE trip_id =?")) {
+                     "(SELECT passenger_id FROM PassengersOfTrip WHERE trip_id=?)")) {
+            stmt.setLong(1, new TripDaoImpl().getTripIDByTripNumber(tripNumber));
             ResultSet rs = stmt.executeQuery();
-            stmt.setLong(1, tripNumber);
-            stmt.execute();
             while (rs.next()) {
                 Address address = new AddressDaoImpl().getById(rs.getLong("address_id"));
                 Passenger passenger = new Passenger(rs.getString("name"), rs.getString("phone"), address);
@@ -116,14 +116,16 @@ public class PassengerDaoImpl implements PassengerDao {
     @Override
     public void registerTrip(Trip trip, Passenger passenger) {
         try (Connection conn = DBConnection.connect();
-             PreparedStatement stmt1 = conn.prepareStatement("SELECT passenger_id FROM Passenger WHERE name=?");
-             PreparedStatement stmt2 = conn.prepareStatement("SELECT trip_id FROM Trips WHERE trip_id=?");
+             PreparedStatement stmt1 = conn.prepareStatement("SELECT passenger_id FROM Passenger WHERE Passenger.name=?");
+             PreparedStatement stmt2 = conn.prepareStatement("SELECT trip_id FROM Trip WHERE tripNumber=?");
              PreparedStatement stmt = conn.prepareStatement("INSERT INTO PassengersOfTrip" +
-                     "(name, trip_id, passenger_id) VALUES (?, ?)")) {
+                     "(trip_id, passenger_id) VALUES (?, ?)")) {
             stmt1.setString(1, passenger.getName());
             ResultSet rs1 = stmt1.executeQuery();
+            rs1.next();
             stmt2.setLong(1, trip.getNumber());
             ResultSet rs2 = stmt2.executeQuery();
+            rs2.next();
             stmt.setString(1, rs1.getString(1));
             stmt.setString(2, rs2.getString(1));
             stmt.execute();

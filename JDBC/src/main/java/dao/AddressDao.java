@@ -7,5 +7,5 @@ public interface AddressDao {
 
     Address save(Address address);
 
-    long getTripId(Address address);
+    long getAddressId(Address address);
 }

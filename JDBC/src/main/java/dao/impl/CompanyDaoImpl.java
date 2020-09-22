@@ -16,6 +16,7 @@ public class CompanyDaoImpl implements CompanyDao {
              PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Company WHERE company_id=?")) {
             stmt.setLong(1, id);
             ResultSet rs = stmt.executeQuery();
+            rs.next();
             company = new Company(rs.getString("name"), rs.getString("found_date"));
             return company;
         } catch (SQLException e) {
@@ -85,10 +86,11 @@ public class CompanyDaoImpl implements CompanyDao {
         }
     }
 
+    @Override
     public long getCompanyId(Company company) {
         long id = 0;
         try (Connection conn = DBConnection.connect();
-             PreparedStatement stmt = conn.prepareStatement("SELECT company_id FROM Company WHERE name=?)")) {
+             PreparedStatement stmt = conn.prepareStatement("SELECT company_id FROM Company WHERE name=?")) {
             stmt.setString(1, company.getName());
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {

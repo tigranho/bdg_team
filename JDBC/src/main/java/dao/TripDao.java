@@ -21,4 +21,6 @@ public interface TripDao {
     List<Trip> getTripsFrom(String city);
 
     List<Trip> getTripsTo(String city);
+
+    long getTripIDByTripNumber(long tripNumber);
 }

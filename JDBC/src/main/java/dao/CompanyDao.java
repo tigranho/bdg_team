@@ -16,4 +16,6 @@ public interface CompanyDao {
     Company update(Company passenger);
 
     void delete(long companyId);
+
+    long getCompanyId(Company company);
 }

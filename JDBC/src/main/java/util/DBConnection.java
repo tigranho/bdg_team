@@ -6,12 +6,12 @@ import java.sql.DriverManager;
 
 public class DBConnection {
     // JDBC driver name and database URL
-    static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    static final String DB_URL = "jdbc:Mysql://127.0.0.1:3306/airport?autoReconnect=true&useSSL=false";
+    static final String JDBC_DRIVER = System.getenv("JDBC_DRIVER");
+    static final String DB_URL = System.getenv("DB_URL");
 
     //  Database credentials
-    static final String USER = "root";
-    static final String PASS = "";
+    static final String DB_USER = System.getenv("DB_USER");
+    static final String DB_PASSWORD = System.getenv("DB_PASSWORD");
 
     private DBConnection() {
     }
@@ -34,7 +34,7 @@ public class DBConnection {
 
         //get the connection
         try {
-            dbConnection = DriverManager.getConnection(DB_URL, USER, PASS);
+            dbConnection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
         } catch (SQLException e) {
             System.out.println("Connection to DB not established: " + e.getMessage());
         }

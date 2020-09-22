@@ -18,7 +18,8 @@ public class AddressDaoImpl implements AddressDao {
              PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Address WHERE address_id=?")) {
             stmt.setLong(1, id);
             ResultSet rs = stmt.executeQuery();
-            address = new Address(rs.getString("city"), rs.getString("country"));
+            rs.next();
+            address = new Address(rs.getString("country"), rs.getString("city"));
             return address;
         } catch (SQLException e) {
             System.out.println("Failed to get data: " + e.getMessage());
@@ -40,7 +41,7 @@ public class AddressDaoImpl implements AddressDao {
     }
 
     @Override
-    public long getTripId(Address address) {
+    public long getAddressId(Address address) {
         long id = 0;
         try (Connection conn = DBConnection.connect();
              PreparedStatement stmt = conn.prepareStatement("SELECT address_id FROM Address WHERE country=? AND city=?")) {
