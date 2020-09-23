@@ -2,29 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="02049015-7a73-40bc-878b-01e4dc8d50b7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/airportamangmentsystems/commondbproperties/DBConnection.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/airportamangmentsystems/commondbproperties/LoadProperties.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/airportamangmentsystems/io/CompanyPassenger.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/airportamangmentsystems/io/CompanyPassengerList.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/airportamangmentsystems/model/Company.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/airportamangmentsystems/model/Passenger.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/airportamangmentsystems/model/PassengerTrip.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/airportamangmentsystems/model/Trip.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/airportamangmentsystems/repository/CompanyRepo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/airportamangmentsystems/repository/PassengerRepo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/airportamangmentsystems/repository/TripRepo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/airportamangmentsystems/repository/implementation/CompanyRepoImplement.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/airportamangmentsystems/repository/implementation/PassengerRepoImplement.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/airportamangmentsystems/repository/implementation/TripRepoImplement.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/airportamangmentsystems/repository/implementation/UseSqlConnection.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/airportamangmentsystems/service/CompanyService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/airportamangmentsystems/service/PassengerService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/airportamangmentsystems/service/TripService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/airportamangmentsystems/service/implementation/CompanyServiceImplement.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/airportamangmentsystems/service/implementation/PassengerServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/airportamangmentsystems/service/implementation/TripServiceImplementation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/applicaiton.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/applicaiton.properties" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -109,7 +87,7 @@
       <workItem from="1600233244172" duration="5749000" />
       <workItem from="1600258330960" duration="2080000" />
       <workItem from="1600504059298" duration="9000" />
-      <workItem from="1600504094557" duration="886000" />
+      <workItem from="1600504094557" duration="4477000" />
     </task>
     <task id="LOCAL-00001" summary="Adding a new package with task1 name">
       <created>1597589746874</created>
