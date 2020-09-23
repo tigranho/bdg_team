@@ -1,2 +1,4 @@
-package com.bdg.chapter10;public class SetupDerbyDatabase {
+package com.bdg.chapter10;
+
+public class SetupDerbyDatabase {
 }
