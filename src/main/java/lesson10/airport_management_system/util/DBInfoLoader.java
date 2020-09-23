@@ -9,7 +9,7 @@ public final class DBInfoLoader {
 
     private DBInfoLoader() {
         try {
-            prop.load(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("airport_management_system_source/db.properties")));
+            prop.load(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("airport_management_system_source/jdbc/db.properties")));
         } catch (IOException e) {
             e.printStackTrace();
         }

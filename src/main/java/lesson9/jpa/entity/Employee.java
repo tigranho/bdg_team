@@ -1,26 +1,24 @@
 package lesson9.jpa.entity;
 
 import javax.persistence.*;
-import java.util.StringJoiner;
 
-
-@NamedQuery(name = "Employee.getAll",
-        query = "select e from lesson9.jpa.entity.Employee e")
 @Entity
 public class Employee {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
-    @Column(nullable = false, length = 100)
-    private String name;
+    @GeneratedValue( strategy= GenerationType.AUTO )
+
+    private int eid;
+    private String ename;
     private double salary;
     private String deg;
 
-    public Employee(int id, String name, double salary, String deg) {
+    @ManyToOne
+    private Department department;
+
+    public Employee(int eid, String ename, double salary, String deg) {
         super( );
-        this.id = id;
-        this.name = name;
+        this.eid = eid;
+        this.ename = ename;
         this.salary = salary;
         this.deg = deg;
     }
@@ -29,20 +27,20 @@ public class Employee {
         super();
     }
 
-    public int getId( ) {
-        return id;
+    public int getEid( ) {
+        return eid;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setEid(int eid)  {
+        this.eid = eid;
     }
 
-    public String getName( ) {
-        return name;
+    public String getEname( ) {
+        return ename;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setEname(String ename) {
+        this.ename = ename;
     }
 
     public double getSalary( ) {
@@ -61,13 +59,11 @@ public class Employee {
         this.deg = deg;
     }
 
-    @Override
-    public String toString() {
-        return new StringJoiner(", ", Employee.class.getSimpleName() + "[", "]")
-                .add("id=" + id)
-                .add("name='" + name + "'")
-                .add("salary=" + salary)
-                .add("deg='" + deg + "'")
-                .toString();
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 }
