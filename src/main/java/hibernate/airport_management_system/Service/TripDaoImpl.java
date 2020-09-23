@@ -1,9 +1,6 @@
 package hibernate.airport_management_system.Service;
 
 import hibernate.airport_management_system.dao.TripDao;
-import hibernate.airport_management_system.entity.Address;
-import hibernate.airport_management_system.entity.Company;
-import hibernate.airport_management_system.entity.Passenger;
 import hibernate.airport_management_system.entity.Trip;
 
 import javax.persistence.EntityManager;
