@@ -38,7 +38,7 @@ public class PrinterDaoImpl implements PrinterDao {
 
     @Override
     public List<String> fetchMakersPcAndColoredPrinters() throws SQLException {
-        String query = "select Distinct maker from pc join product on pc.model = product.model where maker IN (select Distinct maker from product join printer on product.model = printer.model where color='y');";
+        String query = "select Distinct maker from pc join product on pc.model = product.model where type = 'pc' and maker IN (select Distinct maker from product join printer on product.model = printer.model where color='y' and type='printer');";
         List<String> l = new LinkedList<>();
         try (Connection conn = DatabaseConnectionFactory.getInstance().getConnection();
              PreparedStatement s = conn.prepareStatement(query)) {

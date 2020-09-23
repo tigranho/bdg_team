@@ -73,7 +73,9 @@ public class PcDaoImpl implements PcDao {
 
     @Override
     public Map<String, Double> fetchAvgPriceEachMaker() throws SQLException {
-        String q = "select maker, avg(price)  from product join pc on product.model = pc.model group by maker;";
+//        String q = "select maker, avg(price)  from product join pc on product.model = pc.model group by maker;";
+        String q = "select maker, avg(coalesce(price, 0))  from product left join pc on product.model = pc.model group by maker;";
+
         Map<String, Double> map = new HashMap<>();
         try (Connection conn = DatabaseConnectionFactory.getInstance().getConnection();
              Statement statement = conn.createStatement(); ResultSet resultSet = statement.executeQuery(q)) {

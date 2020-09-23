@@ -63,7 +63,7 @@ public class ProductDaoImpl implements ProductDao {
 
     @Override
     public List<String> fetchMakersOfLaptopWichDontMakePrinters() throws SQLException {
-        String query = "select distinct maker from laptop join product on laptop.model = product.model where speed > 500 and maker not in(select distinct maker from printer join product on printer.model = product.model);";
+        String query = "select distinct maker from laptop inner join product on laptop.model = product.model where speed >= 500 and maker not in(select distinct maker from printer join product on printer.model = product.model where TYPE ='printer');";
         List<String> l = new LinkedList<>();
         try (Connection conn = DatabaseConnectionFactory.getInstance().getConnection();
              PreparedStatement s = conn.prepareStatement(query)) {
