@@ -1,7 +1,7 @@
-package tasks.airportManagementSystem.model;
+package tasks.airportManagementSystem.JDBC.model;
 
-import java.sql.Time;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /**
  * @author Tatevik Mirzoyan
@@ -10,15 +10,15 @@ import java.time.LocalDate;
 public class Trip {
     int id;
     Company company;
-    LocalDate time_in;
-    LocalDate time_out;
+    LocalDateTime time_in;
+    LocalDateTime time_out;
     String city_from;
     String city_too;
 
     public Trip() {
     }
 
-    public Trip(Company company, LocalDate time_in, LocalDate time_out, String city_from, String city_too) {
+    public Trip(Company company, LocalDateTime time_in, LocalDateTime time_out, String city_from, String city_too) {
         this.company = company;
         this.time_in = time_in;
         this.time_out = time_out;
@@ -42,19 +42,19 @@ public class Trip {
         this.company = company;
     }
 
-    public LocalDate getTime_in() {
+    public LocalDateTime getTime_in() {
         return time_in;
     }
 
-    public void setTime_in(LocalDate time_in) {
+    public void setTime_in(LocalDateTime time_in) {
         this.time_in = time_in;
     }
 
-    public LocalDate getTime_out() {
+    public LocalDateTime getTime_out() {
         return time_out;
     }
 
-    public void setTime_out(LocalDate time_out) {
+    public void setTime_out(LocalDateTime time_out) {
         this.time_out = time_out;
     }
 

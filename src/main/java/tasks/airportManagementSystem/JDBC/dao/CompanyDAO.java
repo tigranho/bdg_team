@@ -1,6 +1,6 @@
-package tasks.airportManagementSystem.dao;
+package tasks.airportManagementSystem.JDBC.dao;
 
-import tasks.airportManagementSystem.model.Company;
+import tasks.airportManagementSystem.JDBC.model.Company;
 
 import java.util.Set;
 

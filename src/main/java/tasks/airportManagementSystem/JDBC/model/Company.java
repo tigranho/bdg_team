@@ -1,6 +1,5 @@
-package tasks.airportManagementSystem.model;
+package tasks.airportManagementSystem.JDBC.model;
 
-import java.sql.Date;
 import java.time.LocalDate;
 
 /**

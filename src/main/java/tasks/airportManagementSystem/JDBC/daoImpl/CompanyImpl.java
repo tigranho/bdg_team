@@ -1,7 +1,7 @@
-package tasks.airportManagementSystem.daoImpl;
+package tasks.airportManagementSystem.JDBC.daoImpl;
 
-import tasks.airportManagementSystem.dao.CompanyDAO;
-import tasks.airportManagementSystem.model.Company;
+import tasks.airportManagementSystem.JDBC.dao.CompanyDAO;
+import tasks.airportManagementSystem.JDBC.model.Company;
 
 import java.sql.*;
 import java.util.LinkedHashSet;
@@ -69,8 +69,8 @@ public class CompanyImpl implements CompanyDAO {
             stmt.setInt(2, perPage);
             // stmt.setInt(3, ((page - 1) * perPage));
             stmt.setInt(3, page);
-            String st = stmt.toString();
-            System.out.println(st);
+//            String st = stmt.toString();
+//            System.out.println(st);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 company = new Company();

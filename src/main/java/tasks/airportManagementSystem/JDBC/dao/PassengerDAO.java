@@ -1,8 +1,9 @@
-package tasks.airportManagementSystem.dao;
+package tasks.airportManagementSystem.JDBC.dao;
 
-import tasks.airportManagementSystem.model.Passenger;
-import tasks.airportManagementSystem.model.Trip;
+import tasks.airportManagementSystem.JDBC.model.Passenger;
+import tasks.airportManagementSystem.JDBC.model.Trip;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Set;
 
@@ -12,15 +13,15 @@ import java.util.Set;
  */
 public interface PassengerDAO {
 
-        Passenger getById(int id);
+        Passenger getById(int id) throws SQLException;
 
-        Set<Passenger> getAll();
+        Set<Passenger> getAll() throws SQLException;
 
         Set<Passenger> get(int page, int perPage, String sort);
 
-        Passenger save(Passenger passenger);
+        Passenger save(Passenger passenger) throws SQLException;
 
-        Passenger update(Passenger passenger);
+        Passenger update(Passenger passenger) throws SQLException;
 
         void delete(int passengerId);
 

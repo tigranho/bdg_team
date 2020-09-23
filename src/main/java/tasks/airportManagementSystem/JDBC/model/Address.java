@@ -1,4 +1,4 @@
-package tasks.airportManagementSystem.model;
+package tasks.airportManagementSystem.JDBC.model;
 
 /**
  * @author Tatevik Mirzoyan

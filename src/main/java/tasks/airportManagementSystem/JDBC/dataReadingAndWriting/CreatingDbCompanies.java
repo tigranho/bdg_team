@@ -1,4 +1,4 @@
-package tasks.airportManagementSystem.dataReadingAndWriting;
+package tasks.airportManagementSystem.JDBC.dataReadingAndWriting;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -14,18 +14,20 @@ import java.time.format.DateTimeFormatter;
 public class CreatingDbCompanies {
     public static void main(String[] args) throws SQLException, IOException {
         String url = "jdbc:mysql://localhost:3306/airport_management_system";
-        String pathname = "C:\\Tatev Mirzoyan\\JAVA_Intro\\MySQL\\homework(JDBC)\\companies.txt";
+        String pathname = "src/main/resources/companies.txt";
+        String query = "INSERT INTO COMPANIES (NAME,FOUND_DATE) VALUES (?, ?)";
         File file = new File(pathname);
         try (Connection conn = DriverManager.getConnection(url, "root", "root");
-             Statement stmt = conn.createStatement();
+             PreparedStatement stmt = conn.prepareStatement(query);
              BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
             int lineCount = (int) Files.lines(Paths.get(pathname)).count();
             for (int i = 0; i < lineCount; i++) {
                 String s = bufferedReader.readLine();
                 if (i == 0) continue;
                 String[] data = getStringArrayFromFileContainingDate(s.split(","));
-                String insertQuery = getInsertQueryFromStringArray(data);
-                stmt.executeUpdate(insertQuery);
+                stmt.setString(1, data[0]);
+                stmt.setString(2, data[1]);
+                stmt.executeUpdate();
             }
         }
     }
@@ -38,18 +40,5 @@ public class CreatingDbCompanies {
         LocalDate date = LocalDate.parse(s[1], f);
         str[1] = date.format(f1);
         return str;
-    }
-
-    public static String getInsertQueryFromStringArray(String[] paramArr) {
-        StringBuilder insertQuery = new StringBuilder("INSERT INTO COMPANIES (NAME,FOUND_DATE) VALUES (");
-        for (int i = 0; i < paramArr.length; i++) {
-            insertQuery.append("'").append(paramArr[i]).append("'");
-            if (i == paramArr.length - 1) {
-                insertQuery.append(")");
-            } else {
-                insertQuery.append(",");
-            }
-        }
-        return insertQuery.toString();
     }
 }

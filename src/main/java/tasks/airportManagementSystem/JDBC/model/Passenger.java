@@ -1,4 +1,4 @@
-package tasks.airportManagementSystem.model;
+package tasks.airportManagementSystem.JDBC.model;
 
 /**
  * @author Tatevik Mirzoyan
@@ -58,6 +58,6 @@ public class Passenger {
                 ", name='" + name + '\'' +
                 ", phone='" + phone + '\'' +
                 ", address=" + address +
-                '}';
+                '}' + "\n";
     }
 }
