@@ -1,5 +1,6 @@
 package jdbclesson.implementation;
 
+import jdbclesson.Address;
 import jdbclesson.Connect;
 import jdbclesson.Passenger;
 import jdbclesson.dao.PassengerDAO;
@@ -19,7 +20,7 @@ public class PassengerI implements PassengerDAO {
              ResultSet resultSet = preparedStatement.executeQuery()){
 
             return new Passenger(resultSet.getInt(1), resultSet.getString(2),
-                    resultSet.getString(3), resultSet.getString(4));
+                    resultSet.getString(3), resultSet.getInt(4));
         }
     }
 
@@ -34,7 +35,7 @@ public class PassengerI implements PassengerDAO {
             while (resultSet.next()){
                 Passenger passenger = new Passenger(
                         resultSet.getInt(1), resultSet.getString(2),
-                        resultSet.getString(3), resultSet.getString(4));
+                        resultSet.getString(3), resultSet.getInt(4));
 
                 passengerSet.add(passenger);
             }
@@ -54,14 +55,14 @@ public class PassengerI implements PassengerDAO {
     @Override
     public Passenger save(Passenger passenger) {
 
-        try (Connection connection = Connect.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement("insert into passengers(" +
-                     "id, name, phone, address_id) VALUES (id = ?, name = ?, phone = ?, address_id = ?)")) {
+        try (Connection connection = Connect.getConnection()){
+            PreparedStatement preparedStatement = connection.prepareStatement("insert into passengers(" +
+                     "id, name, phone, address_id) VALUES (?, ?, ?, ?)");
             preparedStatement.setString(1, String.valueOf(passenger.getId()));
-            preparedStatement.setString(1, passenger.getName());
-            preparedStatement.setString(2, passenger.getPhone());
-            preparedStatement.setString(3, String.valueOf(passenger.getAddress()));
-
+            preparedStatement.setString(2, passenger.getName());
+            preparedStatement.setString(3, passenger.getPhone());
+            preparedStatement.setString(4, String.valueOf(passenger.getAddress()));
+            preparedStatement.executeUpdate();
         } catch (SQLException | ClassNotFoundException throwables) {
             throwables.printStackTrace();
         }

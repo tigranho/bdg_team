@@ -5,13 +5,13 @@ public class Passenger {
     private int id;
     private String name;
     private String phone;
-    private Address address;
+    private int address;
 
-    public Passenger(int id, String name, String phone, Object address) {
+    public Passenger(int id, String name, String phone, int address) {
         this.id = id;
         this.name = name;
         this.phone = phone;
-        this.address = (Address) address;
+        this.address = address;
     }
 
     public int getId() {
@@ -38,11 +38,11 @@ public class Passenger {
         this.phone = phone;
     }
 
-    public Address getAddress() {
+    public int getAddress() {
         return address;
     }
 
-    public void setAddress(Address address) {
+    public void setAddress(int address) {
         this.address = address;
     }
 }

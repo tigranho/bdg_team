@@ -53,6 +53,7 @@ public class CompanyI implements CompanyDAO {
 
             preparedStatement.setString(1, passenger.getName());
             preparedStatement.setString(2, passenger.getFound_date());
+            preparedStatement.executeUpdate();
 
         } catch (SQLException | ClassNotFoundException throwables) {
             throwables.printStackTrace();
@@ -83,7 +84,7 @@ public class CompanyI implements CompanyDAO {
         try (Connection connection = Connect.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement("delete from companies where id = ?")) {
             preparedStatement.setString(1, String.valueOf(companyId));
-
+            preparedStatement.executeUpdate();
         } catch (SQLException | ClassNotFoundException throwables) {
             throwables.printStackTrace();
         }

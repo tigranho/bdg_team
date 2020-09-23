@@ -47,7 +47,7 @@ public class AddressI implements AddressDAO {
             preparedStatement.setString(1, String.valueOf(address.getId()));
             preparedStatement.setString(3, address.getCountry());
             preparedStatement.setString(2, address.getCity());
-
+            preparedStatement.executeUpdate();
         } catch (SQLException | ClassNotFoundException throwables) {
             throwables.printStackTrace();
         }
@@ -64,7 +64,7 @@ public class AddressI implements AddressDAO {
             preparedStatement.setString(1, String.valueOf(address.getId()));
             preparedStatement.setString(2, address.getCountry());
             preparedStatement.setString(3, address.getCity());
-            preparedStatement.execute();
+            preparedStatement.executeUpdate();
         } catch (SQLException | ClassNotFoundException throwables) {
             throwables.printStackTrace();
         }
@@ -78,6 +78,8 @@ public class AddressI implements AddressDAO {
         try (Connection connection = Connect.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement("delete from address where id = ?")){
             preparedStatement.setString(1, String.valueOf(addressId));
+            preparedStatement.executeUpdate();
+
         } catch (SQLException | ClassNotFoundException throwables) {
             throwables.printStackTrace();
         }
