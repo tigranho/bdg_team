@@ -1,0 +1,29 @@
+package jdbclesson.dao;
+
+import jdbclesson.Passenger;
+import jdbclesson.implementation.TripI;
+
+import java.sql.SQLException;
+import java.util.List;
+import java.util.Set;
+
+public interface PassengerDAO {
+
+    Passenger getById(long id) throws SQLException, ClassNotFoundException;
+
+    Set<Passenger> getAll();
+
+    Set<Passenger> get(int page, int perPage, String sort);
+
+    Passenger save(Passenger passenger);
+
+    Passenger update(Passenger passenger);
+
+    void delete(long passengerId);
+
+    List<Passenger> getPassengersOfTrip(long tripNumber);
+
+    void registerTrip(TripI trip, Passenger passenger);
+
+    void cancelTrip(long passengerId, long tripNumber);
+}
