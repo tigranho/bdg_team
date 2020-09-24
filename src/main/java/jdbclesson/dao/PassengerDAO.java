@@ -22,8 +22,4 @@ public interface PassengerDAO {
     void delete(long passengerId);
 
     List<Passenger> getPassengersOfTrip(long tripNumber);
-
-    void registerTrip(TripI trip, Passenger passenger);
-
-    void cancelTrip(long passengerId, long tripNumber);
 }

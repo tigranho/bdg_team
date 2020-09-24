@@ -58,10 +58,10 @@ public class PassengerI implements PassengerDAO {
         try (Connection connection = Connect.getConnection()){
             PreparedStatement preparedStatement = connection.prepareStatement("insert into passengers(" +
                      "id, name, phone, address_id) VALUES (?, ?, ?, ?)");
-            preparedStatement.setString(1, String.valueOf(passenger.getId()));
+            preparedStatement.setInt(1, passenger.getId());
             preparedStatement.setString(2, passenger.getName());
             preparedStatement.setString(3, passenger.getPhone());
-            preparedStatement.setString(4, String.valueOf(passenger.getAddress()));
+            preparedStatement.setObject(4, passenger.getAddress());
             preparedStatement.executeUpdate();
         } catch (SQLException | ClassNotFoundException throwables) {
             throwables.printStackTrace();
@@ -95,7 +95,7 @@ public class PassengerI implements PassengerDAO {
         try (Connection connection = Connect.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement("delete from passengers where id = ?")){
 
-            preparedStatement.setString(1, String.valueOf(passengerId));
+            preparedStatement.setLong(1, passengerId);
             preparedStatement.execute();
 
         } catch (SQLException | ClassNotFoundException throwables) {
@@ -106,15 +106,5 @@ public class PassengerI implements PassengerDAO {
     @Override
     public List<Passenger> getPassengersOfTrip(long tripNumber) {
         return null;
-    }
-
-    @Override
-    public void registerTrip(TripI trip, Passenger passenger) {
-
-    }
-
-    @Override
-    public void cancelTrip(long passengerId, long tripNumber) {
-
     }
 }
