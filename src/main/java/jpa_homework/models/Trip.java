@@ -10,15 +10,13 @@ public class Trip {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @ManyToOne
+    @ManyToOne()
     @JoinColumn(name = "companyID")
     private Company company;
     private LocalDateTime timeIn;
     private LocalDateTime timeOut;
     private String townFrom;
     private String townTo;
-    @Transient
-    private Set<Passenger> passengers;
 
     public Trip() {}
 
@@ -74,14 +72,6 @@ public class Trip {
         this.townTo = townTo;
     }
 
-    public Set<Passenger> getPassengers() {
-        return passengers;
-    }
-
-    public void setPassengers(Set<Passenger> passengers) {
-        this.passengers = passengers;
-    }
-
     @Override
     public String toString() {
         return "Trip{" +
@@ -91,7 +81,6 @@ public class Trip {
                 ", timeOut=" + timeOut +
                 ", townFrom='" + townFrom + '\'' +
                 ", townTo='" + townTo + '\'' +
-                ", passengers=" + passengers +
                 '}';
     }
 }

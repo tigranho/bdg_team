@@ -12,8 +12,6 @@ public class Company {
     private int id;
     private String name;
     private LocalDate foundingDate;
-    @Transient
-    private Set<Trip> trips;
 
     public Company() {}
 
@@ -28,14 +26,6 @@ public class Company {
 
     public String getName() {
         return name;
-    }
-
-    public Set<Trip> getTrips() {
-        return trips;
-    }
-
-    public void setTrips(Set<Trip> trips) {
-        this.trips = trips;
     }
 
     public LocalDate getFoundingDate() {
@@ -56,7 +46,6 @@ public class Company {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", foundDate=" + foundingDate +
-                ", trips=" + trips +
                 '}';
     }
 }

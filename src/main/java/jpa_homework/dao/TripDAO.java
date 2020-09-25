@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 public interface TripDAO {
-    Trip getById(long id);
+    Trip getById(int id);
 
     Set<Trip> getAll();
 

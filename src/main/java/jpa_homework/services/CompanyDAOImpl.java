@@ -4,23 +4,23 @@ import jpa_homework.dao.CompanyDAO;
 import jpa_homework.models.Company;
 
 import javax.persistence.*;
-import java.util.Comparator;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class CompanyDAOImpl implements CompanyDAO {
 
     @Override
-    public Company getById(long id) {
+    public Company getById(int id) {
         EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("airportSystem");
         EntityManager entityManager = emfactory.createEntityManager();
 
         entityManager.getTransaction().begin();
 
-        TypedQuery<Company> typedQuery
-                = entityManager.createQuery("select c from Company c where c.id = :id", Company.class);
-        typedQuery.setParameter("id", id);
-        Company company = typedQuery.getSingleResult();
+        Company company = entityManager.find(Company.class, id);
 
         entityManager.getTransaction().commit();
 
@@ -51,20 +51,23 @@ public class CompanyDAOImpl implements CompanyDAO {
 
     @Override
     public Set<Company> get(int page, int perPage, String sort) {
-        int start = (page - 1) * perPage;
-        int end = start + perPage;
+        int start = (page == 0) ? (page - 1) * perPage : (page - 1) * perPage - 1;
 
         EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("airportSystem");
         EntityManager entityManager = emfactory.createEntityManager();
 
         entityManager.getTransaction().begin();
 
-        TypedQuery<Company> typedQuery
-                = entityManager.createQuery("select c from Company c where c.id >= :start and c.id < :end", Company.class);
-
-        typedQuery.setParameter("start", start);
-        typedQuery.setParameter("end", end);
-        Set<Company> set = new HashSet<>(typedQuery.getResultList());
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Company> query = cb.createQuery(Company.class);
+        Root<Company> from = query.from(Company.class);
+        CriteriaQuery<Company> select = query.select(from);
+        CriteriaQuery<Company> orderBy = select.orderBy(cb.asc(from.get(sort)));
+        Set<Company> set = entityManager.createQuery(orderBy)
+                .setFirstResult(start)
+                .setMaxResults(perPage)
+                .getResultStream()
+                .collect(Collectors.toSet());
 
         entityManager.getTransaction().commit();
 
@@ -93,19 +96,12 @@ public class CompanyDAOImpl implements CompanyDAO {
 
     @Override
     public Company update(Company company) {
-//        delete(company.getId());
-//        save(company);
-
         EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("airportSystem");
         EntityManager entityManager = emfactory.createEntityManager();
 
         entityManager.getTransaction().begin();
 
-        TypedQuery<Company> typedQuery =
-                entityManager.createQuery("select c from Company c where c.id = :companyID", Company.class);
-        typedQuery.setParameter("companyID", company.getId());
-        typedQuery.getSingleResult().setFoundingDate(company.getFoundingDate());
-        typedQuery.getSingleResult().setName(company.getName());
+        entityManager.merge(company);
 
         entityManager.getTransaction().commit();
 

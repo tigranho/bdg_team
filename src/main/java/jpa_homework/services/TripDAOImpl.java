@@ -5,23 +5,24 @@ import jpa_homework.models.Passenger;
 import jpa_homework.models.Trip;
 
 import javax.persistence.*;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class TripDAOImpl implements TripDAO {
 
     @Override
-    public Trip getById(long id) {
+    public Trip getById(int id) {
         EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("airportSystem");
         EntityManager entityManager = emfactory.createEntityManager();
 
         entityManager.getTransaction().begin();
 
-        TypedQuery<Trip> typedQuery
-                = entityManager.createQuery("select t from Trip t where t.id = :id", Trip.class);
-        typedQuery.setParameter("id", id);
-        Trip trip = typedQuery.getSingleResult();
+        Trip trip = entityManager.find(Trip.class, id);
 
         entityManager.getTransaction().commit();
 
@@ -52,20 +53,23 @@ public class TripDAOImpl implements TripDAO {
 
     @Override
     public Set<Trip> get(int page, int perPage, String sort) {
-        int start = (page - 1) * perPage;
-        int end = start + perPage;
+        int start = (page == 0) ? (page - 1) * perPage : (page - 1) * perPage - 1;
 
         EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("airportSystem");
         EntityManager entityManager = emfactory.createEntityManager();
 
         entityManager.getTransaction().begin();
 
-        TypedQuery<Trip> typedQuery
-                = entityManager.createQuery("select t from Trip t where t.id >= :start and t.id < :end", Trip.class);
-
-        typedQuery.setParameter("start", start);
-        typedQuery.setParameter("end", end);
-        Set<Trip> set = new HashSet<>(typedQuery.getResultList());
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Trip> query = cb.createQuery(Trip.class);
+        Root<Trip> from = query.from(Trip.class);
+        CriteriaQuery<Trip> select = query.select(from);
+        CriteriaQuery<Trip> orderBy = select.orderBy(cb.asc(from.get(sort)));
+        Set<Trip> set = entityManager.createQuery(orderBy)
+                .setFirstResult(start)
+                .setMaxResults(perPage)
+                .getResultStream()
+                .collect(Collectors.toSet());
 
         entityManager.getTransaction().commit();
 
@@ -99,15 +103,7 @@ public class TripDAOImpl implements TripDAO {
 
         entityManager.getTransaction().begin();
 
-        TypedQuery<Trip> typedQuery =
-                entityManager.createQuery("select p from Trip p where p.id = :tripID", Trip.class);
-        typedQuery.setParameter("tripID", trip.getId());
-        typedQuery.getSingleResult().setCompany(trip.getCompany());
-        typedQuery.getSingleResult().setTimeIn(trip.getTimeIn());
-        typedQuery.getSingleResult().setTimeOut(trip.getTimeOut());
-        typedQuery.getSingleResult().setTownFrom(trip.getTownFrom());
-        typedQuery.getSingleResult().setTownTo(trip.getTownTo());
-
+        entityManager.merge(trip);
 
         entityManager.getTransaction().commit();
 

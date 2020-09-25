@@ -5,7 +5,7 @@ import jpa_homework.models.Company;
 import java.util.Set;
 
 public interface CompanyDAO {
-    Company getById(long id);
+    Company getById(int id);
 
     Set<Company> getAll();
 

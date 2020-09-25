@@ -1,5 +1,7 @@
 package jpa_homework.models;
 
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -11,7 +13,7 @@ public class Passenger {
     private int id;
     private String name;
     private String phone;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "addressID")
     private Address address;
     @Transient

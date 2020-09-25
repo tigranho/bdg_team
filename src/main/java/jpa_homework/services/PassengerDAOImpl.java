@@ -7,21 +7,22 @@ import jpa_homework.models.PassengerTrip;
 import jpa_homework.models.Trip;
 
 import javax.persistence.*;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class PassengerDAOImpl implements PassengerDAO {
 
     @Override
-    public Passenger getById(long id) {
+    public Passenger getById(int id) {
         EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("airportSystem");
         EntityManager entityManager = emfactory.createEntityManager();
 
         entityManager.getTransaction().begin();
 
-        TypedQuery<Passenger> typedQuery
-                = entityManager.createQuery("select p from Passenger p where p.id = :id", Passenger.class);
-        typedQuery.setParameter("id", id);
-        Passenger passenger = typedQuery.getSingleResult();
+        Passenger passenger = entityManager.find(Passenger.class, id);
 
         entityManager.getTransaction().commit();
 
@@ -52,20 +53,23 @@ public class PassengerDAOImpl implements PassengerDAO {
 
     @Override
     public Set<Passenger> get(int page, int perPage, String sort) {
-        int start = (page - 1) * perPage;
-        int end = start + perPage;
+        int start = (page == 0) ? (page - 1) * perPage : (page - 1) * perPage - 1;
 
         EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("airportSystem");
         EntityManager entityManager = emfactory.createEntityManager();
 
         entityManager.getTransaction().begin();
 
-        TypedQuery<Passenger> typedQuery
-                = entityManager.createQuery("select p from Passenger p where p.id >= :start and p.id < :end", Passenger.class);
-
-        typedQuery.setParameter("start", start);
-        typedQuery.setParameter("end", end);
-        Set<Passenger> set = new HashSet<>(typedQuery.getResultList());
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Passenger> query = cb.createQuery(Passenger.class);
+        Root<Passenger> from = query.from(Passenger.class);
+        CriteriaQuery<Passenger> select = query.select(from);
+        CriteriaQuery<Passenger> orderBy = select.orderBy(cb.asc(from.get(sort)));
+        Set<Passenger> set = entityManager.createQuery(orderBy)
+                                            .setFirstResult(start)
+                                            .setMaxResults(perPage)
+                                            .getResultStream()
+                                            .collect(Collectors.toSet());
 
         entityManager.getTransaction().commit();
 
@@ -99,13 +103,7 @@ public class PassengerDAOImpl implements PassengerDAO {
 
         entityManager.getTransaction().begin();
 
-        TypedQuery<Passenger> typedQuery =
-                entityManager.createQuery("select p from Passenger p where p.id = :companyID", Passenger.class);
-        typedQuery.setParameter("companyID", passenger.getId());
-        typedQuery.getSingleResult().setName(passenger.getName());
-        typedQuery.getSingleResult().setPhone(passenger.getPhone());
-        typedQuery.getSingleResult().setAddress(passenger.getAddress());
-
+        entityManager.merge(passenger);
 
         entityManager.getTransaction().commit();
 

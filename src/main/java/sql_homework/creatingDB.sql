@@ -7,9 +7,6 @@ create table companies
         primary key (id)
 );
 
-create unique index companies_name_uindex
-    on companies (name);
-
 create table addresses
 (
     id int auto_increment,

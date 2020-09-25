@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Set;
 
 public interface PassengerDAO {
-    Passenger getById(long id);
+    Passenger getById(int id);
 
     Set<Passenger> getAll();
 
