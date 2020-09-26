@@ -1,6 +1,6 @@
-package tasks.customLists.customArrayLists;
+package collections.customLists;
 
-import tasks.customLists.arrayLists.CustomArrayList;
+import collections.customLists.CustomArrayList;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
