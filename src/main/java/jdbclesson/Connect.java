@@ -7,8 +7,8 @@ import java.sql.SQLException;
 public class Connect {
 
     private static final String url = "jdbc:mysql://localhost:3306/Airport?serverTimezone = UTC";
-    private static final String user = "root";
-    private static final String pass = "5202";
+    private static final String user = "";
+    private static final String pass = "";
 
     public static Connection getConnection() throws SQLException, ClassNotFoundException {
 
