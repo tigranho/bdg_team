@@ -1,4 +1,4 @@
-package jdbclesson;
+package jdbclesson.model;
 
 public class Passenger {
 
@@ -44,5 +44,14 @@ public class Passenger {
 
     public void setAddress(int address) {
         this.address = address;
+    }
+
+    @Override
+    public String toString() {
+        return "\nid " + getId() +
+                ", name " + getName() +
+                ", phone " + getPhone() +
+                ", address " + new Address().getCountry() +
+                ", " + new Address().getCity();
     }
 }

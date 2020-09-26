@@ -1,7 +1,6 @@
 package jdbclesson.dao;
 
-import jdbclesson.Passenger;
-import jdbclesson.implementation.TripI;
+import jdbclesson.model.Passenger;
 
 import java.sql.SQLException;
 import java.util.List;

@@ -1,7 +1,6 @@
 package jdbclesson.dao;
 
-import jdbclesson.Company;
-import jdbclesson.implementation.CompanyI;
+import jdbclesson.model.Company;
 
 import java.sql.SQLException;
 import java.util.Set;

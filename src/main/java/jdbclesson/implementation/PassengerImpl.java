@@ -1,8 +1,7 @@
 package jdbclesson.implementation;
 
-import jdbclesson.Address;
 import jdbclesson.Connect;
-import jdbclesson.Passenger;
+import jdbclesson.model.Passenger;
 import jdbclesson.dao.PassengerDAO;
 
 import java.sql.*;
@@ -10,7 +9,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class PassengerI implements PassengerDAO {
+public class PassengerImpl implements PassengerDAO {
 
     @Override
     public Passenger getById(long id) throws SQLException, ClassNotFoundException {
@@ -20,7 +19,7 @@ public class PassengerI implements PassengerDAO {
              ResultSet resultSet = preparedStatement.executeQuery()){
 
             return new Passenger(resultSet.getInt(1), resultSet.getString(2),
-                    resultSet.getString(3), resultSet.getInt(4));
+                    resultSet.getString(3), resultSet.getInt("address_id"));
         }
     }
 
@@ -35,7 +34,7 @@ public class PassengerI implements PassengerDAO {
             while (resultSet.next()){
                 Passenger passenger = new Passenger(
                         resultSet.getInt(1), resultSet.getString(2),
-                        resultSet.getString(3), resultSet.getInt(4));
+                        resultSet.getString(3), resultSet.getInt("address_id"));
 
                 passengerSet.add(passenger);
             }
@@ -63,6 +62,7 @@ public class PassengerI implements PassengerDAO {
             preparedStatement.setString(3, passenger.getPhone());
             preparedStatement.setObject(4, passenger.getAddress());
             preparedStatement.executeUpdate();
+
         } catch (SQLException | ClassNotFoundException throwables) {
             throwables.printStackTrace();
         }

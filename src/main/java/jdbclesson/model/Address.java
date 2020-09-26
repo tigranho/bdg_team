@@ -1,4 +1,4 @@
-package jdbclesson;
+package jdbclesson.model;
 
 public class Address {
 
@@ -18,11 +18,20 @@ public class Address {
         return id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getCountry() {
         return country;
     }
 
     public String getCity() {
         return city;
+    }
+
+    @Override
+    public String toString() {
+        return "\nid " + getId() + " country " + getCountry() + " city " + getCity();
     }
 }

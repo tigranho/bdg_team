@@ -1,8 +1,9 @@
 package jdbclesson.implementation;
 
 import jdbclesson.Connect;
-import jdbclesson.Passenger;
-import jdbclesson.Trip;
+import jdbclesson.model.Company;
+import jdbclesson.model.Passenger;
+import jdbclesson.model.Trip;
 import jdbclesson.dao.TripDAO;
 
 import java.sql.*;
@@ -10,15 +11,15 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class TripI implements TripDAO {
+public class TripImpl implements TripDAO {
 
     @Override
     public Trip getById(long id) {
 
-        try (Connection connection = Connect.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement("select * from trip where id = ?");
-             ResultSet resultSet = preparedStatement.executeQuery()){
+        try (Connection connection = Connect.getConnection()){
 
+            PreparedStatement preparedStatement = connection.prepareStatement("select * from trip where trip_number = ?");
+            ResultSet resultSet = preparedStatement.executeQuery();
 
         } catch (SQLException | ClassNotFoundException throwables) {
             throwables.printStackTrace();
@@ -36,8 +37,10 @@ public class TripI implements TripDAO {
              ResultSet resultSet = statement.executeQuery("select * from trip")){
 
             while (resultSet.next()){
-                Trip trip = new Trip(resultSet.getInt(1), resultSet.getInt(2),
-                        resultSet.getTimestamp(3), resultSet.getInt(4), resultSet.getInt(5));
+                Trip trip = new Trip(resultSet.getInt("trip_number"), new Company(resultSet.getInt("id"),
+                        resultSet.getString("name"), resultSet.getString("found_date")),
+                        resultSet.getTimestamp("time_in"), resultSet.getTimestamp("time_out"),
+                        resultSet.getString("town_too"), resultSet.getString("town_from"));
 
                 tripSet.add(trip);
             }
@@ -58,13 +61,14 @@ public class TripI implements TripDAO {
         try (Connection connection = Connect.getConnection()) {
 
             PreparedStatement preparedStatement = connection.prepareStatement(
-                    "insert into trip(id, trip_number, time, address_id, passenger_id) values (?, ?, ?, ?, ?)");
+                    "insert into trip(trip_number, company_id, time_in, time_out, town_too, town_from) values (?, ?, ?, ?, ?, ?)");
 
-            preparedStatement.setInt(1, passenger.getId());
-            preparedStatement.setInt(2, passenger.getTrip_number());
-            preparedStatement.setTimestamp(3, passenger.getTime());
-            preparedStatement.setInt(4, passenger.getAddress_id());
-            preparedStatement.setInt(5, passenger.getPassenger_id());
+            preparedStatement.setInt(1, passenger.getTrip_number());
+            preparedStatement.setObject(2, passenger.getCompany_id());
+            preparedStatement.setTimestamp(3, passenger.getTime_in());
+            preparedStatement.setTimestamp(4, passenger.getTime_out());
+            preparedStatement.setString(5, passenger.getTown_to());
+            preparedStatement.setString(6, passenger.getTown_from());
             preparedStatement.executeUpdate();
 
         } catch (SQLException | ClassNotFoundException throwables) {
@@ -78,13 +82,14 @@ public class TripI implements TripDAO {
 
         try (Connection connection = Connect.getConnection()){
             PreparedStatement preparedStatement = connection.prepareStatement(
-                    "update trip set id = ?, trip_number = ?, time = ?, address_id = ?, passenger_id = ?");
+                    "update trip set trip_number = ?, company_id = ?, time_in = ?, time_out = ?, town_too = ?, town_from = ?");
 
-            preparedStatement.setInt(1, passenger.getId());
-            preparedStatement.setInt(2, passenger.getTrip_number());
-            preparedStatement.setTimestamp(3, passenger.getTime());
-            preparedStatement.setInt(4, passenger.getAddress_id());
-            preparedStatement.setInt(5, passenger.getPassenger_id());
+            preparedStatement.setInt(1, passenger.getTrip_number());
+            preparedStatement.setObject(2, passenger.getCompany_id());
+            preparedStatement.setTimestamp(3, passenger.getTime_in());
+            preparedStatement.setTimestamp(4, passenger.getTime_out());
+            preparedStatement.setString(5, passenger.getTown_to());
+            preparedStatement.setString(6, passenger.getTown_from());
             preparedStatement.executeUpdate();
 
         } catch (SQLException | ClassNotFoundException throwables) {
@@ -98,7 +103,7 @@ public class TripI implements TripDAO {
     public void delete(long tripId) {
 
         try (Connection connection = Connect.getConnection()){
-            PreparedStatement preparedStatement = connection.prepareStatement("delete from trip where id = ?");
+            PreparedStatement preparedStatement = connection.prepareStatement("delete from trip where trip_number = ?");
             preparedStatement.setLong(1, tripId);
             preparedStatement.executeUpdate();
         } catch (SQLException | ClassNotFoundException throwables) {
@@ -117,7 +122,7 @@ public class TripI implements TripDAO {
     }
 
     @Override
-    public void registerTrip(TripI trip, Passenger passenger) {
+    public void registerTrip(TripImpl trip, Passenger passenger) {
 
     }
 

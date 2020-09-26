@@ -1,13 +1,11 @@
 package jdbclesson.dao;
 
-import jdbclesson.Address;
-
-import java.sql.SQLException;
+import jdbclesson.model.Address;
 import java.util.Set;
 
 public interface AddressDAO {
 
-    Address getById(long id) throws SQLException, ClassNotFoundException;
+    Address getById(long id);
 
     Set<Address> getAll();
 
