@@ -5,9 +5,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.Objects;
-import java.util.Set;
-import java.util.StringJoiner;
+import java.util.*;
 
 @Data
 @NoArgsConstructor
@@ -87,5 +85,27 @@ public class Trip {
                 .add("fromCity='" + fromCity + "'")
                 .add("toCity='" + toCity + "'")
                 .toString();
+    }
+
+    public static String frequencySort(String s)          // lets assume that input string is "tree"
+    {
+        HashMap<Character, Integer> map = new HashMap<>();
+        for (char c : s.toCharArray()) {
+            map.put(c, map.getOrDefault(c, 0) + 1);
+        }                                                       //  now after this my HashMap will have values (t,1),(r,1),(e,2)
+
+        PriorityQueue<Character> maxHeap = new PriorityQueue<>((a, b) -> map.get(b) - map.get(a));  //my question is about this constructor in priority queue, There are just two input parameters , how subtracting two things will help in sorting ??
+
+        maxHeap.addAll(map.keySet()); // i guess the keyset is now 't,r,e'  but constructor has only 2 parameters, what is going on ? How will the constructor help in setting the sorting behaviour of prioroty queue?
+
+        StringBuilder result = new StringBuilder();
+
+        while (maxHeap.isEmpty()) {
+            char current = maxHeap.remove();
+            for (int i = 0; i < map.get(current); i++) {
+                result.append(current);
+            }
+        }
+        return result.toString();
     }
 }

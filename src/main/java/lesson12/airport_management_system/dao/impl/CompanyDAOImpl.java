@@ -8,12 +8,18 @@ import javax.persistence.EntityManager;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.net.ServerSocket;
+import java.net.Socket;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
-import java.util.Locale;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 public class CompanyDAOImpl extends BaseDao implements CompanyDAO {
@@ -86,6 +92,7 @@ public class CompanyDAOImpl extends BaseDao implements CompanyDAO {
         if (oldCompany != null) {
             oldCompany.setFoundingDate(company.getFoundingDate());
             oldCompany.setName(company.getName());
+//            entityManager.createNativeQuery("select founding_date, name from c where name = 'a'", Company.class);
             execQueryByOneTransaction(em -> em.persist(oldCompany));
             System.out.printf("Company by id:%d successfully updated%n", id);
         } else System.err.printf("Company by id:%d not found%n", id);
