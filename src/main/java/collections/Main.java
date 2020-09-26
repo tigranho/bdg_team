@@ -1,8 +1,7 @@
-package com.bdg.Tasks;
+package collections;
 
-import com.bdg.Tasks.CustomLists.ArrayLists.CustomArrayList;
-import com.bdg.Tasks.CustomLists.LinkedLists.CustomLinkedList;
-import com.bdg.Tasks.CustomMaps.CustomHashMap;
+import collections.customLists.CustomArrayList;
+import collections.customLists.CustomLinkedList;
 
 import java.util.*;
 

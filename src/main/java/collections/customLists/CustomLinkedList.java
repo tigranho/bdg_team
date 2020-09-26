@@ -1,4 +1,4 @@
-package com.bdg.Tasks.CustomLists.LinkedLists;
+package collections.customLists;
 
 import org.jetbrains.annotations.NotNull;
 

@@ -1,4 +1,4 @@
-package com.bdg.Tasks.CustomMaps;
+package collections;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
