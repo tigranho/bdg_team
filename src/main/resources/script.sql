@@ -30,5 +30,8 @@ create table trip(
 
 create table passenger_trip(
     passenger_id int not null,
-    trip_id int not null
+    trip_id int not null,
+    constraint unique (passenger_id, trip_id),
+    foreign key (passenger_id) references passengers(id),
+    foreign key (trip_id) references trip(trip_number)
 );

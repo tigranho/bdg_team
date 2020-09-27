@@ -1,25 +1,33 @@
 package jdbclesson.implementation;
 
 import jdbclesson.Connect;
+import jdbclesson.model.Address;
 import jdbclesson.model.Passenger;
 import jdbclesson.dao.PassengerDAO;
 
 import java.sql.*;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class PassengerImpl implements PassengerDAO {
 
     @Override
-    public Passenger getById(long id) throws SQLException, ClassNotFoundException {
+    public Passenger getById(long id) {
 
-        try (Connection connection = Connect.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement("select * from passengers where id = ?");
-             ResultSet resultSet = preparedStatement.executeQuery()){
+        try (Connection connection = Connect.getConnection()) {
 
-            return new Passenger(resultSet.getInt(1), resultSet.getString(2),
-                    resultSet.getString(3), resultSet.getInt("address_id"));
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "select * from passengers join address a on a.id = passengers.address_id where passengers.id = ?;");
+            preparedStatement.setLong(1, id);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet.next();
+
+            return new Passenger(resultSet.getInt("id"), resultSet.getString("name"),
+                    resultSet.getString("phone"), new Address(resultSet.getInt("id"),
+                    resultSet.getString("country"), resultSet.getString("city")));
+
+        } catch (SQLException | ClassNotFoundException throwables) {
+            throw new RuntimeException(throwables);
         }
     }
 
@@ -29,18 +37,18 @@ public class PassengerImpl implements PassengerDAO {
 
         try (Connection connection = Connect.getConnection();
              Statement statement = connection.createStatement();
-             ResultSet resultSet = statement.executeQuery("select * from passengers")){
+             ResultSet resultSet = statement.executeQuery("select * from passengers")) {
 
-            while (resultSet.next()){
-                Passenger passenger = new Passenger(
-                        resultSet.getInt(1), resultSet.getString(2),
-                        resultSet.getString(3), resultSet.getInt("address_id"));
+            while (resultSet.next()) {
+                Passenger passenger = new Passenger(resultSet.getInt("id"), resultSet.getString("name"),
+                        resultSet.getString("phone"), new Address(resultSet.getInt("id"),
+                        resultSet.getString("country"), resultSet.getString("city")));
 
                 passengerSet.add(passenger);
             }
 
         } catch (SQLException | ClassNotFoundException throwables) {
-            throwables.printStackTrace();
+            throw new RuntimeException(throwables);
         }
 
         return passengerSet;
@@ -48,15 +56,38 @@ public class PassengerImpl implements PassengerDAO {
 
     @Override
     public Set<Passenger> get(int page, int perPage, String sort) {
-        return null;
+        Set<Passenger> passengers = new TreeSet<>();
+
+        try (Connection connection = Connect.getConnection()) {
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "select * from passengers left join address a on a.id = passengers.address_id order by ? limit ? offset ?");
+
+            preparedStatement.setInt(page, 1);
+            preparedStatement.setInt(perPage, 2);
+            preparedStatement.setString(3, sort);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+
+                Passenger passenger = new Passenger(resultSet.getInt("id"), resultSet.getString("name"),
+                        resultSet.getString("phone"), new Address(resultSet.getInt("id"),
+                        resultSet.getString("country"), resultSet.getString("city")));
+
+                passengers.add(passenger);
+            }
+        } catch (SQLException | ClassNotFoundException throwables) {
+            throw new RuntimeException(throwables);
+        }
+        return passengers;
     }
 
     @Override
     public Passenger save(Passenger passenger) {
 
-        try (Connection connection = Connect.getConnection()){
+        try (Connection connection = Connect.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement("insert into passengers(" +
-                     "id, name, phone, address_id) VALUES (?, ?, ?, ?)");
+                    "id, name, phone, address_id) VALUES (?, ?, ?, ?)");
             preparedStatement.setInt(1, passenger.getId());
             preparedStatement.setString(2, passenger.getName());
             preparedStatement.setString(3, passenger.getPhone());
@@ -64,7 +95,7 @@ public class PassengerImpl implements PassengerDAO {
             preparedStatement.executeUpdate();
 
         } catch (SQLException | ClassNotFoundException throwables) {
-            throwables.printStackTrace();
+            throw new RuntimeException(throwables);
         }
 
         return passenger;
@@ -73,18 +104,18 @@ public class PassengerImpl implements PassengerDAO {
     @Override
     public Passenger update(Passenger passenger) {
 
-        try(Connection connection = Connect.getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(
-                    "update passengers set id = ?, name = ?, phone = ?, address_id = ?")){
+        try (Connection connection = Connect.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(
+                     "update passengers set id = ?, name = ?, phone = ?, address_id = ?")) {
 
-            preparedStatement.setString(1, String.valueOf(passenger.getId()));
+            preparedStatement.setInt(1, passenger.getId());
             preparedStatement.setString(2, passenger.getName());
             preparedStatement.setString(3, passenger.getPhone());
-            preparedStatement.setString(4, String.valueOf(passenger.getAddress()));
+            preparedStatement.setObject(4, passenger.getAddress());
             preparedStatement.execute();
 
         } catch (SQLException | ClassNotFoundException throwables) {
-            throwables.printStackTrace();
+            throw new RuntimeException(throwables);
         }
 
         return passenger;
@@ -93,18 +124,42 @@ public class PassengerImpl implements PassengerDAO {
     @Override
     public void delete(long passengerId) {
         try (Connection connection = Connect.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement("delete from passengers where id = ?")){
+             PreparedStatement preparedStatement = connection.prepareStatement("delete from passengers where id = ?")) {
 
             preparedStatement.setLong(1, passengerId);
             preparedStatement.execute();
 
         } catch (SQLException | ClassNotFoundException throwables) {
-            throwables.printStackTrace();
+            throw new RuntimeException(throwables);
         }
     }
 
     @Override
     public List<Passenger> getPassengersOfTrip(long tripNumber) {
-        return null;
+
+        List<Passenger> passengers = new ArrayList<>();
+
+        try (Connection connection = Connect.getConnection()) {
+
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "select * from passengers\n" +
+                            "    inner join passenger_trip pt on passengers.id = pt.passenger_id\n" +
+                            "    inner join passenger_trip p on passengers.id = p.passenger_id\n" +
+                            "    inner join trip t on t.trip_number = p.trip_id\n" +
+                            "    left join address a on a.id = passengers.address_id where trip_number = ?;");
+
+            preparedStatement.setLong(1, tripNumber);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            resultSet.next();
+            Passenger passenger = new Passenger(resultSet.getInt("id"), resultSet.getString("name"),
+                    resultSet.getString("phone"), new Address(resultSet.getInt("id"),
+                    resultSet.getString("country"), resultSet.getString("city")));
+            passengers.add(passenger);
+
+        } catch (SQLException | ClassNotFoundException throwables) {
+            throw new RuntimeException(throwables);
+        }
+        return passengers;
     }
 }

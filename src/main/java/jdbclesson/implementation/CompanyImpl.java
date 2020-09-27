@@ -7,6 +7,7 @@ import jdbclesson.dao.CompanyDAO;
 import java.sql.*;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
 
 public class CompanyImpl implements CompanyDAO {
 
@@ -57,7 +58,30 @@ public class CompanyImpl implements CompanyDAO {
 
     @Override
     public Set<Company> get(int page, int perPage, String sort) {
-        return null;
+
+        Set<Company> companies = new TreeSet<>();
+
+        try (Connection connection = Connect.getConnection()) {
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "select * from companies order by ? limit ? offset ?");
+
+            preparedStatement.setInt(page, 1);
+            preparedStatement.setInt(perPage, 2);
+            preparedStatement.setString(3, sort);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+
+                Company company = new Company(resultSet.getInt("id"),
+                        resultSet.getString(2), resultSet.getString(3));
+
+                companies.add(company);
+            }
+        } catch (SQLException | ClassNotFoundException throwables) {
+            throw new RuntimeException(throwables);
+        }
+        return companies;
     }
 
     @Override
@@ -84,10 +108,11 @@ public class CompanyImpl implements CompanyDAO {
         try (Connection connection = Connect.getConnection()) {
 
             PreparedStatement preparedStatement = connection.prepareStatement(
-                    "update companies set name = ?, found_date = ?");
+                    "update companies set id = ?, name = ?, found_date = ?");
 
-            preparedStatement.setString(1, passenger.getName());
-            preparedStatement.setString(2, passenger.getFound_date());
+            preparedStatement.setInt(1, passenger.getId());
+            preparedStatement.setString(2, passenger.getName());
+            preparedStatement.setString(3, passenger.getFound_date());
             preparedStatement.executeUpdate();
             return passenger;
 

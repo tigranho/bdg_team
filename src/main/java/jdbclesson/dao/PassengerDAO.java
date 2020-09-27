@@ -2,13 +2,12 @@ package jdbclesson.dao;
 
 import jdbclesson.model.Passenger;
 
-import java.sql.SQLException;
 import java.util.List;
 import java.util.Set;
 
 public interface PassengerDAO {
 
-    Passenger getById(long id) throws SQLException, ClassNotFoundException;
+    Passenger getById(long id);
 
     Set<Passenger> getAll();
 

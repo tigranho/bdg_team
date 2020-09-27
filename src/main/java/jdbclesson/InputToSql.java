@@ -3,12 +3,13 @@ package jdbclesson;
 import jdbclesson.dao.AddressDAO;
 import jdbclesson.implementation.AddressImpl;
 import jdbclesson.implementation.CompanyImpl;
-import jdbclesson.implementation.PassengerImpl;
 import jdbclesson.model.Address;
 import jdbclesson.model.Company;
-import jdbclesson.model.Passenger;
 
 import java.io.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 public class InputToSql {
 
@@ -31,7 +32,7 @@ public class InputToSql {
         }
     }
 
-    public void insertToP() throws IOException {
+    public void insertToP() throws IOException, SQLException, ClassNotFoundException {
         int id = 0;
         int aid = 0;
         String name;
@@ -39,7 +40,8 @@ public class InputToSql {
         AddressDAO address = new AddressImpl();
         File file = new File("src/main/resources/passengers.txt");
 
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
+        try (Connection connection = Connect.getConnection();
+             BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
             String read;
             while ((read = bufferedReader.readLine()) != null) {
                 String[] data = read.split(",");
@@ -49,8 +51,15 @@ public class InputToSql {
                 Address a_id = address.getById(aid);
                 int id1 = a_id.getId();
 
-                new PassengerImpl().save(new Passenger(id, name, phone, id1));
+//                new PassengerImpl().save(new Passenger(id, name, phone, ));
+                PreparedStatement preparedStatement = connection.prepareStatement(
+                        "insert into passengers(id, name, phone, address_id) VALUES (?, ?, ?, ?)");
+                preparedStatement.setInt(1, id);
+                preparedStatement.setString(2, name);
+                preparedStatement.setString(3, phone);
+                preparedStatement.setInt(4, id1);
             }
+
         }
     }
 

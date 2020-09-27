@@ -2,7 +2,6 @@ package jdbclesson.dao;
 
 import jdbclesson.model.Passenger;
 import jdbclesson.model.Trip;
-import jdbclesson.implementation.TripImpl;
 
 import java.util.List;
 import java.util.Set;
@@ -25,7 +24,7 @@ public interface TripDAO {
 
     List<Trip> getTripsTo(String city);
 
-    void registerTrip(TripImpl trip, Passenger passenger);
+    void registerTrip(Trip trip, Passenger passenger);
 
     void cancelTrip(long passengerId, long tripNumber);
 }

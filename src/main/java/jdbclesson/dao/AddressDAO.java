@@ -1,6 +1,7 @@
 package jdbclesson.dao;
 
 import jdbclesson.model.Address;
+
 import java.util.Set;
 
 public interface AddressDAO {

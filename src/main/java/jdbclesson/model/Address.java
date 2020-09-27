@@ -6,7 +6,8 @@ public class Address {
     private String country;
     private String city;
 
-    public Address() {}
+    public Address() {
+    }
 
     public Address(int id, String country, String city) {
         this.id = id;
@@ -32,6 +33,8 @@ public class Address {
 
     @Override
     public String toString() {
-        return "\nid " + getId() + " country " + getCountry() + " city " + getCity();
+        return "\nid " + getId() +
+                " country " + getCountry() +
+                " city " + getCity();
     }
 }

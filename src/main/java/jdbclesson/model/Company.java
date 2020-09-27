@@ -41,7 +41,7 @@ public class Company {
 
     @Override
     public String toString() {
-        return  "\nid " + getId() +
+        return "\nid " + getId() +
                 ", name " + getName() +
                 ", found date " + getFound_date();
     }

@@ -1,9 +1,6 @@
 package jdbclesson.model;
 
-import java.sql.Time;
 import java.sql.Timestamp;
-import java.time.LocalTime;
-import java.util.DuplicateFormatFlagsException;
 
 public class Trip {
 

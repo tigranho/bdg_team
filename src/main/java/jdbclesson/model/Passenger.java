@@ -5,9 +5,9 @@ public class Passenger {
     private int id;
     private String name;
     private String phone;
-    private int address;
+    private Address address;
 
-    public Passenger(int id, String name, String phone, int address) {
+    public Passenger(int id, String name, String phone, Address address) {
         this.id = id;
         this.name = name;
         this.phone = phone;
@@ -38,11 +38,11 @@ public class Passenger {
         this.phone = phone;
     }
 
-    public int getAddress() {
+    public Address getAddress() {
         return address;
     }
 
-    public void setAddress(int address) {
+    public void setAddress(Address address) {
         this.address = address;
     }
 
