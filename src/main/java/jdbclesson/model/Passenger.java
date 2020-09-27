@@ -7,6 +7,9 @@ public class Passenger {
     private String phone;
     private Address address;
 
+    public Passenger() {
+    }
+
     public Passenger(int id, String name, String phone, Address address) {
         this.id = id;
         this.name = name;
@@ -51,7 +54,7 @@ public class Passenger {
         return "\nid " + getId() +
                 ", name " + getName() +
                 ", phone " + getPhone() +
-                ", address " + new Address().getCountry() +
-                ", " + new Address().getCity();
+                ", country " + new Address().getCountry() +
+                ", city" + new Address().getCity();
     }
 }

@@ -31,6 +31,15 @@ public class TripPassenger {
 
     @Override
     public String toString() {
-        return "";
+        return "\npassenger id " + getPassenger_id() +
+                ", trip id " + getTrip_id() +
+                ", name " + new Passenger().getName() +
+                ", phone " + new Passenger().getPhone() +
+                ", country " + new Address().getCountry() +
+                ", city" + new Address().getCity() +
+                ", time in " + new Trip().getTime_in() +
+                ", time out " + new Trip().getTime_out() +
+                ", town to " + new Trip().getTown_to() +
+                ", town from " + new Trip().getTown_from();
     }
 }
