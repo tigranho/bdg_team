@@ -51,7 +51,6 @@ public class InputToSql {
                 Address a_id = address.getById(aid);
                 int id1 = a_id.getId();
 
-//                new PassengerImpl().save(new Passenger(id, name, phone, ));
                 PreparedStatement preparedStatement = connection.prepareStatement(
                         "insert into passengers(id, name, phone, address_id) VALUES (?, ?, ?, ?)");
                 preparedStatement.setInt(1, id);
