@@ -13,7 +13,7 @@ public class Main {
         unmarshal();
     }
 
-    public static void marshal(){
+    public static void marshal() {
 
         Customer customer = new Customer();
         customer.setId(1);
@@ -33,7 +33,7 @@ public class Main {
         }
     }
 
-    public static void unmarshal(){
+    public static void unmarshal() {
 
         try {
             File file = new File("src/main/resources/customer.xml");
