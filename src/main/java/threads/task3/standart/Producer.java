@@ -4,16 +4,16 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Producer extends Thread{
+public class Producer extends Thread {
 
     private static final int SIZE = 3;
     private final List<String> wharehouse = new ArrayList<>();
 
     @Override
-    public void run(){
+    public void run() {
 
-        try{
-            while (true){
+        try {
+            while (true) {
                 produce();
             }
         } catch (InterruptedException e) {
@@ -23,7 +23,7 @@ public class Producer extends Thread{
 
     private synchronized void produce() throws InterruptedException {
 
-        while (wharehouse.size() == SIZE){
+        while (wharehouse.size() == SIZE) {
             System.out.println("Queue limit reached. Waiting for consumer");
             wait();
             System.out.println("Producer got notification from consumer");
@@ -37,7 +37,7 @@ public class Producer extends Thread{
 
     public synchronized String consumer() throws InterruptedException {
         notifyAll();
-        while (wharehouse.isEmpty()){
+        while (wharehouse.isEmpty()) {
             wait();
         }
         String data = wharehouse.get(0);

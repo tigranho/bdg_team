@@ -1,7 +1,7 @@
 package threads;
 
 public class Task2B {
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
 
         Count count = new Count();
         new Thread(count::set).start();
@@ -26,8 +26,8 @@ class Count extends Thread {
         System.out.println(count);
     }
 
-    public synchronized void set(){
-        for (int i = 0; i < 1_000_000; i++){
+    public synchronized void set() {
+        for (int i = 0; i < 1_000_000; i++) {
 //            System.out.println(count++);
             this.count++;
         }
