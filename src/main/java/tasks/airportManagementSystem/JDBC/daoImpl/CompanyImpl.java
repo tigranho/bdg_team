@@ -7,23 +7,20 @@ import java.sql.*;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+import static tasks.airportManagementSystem.JDBC.DbConnection.getConnection;
+
 /**
  * @author Tatevik Mirzoyan
  * Created on 17-Sep-20
  */
 public class CompanyImpl implements CompanyDAO {
 
-    public static Connection getConnection() throws SQLException {
-        String url = "jdbc:mysql://localhost:3306/airport_management_system";
-        return DriverManager.getConnection(url, "root", "root");
-    }
-
     @Override
     public Company getById(int id) {
         String query = "select * from companies where companies.id=?";
         Company company = new Company();
-        try {
-            PreparedStatement stmt = getConnection().prepareStatement(query);
+        try (Connection conn = getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setInt(1, id);
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
@@ -32,7 +29,7 @@ public class CompanyImpl implements CompanyDAO {
                 company.setFound_date(rs.getDate("found_date").toLocalDate());
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.err.println(e.getMessage());
         }
         return company;
     }
@@ -42,9 +39,9 @@ public class CompanyImpl implements CompanyDAO {
         String query = "select * from companies";
         Set<Company> companySet = new LinkedHashSet<>();
         Company company;
-        try {
-            PreparedStatement stmt = getConnection().prepareStatement(query);
-            ResultSet rs = stmt.executeQuery();
+        try (Connection conn = getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query);
+             ResultSet rs = stmt.executeQuery()) {
             while (rs.next()) {
                 company = new Company();
                 company.setId(rs.getInt("id"));
@@ -53,36 +50,30 @@ public class CompanyImpl implements CompanyDAO {
                 companySet.add(company);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.err.println(e.getMessage());
         }
         return companySet;
     }
 
-    //TODO represents this query //SELECT * FROM companies ORDER BY 'name'//
     @Override
     public Set<Company> get(int page, int perPage, String sort) {
-        final String query = "SELECT * FROM companies ORDER BY ? LIMIT ? offset ?";
+        String query = "SELECT * FROM companies ORDER BY " + sort + " LIMIT ? offset ? ";
         Set<Company> companySet = new LinkedHashSet<>();
         Company company;
-        try (PreparedStatement stmt = getConnection().prepareStatement(query)) {
-            stmt.setString(1, sort);
-            stmt.setInt(2, perPage);
-            // stmt.setInt(3, ((page - 1) * perPage));
-            stmt.setInt(3, page);
-//            String st = stmt.toString();
-//            System.out.println(st);
+        try (Connection conn = getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setInt(1, perPage);
+            stmt.setInt(2, ((page - 1) * perPage));
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 company = new Company();
                 company.setName(rs.getString("name"));
                 company.setId(rs.getInt("id"));
                 company.setFound_date(rs.getDate("found_date").toLocalDate());
-                System.out.println(company);
                 companySet.add(company);
-                System.out.println(rs.getString(2));
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.err.println(e.getMessage());
         }
         return companySet;
     }
@@ -90,8 +81,8 @@ public class CompanyImpl implements CompanyDAO {
     @Override
     public Company save(Company company) {
         String query = "insert into companies(name, found_date) values(?,?)";
-        try {
-            PreparedStatement stmt = getConnection().prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+        try (Connection conn = getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
             stmt.setString(1, company.getName());
             stmt.setString(2, company.getFound_date().toString());
             stmt.executeUpdate();
@@ -99,7 +90,7 @@ public class CompanyImpl implements CompanyDAO {
             while (resultSet.next())
                 company.setId(resultSet.getInt(1));
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.err.println(e.getMessage());
         }
         return company;
     }
@@ -107,14 +98,14 @@ public class CompanyImpl implements CompanyDAO {
     @Override
     public Company update(Company company) {
         String query = "update companies set name = ?, found_date = ? where id = ?";
-        try {
-            PreparedStatement stmt = getConnection().prepareStatement(query);
+        try (Connection conn = getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setString(1, company.getName());
             stmt.setDate(2, Date.valueOf(company.getFound_date()));
             stmt.setInt(3, company.getId());
             stmt.execute();
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.err.println(e.getMessage());
         }
         return company;
     }
@@ -122,12 +113,12 @@ public class CompanyImpl implements CompanyDAO {
     @Override
     public void delete(int companyId) {
         String query = "delete from companies where id = ?";
-        try {
-            PreparedStatement stmt = getConnection().prepareStatement(query);
+        try (Connection conn = getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setInt(1, companyId);
             stmt.execute();
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.err.println(e.getMessage());
         }
     }
 }

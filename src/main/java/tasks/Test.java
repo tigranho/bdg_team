@@ -1,17 +1,16 @@
 package tasks;
 
-import tasks.airportManagementSystem.daoImpl.CompanyImpl;
-import tasks.airportManagementSystem.model.Company;
+import tasks.airportManagementSystem.JPA.daoImpl.CompanyImpl;
+import tasks.airportManagementSystem.JPA.daoImpl.PassengerImpl;
+import tasks.airportManagementSystem.JPA.daoImpl.TripImpl;
+import tasks.airportManagementSystem.JPA.model.Address;
+import tasks.airportManagementSystem.JPA.model.Company;
+import tasks.airportManagementSystem.JPA.model.Passenger;
+import tasks.airportManagementSystem.JPA.model.Trip;
 
-import java.io.*;
 import java.sql.*;
-import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
-
-import static tasks.airportManagementSystem.daoImpl.CompanyImpl.getConnection;
 
 /**
  * @author Tatevik Mirzoyan
@@ -19,10 +18,11 @@ import static tasks.airportManagementSystem.daoImpl.CompanyImpl.getConnection;
  */
 public class Test {
     public static void main(String[] args) throws SQLException {
-        Set<Company> companies = new CompanyImpl().get(3, 3, "name");
-        /*for (Company c : companies) {
-            System.out.println(c);
-        }*/
+        List<Trip> passengers = new TripImpl().getTripsTo("Moscow");
+        for (Trip p : passengers) {
+            System.out.println(p);
+        }
+
 
     }
 }

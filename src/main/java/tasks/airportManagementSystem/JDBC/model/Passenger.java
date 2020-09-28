@@ -58,6 +58,6 @@ public class Passenger {
                 ", name='" + name + '\'' +
                 ", phone='" + phone + '\'' +
                 ", address=" + address +
-                '}' + "\n";
+                '}';
     }
 }

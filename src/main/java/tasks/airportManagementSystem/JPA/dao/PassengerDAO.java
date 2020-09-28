@@ -1,9 +1,8 @@
-package tasks.airportManagementSystem.JDBC.dao;
+package tasks.airportManagementSystem.JPA.dao;
 
-import tasks.airportManagementSystem.JDBC.model.Passenger;
-import tasks.airportManagementSystem.JDBC.model.Trip;
+import tasks.airportManagementSystem.JPA.model.Passenger;
+import tasks.airportManagementSystem.JPA.model.Trip;
 
-import java.sql.SQLException;
 import java.util.List;
 import java.util.Set;
 

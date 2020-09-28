@@ -7,7 +7,7 @@ import java.util.List;
  */
 public class TestLinkedList {
     public static void main(String[] args) {
-        List<Integer> list = new MyCustomLinkedList<>();
+        List<Integer> list = new CustomLinkedList<>();
         list.add(12);
         list.add(13);
         list.add(14);

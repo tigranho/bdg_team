@@ -9,5 +9,5 @@ import java.sql.SQLException;
  * Created on 23-Sep-20
  */
 public interface AddressDAO {
-    Address save(Address address) throws SQLException;
+    Address ifExistIgnoreElseAddAddress(Address address);
 }
