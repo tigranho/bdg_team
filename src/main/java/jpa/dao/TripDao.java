@@ -2,9 +2,10 @@ package jpa.dao;
 
 import jpa.entity.Passenger;
 import jpa.entity.Trip;
-import jpa.implement.TripI;
+import jpa.implement.TripImpl;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 public interface TripDao {
@@ -25,7 +26,7 @@ public interface TripDao {
 
     List<Trip> getTripsTo(String city);
 
-    void registerTrip(TripI trip, Passenger passenger);
+    void registerTrip(TripImpl trip, Passenger passenger);
 
     void cancelTrip(long passengerId, long tripNumber);
 }
