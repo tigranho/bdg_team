@@ -20,8 +20,8 @@ public class Passenger {
 
     @ManyToMany
     @JoinTable(name = "passenger_trip",
-            joinColumns = {@JoinColumn(name = "passenger_id")},
-            inverseJoinColumns = {@JoinColumn(name = "trip_id")})
+            joinColumns = @JoinColumn(name = "passenger_id"),
+            inverseJoinColumns = @JoinColumn(name = "trip_id"))
     private Set<Trip> trips  = new HashSet<>();
 
     public Passenger() {

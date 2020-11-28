@@ -1,12 +1,11 @@
 package hibernate.airport_management_system.data;
 
-import hibernate.airport_management_system.Service.AddressDaoImpl;
-import hibernate.airport_management_system.Service.PassengerDaoImpl;
-import hibernate.airport_management_system.dao.AddressDao;
-import hibernate.airport_management_system.dao.PassengerDao;
 import hibernate.airport_management_system.entity.Address;
 import hibernate.airport_management_system.entity.Passenger;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -17,38 +16,28 @@ public class DataLoader {
     public void insertIntoPassenger() throws IOException {
         BufferedReader companiesReader = new BufferedReader(new FileReader("C:\\Users\\Samvel\\Desktop\\JAVA_Intermediate\\homework(JDBC)\\homework(JDBC)\\passengers.txt"));
         String str;
-
-        while ((str = companiesReader.readLine()) != null) {
-            String[] s = str.split(",");
-
-            Address address = new Address(s[2], s[3]);
-            Passenger passenger = new Passenger(s[0], s[1], address);
-            PassengerDao passengerDao = new PassengerDaoImpl();
-
-            passengerDao.save(passenger);
-
-        }
-    }
-
-    public void insertIntoAddress() throws IOException {
-        BufferedReader companiesReader = new BufferedReader(new FileReader("C:\\Users\\Samvel\\Desktop\\passengers.txt"));
-        String str;
         List<String> strings = new LinkedList<>();
 
-        while ((str = companiesReader.readLine()) != null) {
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("hibernate_JPA");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+        while((str = companiesReader.readLine()) != null) {
             strings.add(str);
         }
-        for(String obj: strings) {
-            String[] s = obj.split(",");
 
+        entityManager.getTransaction().begin();
+
+        for(String string : strings) {
+            String[] s = string.split(",");
             Address address = new Address(s[2], s[3]);
-            AddressDao addressDao = new AddressDaoImpl();
-
-            addressDao.save(address);
-            System.out.println(address.getId());
+            Passenger passenger = new Passenger(s[0], s[1], address);
+            entityManager.persist(address);
+            entityManager.persist(passenger);
         }
 
+        entityManager.getTransaction().commit();
 
-
+        entityManager.close();
+        entityManagerFactory.close();
     }
 }

@@ -6,6 +6,7 @@ import jdbc.airoport_management_system.entity.Company;
 import java.util.Set;
 
 public class CompanyImpl implements CompanyDAO {
+
     @Override
     public Company getById(long id) {
         return null;

@@ -25,7 +25,7 @@ public class AddressDaoImpl implements AddressDao {
     public Set<Address> getAll() {
         EntityManagerFactory enfactory = Persistence.createEntityManagerFactory("hibernate_JPA");
         EntityManager entityManager = enfactory.createEntityManager();
-        return new HashSet<>(entityManager.createQuery("SELECT Address FROM Address", Address.class).getResultList());
+        return new HashSet<>(entityManager.createQuery("SELECT e FROM Address e", Address.class).getResultList());
     }
 
     @Override
